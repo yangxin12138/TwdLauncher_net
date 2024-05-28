@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 底部图层为一个圆形的红色背景 -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#FF0000" /> <!-- 红色背景 -->
+            <size android:width="20dp" android:height="20dp" /> <!-- 圆形的大小 -->
+        </shape>
+    </item>
+</layer-list>
