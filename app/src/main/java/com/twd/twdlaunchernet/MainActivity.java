@@ -366,4 +366,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             v.animate().scaleX(1.0f).scaleY(1.0f).translationZ(0f).setDuration(200);
         }
     }
+    @Override
+    public void onBackPressed() {
+    }
 }
