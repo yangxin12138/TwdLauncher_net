@@ -89,7 +89,7 @@
                 android:layout_width="360dp"
                 android:layout_height="180dp"
                 android:src="@drawable/icon_netflix"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 android:clickable="true"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
@@ -100,7 +100,7 @@
                 android:layout_width="360dp"
                 android:layout_height="180dp"
                 android:src="@drawable/icon_youtube"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 android:clickable="true"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
@@ -111,7 +111,7 @@
                 android:layout_width="360dp"
                 android:layout_height="180dp"
                 android:src="@drawable/icon_googleplay"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 android:clickable="true"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
@@ -171,10 +171,10 @@
             android:layout_marginTop="20dp"
             android:layout_marginStart="50dp"
             android:verticalSpacing="10dp"
-            android:horizontalSpacing="0dp"
+            android:horizontalSpacing="50dp"
             android:stretchMode="columnWidth"
             android:descendantFocusability="afterDescendants"
             android:gravity="center"
-            android:layout_marginEnd="400dp"/>
+            android:layout_marginEnd="300dp"/>
     </RelativeLayout>
 </LinearLayout>

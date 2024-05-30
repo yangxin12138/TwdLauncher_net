@@ -1,5 +1,6 @@
 package com.twd.twdlaunchernet;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
@@ -63,11 +64,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private boolean firstNetwork;
     SharedPreferences sharedPreferences;
     SharedPreferences selectedPreferences;
+    SharedPreferences currentFocusPreferences;
     IndexHeatsetAdapter heatAdapter;
     GridView gridView;
     List<ApplicationInfo> appList = new ArrayList<>();
     private Utils utils;
     public static boolean isHeat = false;
+    public static boolean isSecondView = false;
     private   View lastFocus;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +82,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         firstNetwork = sharedPreferences.getBoolean("firstConnected",false);
         updateTimeRunnable.run();
         selectedPreferences = getSharedPreferences("SelectedApps",Context.MODE_PRIVATE);
+        currentFocusPreferences = getSharedPreferences("currentFocus",Context.MODE_PRIVATE);
+        int currentFocusId = sharedPreferences.getInt("current_focus_id", R.id.im_netflix);
+        mCurrentFocus = findViewById(currentFocusId);
     }
 
     private Runnable updateTimeRunnable = new Runnable() {
@@ -192,13 +198,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         im_settings = findViewById(R.id.im_settings); im_settings.setOnFocusChangeListener(this::onFocusChange); im_settings.setOnClickListener(this::onClick);
         im_files = findViewById(R.id.im_files); im_files.setOnFocusChangeListener(this::onFocusChange); im_files.setOnClickListener(this::onClick);
         im_hdmi = findViewById(R.id.im_hdmi); im_hdmi.setOnFocusChangeListener(this::onFocusChange); im_hdmi.setOnClickListener(this::onClick);
-/*        if (lastFocus == null){
-            Log.i(TAG, "initView: 没有存 走默认");
-            im_netflix.requestFocus();
-        }else {
-            Log.i(TAG, "initView: 存了，走lastFocus");
-            lastFocus.requestFocus();
-        }*/
         gridView = findViewById(R.id.heat_set);
         appList = Utils.getSelectedApps(this);
         heatAdapter = new IndexHeatsetAdapter(this,appList);
@@ -318,11 +317,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 });
             }
         }else {
+            int currentFocusId = currentFocusPreferences.getInt("current_focus_id", R.id.im_netflix);
+            mCurrentFocus = findViewById(currentFocusId);
             if (mCurrentFocus != null){
                 Log.i(TAG, "onResume: focus不为空  id= "+mCurrentFocus.getId());
                 mCurrentFocus.requestFocus();
             }
         }
+
 
 
     }
@@ -331,7 +333,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onPause() {
         super.onPause();
-        mCurrentFocus = lastFocus;
+        SharedPreferences.Editor editor = currentFocusPreferences.edit();
+        editor.putInt("current_focus_id",lastFocus.getId());
+        Log.i(TAG, "onPause: 存进去"+lastFocus.getId());
+        editor.apply();
     }
 
     @Override
@@ -340,7 +345,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         FrameLayout borderView = findViewById(R.id.border_view);
         if (hasFocus){
             lastFocus =v;
-            v.postDelayed(new Runnable() {
+            if (v.getId() == R.id.im_application || v.getId() == R.id.im_settings || v.getId() == R.id.im_files || v.getId() == R.id.im_hdmi)isSecondView = true;
+            v.post(new Runnable() {
                 @Override
                 public void run() {
                     //为此处得到焦点时的处理内容
@@ -351,21 +357,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     //获取焦点控件的宽度和高度
                     int width = v.getWidth();
                     int height = v.getHeight();
-                    borderView.animate().x(location[0]-(isHeat ?10:17)).y(location[1]-(isHeat ?100:110)).setDuration(250).translationZBy(11f).start();
+                    borderView.animate().x(location[0]-(isHeat ?15:(isSecondView?32:35))).y(location[1]-(isHeat ?110:120)).setDuration(250).translationZBy(11f).start();
                     borderView.setVisibility(View.VISIBLE);
-                    borderView.getLayoutParams().width = width+(isHeat?15:38);
-                    borderView.getLayoutParams().height = height+(isHeat ? 10:18);
+                    borderView.getLayoutParams().width = width+(isHeat?30:(isSecondView?60:75));
+                    borderView.getLayoutParams().height = height+(isHeat ? 30:38);
                     borderView.requestLayout(); //重新布局以应用大小变化
                 }
-            },100);
+            });
             // 添加切换动画效果
-            v.animate().scaleX(1.1f).scaleY(1.1f).translationZ(10f).setDuration(200);
+            v.animate().scaleX(1.2f).scaleY(1.2f).translationZ(10f).setDuration(200);
         }else {
+            if (v.getId() == R.id.im_application || v.getId() == R.id.im_settings || v.getId() == R.id.im_files || v.getId() == R.id.im_hdmi)isSecondView = false;
             borderView.setVisibility(View.GONE);
             // 隐藏边框
             v.animate().scaleX(1.0f).scaleY(1.0f).translationZ(0f).setDuration(200);
         }
     }
+    @SuppressLint("MissingSuperCall")
     @Override
     public void onBackPressed() {
     }
