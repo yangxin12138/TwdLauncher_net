@@ -86,12 +86,12 @@ public class ApplicationActivity extends AppCompatActivity {
                                 selectedCount++;
                             }
                         }
-                        if (selectedCount < 5) {
+                        if (selectedCount < 7) {
                             viewHold.iv_red.setVisibility(View.VISIBLE);
                             editor.putBoolean(appName,true);
                         }else {
                             //提示用户最多只能选5个
-                            Toast.makeText(getApplicationContext(), "最多只能选择5个应用", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "最多只能选择7个应用", Toast.LENGTH_SHORT).show();
                         }
                     }
                     editor.apply();

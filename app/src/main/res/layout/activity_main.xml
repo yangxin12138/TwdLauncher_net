@@ -166,7 +166,7 @@
             android:id="@+id/heat_set"
             android:layout_width="wrap_content"
             android:layout_height="130dp"
-            android:numColumns="6"
+            android:numColumns="8"
             android:layout_below="@+id/im_application"
             android:layout_marginTop="20dp"
             android:layout_marginStart="50dp"
@@ -175,6 +175,6 @@
             android:stretchMode="columnWidth"
             android:descendantFocusability="afterDescendants"
             android:gravity="center"
-            android:layout_marginEnd="300dp"/>
+            android:layout_marginEnd="100dp"/>
     </RelativeLayout>
 </LinearLayout>
