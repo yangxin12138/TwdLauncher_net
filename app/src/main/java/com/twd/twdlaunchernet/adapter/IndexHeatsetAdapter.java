@@ -77,7 +77,7 @@ public class IndexHeatsetAdapter extends BaseAdapter {
         }else {
             //最后一个子项是固定的ImageView
             icon.setImageDrawable(mContext.getDrawable(R.drawable.index_add));
-            name.setText("");
+            name.setText(R.string.index_add_title);
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
