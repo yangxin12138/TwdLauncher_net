@@ -13,6 +13,8 @@ import android.hardware.usb.UsbManager;
 import android.text.format.DateFormat;
 import android.util.Log;
 
+import com.twd.twdlaunchernet.adapter.ApplicationAdapter;
+
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -80,17 +82,18 @@ public class Utils {
         List<ApplicationInfo> selectedApplist = new ArrayList<>();
         Map<String,?> allEntries = sharedPreferences.getAll();
         PackageManager packageManager = context.getPackageManager();
+        List<ApplicationInfo> appList = packageManager.getInstalledApplications(PackageManager.GET_META_DATA);
+
 
         for (Map.Entry<String,?> entry : allEntries.entrySet()){
             if (entry.getValue() instanceof Boolean){
                 Boolean value = (Boolean) entry.getValue();
                 if (value){
-                    String appName  = entry.getKey();
+                    String packageName  = entry.getKey();
                     try {
                         ApplicationInfo appInfo = null;
-                        List<ApplicationInfo> appList = packageManager.getInstalledApplications(PackageManager.GET_META_DATA);
                         for (ApplicationInfo info : appList){
-                            if (appName.equals(packageManager.getApplicationLabel(info).toString())){
+                            if (packageName.equals(info.packageName)){
                                 appInfo = info;
                                 break;
                             }

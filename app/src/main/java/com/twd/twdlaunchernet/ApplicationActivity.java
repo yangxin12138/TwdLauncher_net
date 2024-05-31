@@ -71,12 +71,12 @@ public class ApplicationActivity extends AppCompatActivity {
                     }
                 } else if (listMode == 2) {
                     ApplicationAdapter.ViewHold viewHold = (ApplicationAdapter.ViewHold) view.getTag();
-                    String appName = viewHold.tv_name.getText().toString();
+                    String packageName = viewHold.packageName;
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    if (sharedPreferences.getBoolean(appName,false)){
+                    if (sharedPreferences.getBoolean(packageName,false)){
                         //已经选过了，取消选中
                         viewHold.iv_red.setVisibility(View.GONE);
-                        editor.putBoolean(appName,false);
+                        editor.putBoolean(packageName,false);
                     }else {
                         //未选中，判断是否超过5个
                         int selectedCount = 0;
@@ -88,7 +88,7 @@ public class ApplicationActivity extends AppCompatActivity {
                         }
                         if (selectedCount < 7) {
                             viewHold.iv_red.setVisibility(View.VISIBLE);
-                            editor.putBoolean(appName,true);
+                            editor.putBoolean(packageName,true);
                         }else {
                             //提示用户最多只能选5个
                             Toast.makeText(getApplicationContext(), "最多只能选择7个应用", Toast.LENGTH_SHORT).show();

@@ -66,9 +66,10 @@ public class ApplicationAdapter extends BaseAdapter {
         }else {
             viewHold = (ViewHold) convertView.getTag();
         }
-        String packageName = app.activityInfo.packageName;
+        viewHold.packageName = app.activityInfo.packageName;
+
         try{
-            ApplicationInfo applicationInfo = manager.getApplicationInfo(packageName,0);
+            ApplicationInfo applicationInfo = manager.getApplicationInfo(viewHold.packageName,0);
             String appName = (String) applicationInfo.loadLabel(manager);
             viewHold.tv_name.setText(appName);
             viewHold.iv_icon.setImageDrawable(app.activityInfo.loadIcon(manager));
@@ -80,7 +81,7 @@ public class ApplicationAdapter extends BaseAdapter {
                 //添加应用到主菜单，此时需要区分红点
                 // 根据 SharedPreferences 中的数据来显示或隐藏红点
                 SharedPreferences selectedPreferences = context.getSharedPreferences("SelectedApps", Context.MODE_PRIVATE);
-                boolean isSelected = selectedPreferences.getBoolean(appName,false);
+                boolean isSelected = selectedPreferences.getBoolean(viewHold.packageName,false);
                 viewHold.iv_red.setVisibility(isSelected ? View.VISIBLE : View.GONE);
             }
         }catch (PackageManager.NameNotFoundException e){e.printStackTrace();}
@@ -89,8 +90,13 @@ public class ApplicationAdapter extends BaseAdapter {
     }
 
     public class ViewHold {
+        public void setTv_name(TextView tv_name) {
+            this.tv_name = tv_name;
+        }
+
         public TextView tv_name;
         public ImageView iv_icon;
         public ImageView iv_red;
+        public String packageName;
     }
 }

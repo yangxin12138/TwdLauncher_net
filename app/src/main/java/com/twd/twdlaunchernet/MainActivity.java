@@ -291,6 +291,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
+        SharedPreferences thisSharedPreferences = getSharedPreferences("SelectedApps", Context.MODE_PRIVATE);
+        Map<String, ?> allEntries = thisSharedPreferences.getAll();
+        int size = allEntries.size();
+        Log.i("yangxin", "onResume: thisSharedPreferences数量 = " + size);
+        Utils.getSelectedApps(this);
+        Log.i("yangxin", "onResume: 数量 = " + Utils.getSelectedApps(this).size());
         int position = heatAdapter.getSelectionPosition();
         int originalSize = appList.size();
         appList.clear();
