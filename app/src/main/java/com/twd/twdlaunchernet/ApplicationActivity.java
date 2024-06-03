@@ -26,6 +26,7 @@ import com.twd.twdlaunchernet.adapter.ApplicationAdapter;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -52,7 +53,17 @@ public class ApplicationActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_MAIN,null);
         intent.addCategory(Intent.CATEGORY_LAUNCHER);
         List<ResolveInfo> installedApps = pm.queryIntentActivities(intent,0);
+        //创建一个迭代器用于遍历installedApps列表
+        Iterator<ResolveInfo> iterator = installedApps.iterator();
 
+        //遍历installedApps列表，过滤应用
+        while (iterator.hasNext()){
+            ResolveInfo resolveInfo = iterator.next();
+            String packageName = resolveInfo.activityInfo.packageName;
+            if ("com.twd.twdlaunchernet".equals(packageName)){
+                iterator.remove();//移除
+            }
+        }
         adapter = new ApplicationAdapter(this,installedApps,listMode);
         gridView.setAdapter(adapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
