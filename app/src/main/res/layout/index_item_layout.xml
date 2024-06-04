@@ -6,6 +6,7 @@
     android:background="@drawable/grid_item_selector">
 
     <LinearLayout
+        android:duplicateParentState="true"
         android:layout_width="match_parent"
         android:layout_height="190dp"
         android:orientation="vertical"
@@ -17,12 +18,16 @@
             android:layout_height="120dp"
             android:scaleType="centerCrop"/>
         <TextView
+            android:duplicateParentState="true"
             android:id="@+id/appName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:textColor="@color/white"
-            android:layout_gravity="center_horizontal"/>
+            android:textColor="@drawable/list_name_selector"
+            android:layout_gravity="center_horizontal"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"/>
     </LinearLayout>
     <ImageView
         android:id="@+id/iv_red"

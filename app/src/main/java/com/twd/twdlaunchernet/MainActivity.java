@@ -70,8 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     List<ApplicationInfo> appList = new ArrayList<>();
     private Utils utils;
     public static boolean isHeat = false;
-    public static boolean isSecondView = false;
-    private   View lastFocus;
+    public static View lastFocus;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -279,12 +278,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             intent.setComponent(new ComponentName("com.softwinner.awsource","com.softwinner.awsource.MainActivity"));
         } else if (v.getId() == R.id.im_files) {//file
             intent = new Intent();
-            intent.setComponent(new ComponentName("com.vsoontech.mos.filemanager", "com.vsoontech.filemanager.business.index.IndexAty"));
+            intent.setComponent(new ComponentName("com.softwinner.TvdFileManager", "com.softwinner.TvdFileManager.MainUI"));
         }
 
         if (intent != null){
             Log.i(TAG, "onClick: intent不为空");
-            startActivity(intent);
+            try {
+                startActivity(intent);
+            }catch (Exception e){
+                Toast.makeText(this, "应用不存在", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
@@ -348,35 +351,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
         Log.i(TAG, "onFocusChange: -----获取焦点--- id = " + v.getId());
-        FrameLayout borderView = findViewById(R.id.border_view);
         if (hasFocus){
             lastFocus =v;
-            if (v.getId() == R.id.im_application || v.getId() == R.id.im_settings || v.getId() == R.id.im_files || v.getId() == R.id.im_hdmi)isSecondView = true;
-            v.post(new Runnable() {
-                @Override
-                public void run() {
-                    //为此处得到焦点时的处理内容
-                    // 显示边框，并移动到当前控件的位置
-                    int[] location = new int[2];
-                    v.getLocationOnScreen(location);
-                    Log.i(TAG, "onFocusChange: location[0] = "+location[0]+",location[1] = "+location[1]);
-                    //获取焦点控件的宽度和高度
-                    int width = v.getWidth();
-                    int height = v.getHeight();
-                    borderView.animate().x(location[0]-(isHeat ?15:(isSecondView?32:35))).y(location[1]-(isHeat ?110:120)).setDuration(250).translationZBy(11f).start();
-                    borderView.setVisibility(View.VISIBLE);
-                    borderView.getLayoutParams().width = width+(isHeat?30:(isSecondView?60:75));
-                    borderView.getLayoutParams().height = height+(isHeat ? 30:38);
-                    borderView.requestLayout(); //重新布局以应用大小变化
-                }
-            });
             // 添加切换动画效果
-            v.animate().scaleX(1.2f).scaleY(1.2f).translationZ(10f).setDuration(200);
+            if (!isHeat){
+                v.setForeground(getResources().getDrawable(R.drawable.border_white));
+                v.animate().scaleX(1.2f).scaleY(1.2f).translationZ(1f).setDuration(100);
+            }
         }else {
-            if (v.getId() == R.id.im_application || v.getId() == R.id.im_settings || v.getId() == R.id.im_files || v.getId() == R.id.im_hdmi)isSecondView = false;
-            borderView.setVisibility(View.GONE);
-            // 隐藏边框
-            v.animate().scaleX(1.0f).scaleY(1.0f).translationZ(0f).setDuration(200);
+            if (!isHeat){
+                // 隐藏边框
+                v.setForeground(null);
+                v.animate().scaleX(1.0f).scaleY(1.0f).translationZ(0f).setDuration(100);
+            }
         }
     }
     @SuppressLint("MissingSuperCall")

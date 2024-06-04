@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,6 +60,7 @@ public class IndexHeatsetAdapter extends BaseAdapter {
 
         ImageView icon = view.findViewById(R.id.appIcon);
         TextView name = view.findViewById(R.id.appName);
+        LinearLayout LL_center = view.findViewById(R.id.LL_center);
         if (position < mApplist.size()){
             final  ApplicationInfo appInfo = mApplist.get(position);
             icon.setImageDrawable(appInfo.loadIcon(mContext.getPackageManager()));
@@ -90,19 +92,22 @@ public class IndexHeatsetAdapter extends BaseAdapter {
             });
         }
 
-        view.setBackgroundResource(R.drawable.heat_normal);
-
         view.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus){
                     MainActivity.isHeat = true;
                     ((MainActivity) mContext).onFocusChange(v,hasFocus);
+                    LL_center.animate().scaleX(1.1f).scaleY(1.1f).translationZ(1f).setDuration(100);
+                    LL_center.setForeground(mContext.getResources().getDrawable(R.drawable.border_white));
+                    name.setSelected(true);
                 }else {
                     MainActivity.isHeat = false;
                     ((MainActivity) mContext).onFocusChange(v,hasFocus);
+                    LL_center.animate().scaleX(1.0f).scaleY(1.0f).translationZ(0f).setDuration(100);
+                    LL_center.setForeground(null);
+                    name.setSelected(false);
                 }
-
             }
         });
         return view;

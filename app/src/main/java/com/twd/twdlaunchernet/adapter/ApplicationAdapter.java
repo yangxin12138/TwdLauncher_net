@@ -7,6 +7,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -84,8 +85,20 @@ public class ApplicationAdapter extends BaseAdapter {
                 boolean isSelected = selectedPreferences.getBoolean(viewHold.packageName,false);
                 viewHold.iv_red.setVisibility(isSelected ? View.VISIBLE : View.GONE);
             }
-        }catch (PackageManager.NameNotFoundException e){e.printStackTrace();}
+            ViewHold finalViewHold = viewHold;
+            finalViewHold.tv_name.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View v, boolean hasFocus) {
+                    if (hasFocus){
+                        Log.i("yangxin", "onFocusChange: -------触发背景选择----------");
+                        finalViewHold.tv_name.setTextColor(Color.parseColor("#FFFFFF"));
+                    }else {
+                        finalViewHold.tv_name.setTextColor(Color.parseColor("#000000"));
+                    }
+                }
+            });
 
+        }catch (PackageManager.NameNotFoundException e){e.printStackTrace();}
         return convertView;
     }
 

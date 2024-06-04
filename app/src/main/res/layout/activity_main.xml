@@ -82,41 +82,40 @@
         android:paddingTop="0dp"
         android:paddingStart="50dp"
         android:paddingEnd="50dp">
-            <include layout="@layout/border_view"/>
 
             <ImageView
                 android:id="@+id/im_netflix"
                 android:layout_width="360dp"
-                android:layout_height="180dp"
+                android:layout_height="200dp"
                 android:src="@drawable/icon_netflix"
                 android:scaleType="fitXY"
                 android:clickable="true"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:layout_marginStart="50dp"
-                android:layout_marginTop="50dp" />
+                android:layout_marginTop="20dp" />
             <ImageView
                 android:id="@+id/im_youtube"
                 android:layout_width="360dp"
-                android:layout_height="180dp"
+                android:layout_height="200dp"
                 android:src="@drawable/icon_youtube"
                 android:scaleType="fitXY"
                 android:clickable="true"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:layout_toEndOf="@+id/im_netflix"
-                android:layout_marginTop="50dp"/>
+                android:layout_marginTop="20dp"/>
             <ImageView
                 android:id="@+id/im_googleplay"
                 android:layout_width="360dp"
-                android:layout_height="180dp"
+                android:layout_height="200dp"
                 android:src="@drawable/icon_googleplay"
                 android:scaleType="fitXY"
                 android:clickable="true"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:layout_toEndOf="@+id/im_youtube"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="50dp"/>
             <ImageView
                 android:id="@+id/im_application"
@@ -165,16 +164,15 @@
         <GridView
             android:id="@+id/heat_set"
             android:layout_width="wrap_content"
-            android:layout_height="130dp"
+            android:layout_height="180dp"
             android:numColumns="8"
             android:layout_below="@+id/im_application"
-            android:layout_marginTop="20dp"
             android:layout_marginStart="50dp"
-            android:verticalSpacing="10dp"
             android:horizontalSpacing="0dp"
             android:stretchMode="columnWidth"
             android:descendantFocusability="afterDescendants"
             android:gravity="center"
+            android:paddingTop="20dp"
             android:layout_marginEnd="50dp"/>
     </RelativeLayout>
 </LinearLayout>

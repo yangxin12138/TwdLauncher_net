@@ -3,7 +3,7 @@
     android:id="@+id/border_view"
     android:layout_width="400dp"
     android:layout_height="200dp"
-    android:background="@drawable/border_black"
+    android:background="@drawable/border_white"
     android:visibility="gone">
 
 </FrameLayout>

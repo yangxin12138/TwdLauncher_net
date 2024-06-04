@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_selected="true">
-        <shape android:shape="rectangle">
-            <solid android:color="@color/transparent_green" />
-            <corners android:radius="30dp" />
-        </shape>
-    </item>
-    <item>
-        <shape android:shape="rectangle">
-            <solid android:color="@color/transparent_blue" />
-            <corners android:radius="30dp" />
-        </shape>
-    </item>
-<!--    <item android:state_selected="true" android:drawable="@color/transparent_green" />
-    <item android:drawable="@color/transparent_blue" />-->
+    <item android:state_selected="true"
+        android:drawable="@drawable/grid_item_selected"/>
+    <item android:drawable="@drawable/grid_item_unselected"/>
 </selector>
