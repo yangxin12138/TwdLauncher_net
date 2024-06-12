@@ -80,24 +80,24 @@
         android:orientation="horizontal"
         android:layout_weight="6"
         android:paddingTop="0dp"
-        android:paddingStart="50dp"
-        android:paddingEnd="50dp">
+        android:paddingStart="@dimen/index_padding"
+        android:paddingEnd="@dimen/index_padding">
 
             <ImageView
                 android:id="@+id/im_netflix"
-                android:layout_width="360dp"
-                android:layout_height="200dp"
+                android:layout_width="@dimen/index_first_icon_width"
+                android:layout_height="@dimen/index_first_icon_height"
                 android:src="@drawable/icon_netflix"
                 android:scaleType="fitXY"
                 android:clickable="true"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
-                android:layout_marginStart="50dp"
+                android:layout_marginStart="@dimen/index_margin"
                 android:layout_marginTop="20dp" />
             <ImageView
                 android:id="@+id/im_youtube"
-                android:layout_width="360dp"
-                android:layout_height="200dp"
+                android:layout_width="@dimen/index_first_icon_width"
+                android:layout_height="@dimen/index_first_icon_height"
                 android:src="@drawable/icon_youtube"
                 android:scaleType="fitXY"
                 android:clickable="true"
@@ -107,8 +107,8 @@
                 android:layout_marginTop="20dp"/>
             <ImageView
                 android:id="@+id/im_googleplay"
-                android:layout_width="360dp"
-                android:layout_height="200dp"
+                android:layout_width="@dimen/index_first_icon_width"
+                android:layout_height="@dimen/index_first_icon_height"
                 android:src="@drawable/icon_googleplay"
                 android:scaleType="fitXY"
                 android:clickable="true"
@@ -116,22 +116,22 @@
                 android:focusableInTouchMode="true"
                 android:layout_toEndOf="@+id/im_youtube"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="50dp"/>
+                android:layout_marginEnd="@dimen/index_margin"/>
             <ImageView
                 android:id="@+id/im_application"
-                android:layout_width="270dp"
-                android:layout_height="180dp"
+                android:layout_width="@dimen/index_second_icon_width"
+                android:layout_height="@dimen/index_second_icon_height"
                 android:src="@drawable/icon_applicaiton"
                 android:scaleType="centerCrop"
                 android:clickable="true"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
-                android:layout_marginStart="50dp"
+                android:layout_marginStart="@dimen/index_margin"
                 android:layout_below="@+id/im_netflix"/>
             <ImageView
                 android:id="@+id/im_settings"
-                android:layout_width="270dp"
-                android:layout_height="180dp"
+                android:layout_width="@dimen/index_second_icon_width"
+                android:layout_height="@dimen/index_second_icon_height"
                 android:src="@drawable/icon_settings"
                 android:scaleType="centerCrop"
                 android:clickable="true"
@@ -141,8 +141,8 @@
                 android:layout_below="@+id/im_netflix"/>
             <ImageView
                 android:id="@+id/im_files"
-                android:layout_width="270dp"
-                android:layout_height="180dp"
+                android:layout_width="@dimen/index_second_icon_width"
+                android:layout_height="@dimen/index_second_icon_height"
                 android:src="@drawable/icon_files"
                 android:scaleType="centerCrop"
                 android:clickable="true"
@@ -152,8 +152,8 @@
                 android:layout_toEndOf="@+id/im_settings" />
             <ImageView
                 android:id="@+id/im_hdmi"
-                android:layout_width="270dp"
-                android:layout_height="180dp"
+                android:layout_width="@dimen/index_second_icon_width"
+                android:layout_height="@dimen/index_second_icon_height"
                 android:src="@drawable/icon_hdmi1"
                 android:scaleType="centerCrop"
                 android:clickable="true"
@@ -172,7 +172,7 @@
             android:stretchMode="columnWidth"
             android:descendantFocusability="afterDescendants"
             android:gravity="center"
-            android:paddingTop="20dp"
+            android:paddingTop="@dimen/index_heat_paddingTop"
             android:layout_marginEnd="50dp"/>
     </RelativeLayout>
 </LinearLayout>
