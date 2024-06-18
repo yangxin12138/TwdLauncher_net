@@ -77,102 +77,109 @@
         android:id="@+id/contentLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="horizontal"
         android:layout_weight="6"
-        android:paddingTop="0dp"
+        android:orientation="horizontal"
         android:paddingStart="@dimen/index_padding"
+        android:paddingTop="0dp"
         android:paddingEnd="@dimen/index_padding">
 
-            <ImageView
-                android:id="@+id/im_netflix"
-                android:layout_width="@dimen/index_first_icon_width"
-                android:layout_height="@dimen/index_first_icon_height"
-                android:src="@drawable/icon_netflix"
-                android:scaleType="fitXY"
-                android:clickable="true"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:layout_marginStart="@dimen/index_margin"
-                android:layout_marginTop="20dp" />
-            <ImageView
-                android:id="@+id/im_youtube"
-                android:layout_width="@dimen/index_first_icon_width"
-                android:layout_height="@dimen/index_first_icon_height"
-                android:src="@drawable/icon_youtube"
-                android:scaleType="fitXY"
-                android:clickable="true"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:layout_toEndOf="@+id/im_netflix"
-                android:layout_marginTop="20dp"/>
-            <ImageView
-                android:id="@+id/im_googleplay"
-                android:layout_width="@dimen/index_first_icon_width"
-                android:layout_height="@dimen/index_first_icon_height"
-                android:src="@drawable/icon_googleplay"
-                android:scaleType="fitXY"
-                android:clickable="true"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:layout_toEndOf="@+id/im_youtube"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="@dimen/index_margin"/>
-            <ImageView
-                android:id="@+id/im_application"
-                android:layout_width="@dimen/index_second_icon_width"
-                android:layout_height="@dimen/index_second_icon_height"
-                android:src="@drawable/icon_applicaiton"
-                android:scaleType="centerCrop"
-                android:clickable="true"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:layout_marginStart="@dimen/index_margin"
-                android:layout_below="@+id/im_netflix"/>
-            <ImageView
-                android:id="@+id/im_settings"
-                android:layout_width="@dimen/index_second_icon_width"
-                android:layout_height="@dimen/index_second_icon_height"
-                android:src="@drawable/icon_settings"
-                android:scaleType="centerCrop"
-                android:clickable="true"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:layout_toEndOf="@+id/im_application"
-                android:layout_below="@+id/im_netflix"/>
-            <ImageView
-                android:id="@+id/im_files"
-                android:layout_width="@dimen/index_second_icon_width"
-                android:layout_height="@dimen/index_second_icon_height"
-                android:src="@drawable/icon_files"
-                android:scaleType="centerCrop"
-                android:clickable="true"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:layout_below="@+id/im_netflix"
-                android:layout_toEndOf="@+id/im_settings" />
-            <ImageView
-                android:id="@+id/im_hdmi"
-                android:layout_width="@dimen/index_second_icon_width"
-                android:layout_height="@dimen/index_second_icon_height"
-                android:src="@drawable/icon_hdmi1"
-                android:scaleType="centerCrop"
-                android:clickable="true"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:layout_below="@+id/im_netflix"
-                android:layout_toEndOf="@+id/im_files"/>
+        <ImageView
+            android:id="@+id/im_netflix"
+            android:layout_width="@dimen/index_first_icon_width"
+            android:layout_height="@dimen/index_first_icon_height"
+            android:layout_marginStart="@dimen/index_margin"
+            android:layout_marginTop="@dimen/index_margin_top"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/icon_netflix" />
+
+        <ImageView
+            android:id="@+id/im_youtube"
+            android:layout_width="@dimen/index_first_icon_width"
+            android:layout_height="@dimen/index_first_icon_height"
+            android:layout_marginTop="@dimen/index_margin_top"
+            android:layout_toEndOf="@+id/im_netflix"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/icon_youtube" />
+
+        <ImageView
+            android:id="@+id/im_googleplay"
+            android:layout_width="@dimen/index_first_icon_width"
+            android:layout_height="@dimen/index_first_icon_height"
+            android:layout_marginTop="@dimen/index_margin_top"
+            android:layout_marginEnd="@dimen/index_margin"
+            android:layout_toEndOf="@+id/im_youtube"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/icon_googleplay" />
+
+        <ImageView
+            android:id="@+id/im_application"
+            android:layout_width="@dimen/index_second_icon_width"
+            android:layout_height="@dimen/index_second_icon_height"
+            android:layout_below="@+id/im_netflix"
+            android:layout_marginStart="@dimen/index_margin"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_applicaiton" />
+
+        <ImageView
+            android:id="@+id/im_settings"
+            android:layout_width="@dimen/index_second_icon_width"
+            android:layout_height="@dimen/index_second_icon_height"
+            android:layout_below="@+id/im_netflix"
+            android:layout_toEndOf="@+id/im_application"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_settings" />
+
+        <ImageView
+            android:id="@+id/im_files"
+            android:layout_width="@dimen/index_second_icon_width"
+            android:layout_height="@dimen/index_second_icon_height"
+            android:layout_below="@+id/im_netflix"
+            android:layout_toEndOf="@+id/im_settings"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_files" />
+
+        <ImageView
+            android:id="@+id/im_hdmi"
+            android:layout_width="@dimen/index_second_icon_width"
+            android:layout_height="@dimen/index_second_icon_height"
+            android:layout_below="@+id/im_netflix"
+            android:layout_toEndOf="@+id/im_files"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_hdmi1" />
+
         <GridView
             android:id="@+id/heat_set"
             android:layout_width="wrap_content"
             android:layout_height="180dp"
-            android:numColumns="8"
             android:layout_below="@+id/im_application"
             android:layout_marginStart="50dp"
-            android:horizontalSpacing="0dp"
-            android:stretchMode="columnWidth"
+            android:layout_marginEnd="50dp"
             android:descendantFocusability="afterDescendants"
             android:gravity="center"
+            android:horizontalSpacing="0dp"
+            android:numColumns="8"
             android:paddingTop="@dimen/index_heat_paddingTop"
-            android:layout_marginEnd="50dp"/>
+            android:stretchMode="columnWidth" />
     </RelativeLayout>
 </LinearLayout>
