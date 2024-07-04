@@ -47,12 +47,19 @@ public class ApplicationActivity extends AppCompatActivity {
         initView();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initView();
+    }
+
     private void initView(){
         gridView = findViewById(R.id.gridView);
         PackageManager pm = getPackageManager();
         Intent intent = new Intent(Intent.ACTION_MAIN,null);
         intent.addCategory(Intent.CATEGORY_LAUNCHER);
         List<ResolveInfo> installedApps = pm.queryIntentActivities(intent,0);
+        Log.i("yangxin", "initView: -------初始化已安装应用------");
         //创建一个迭代器用于遍历installedApps列表
         Iterator<ResolveInfo> iterator = installedApps.iterator();
 
