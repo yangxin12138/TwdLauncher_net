@@ -15,6 +15,10 @@ import android.util.Log;
 
 import com.twd.twdlaunchernet.adapter.ApplicationAdapter;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -131,6 +135,33 @@ public class Utils {
             return usbManager.hasPermission(device);
         }
         return false;
+    }
+
+    public static void execCommand(String packageName) {
+        try{
+            // 构建卸载命令
+            String command = "pm uninstall " + packageName;
+            // 使用Shell执行命令
+            Process process = Runtime.getRuntime().exec("su");
+            DataOutputStream os = new DataOutputStream(process.getOutputStream());
+            os.writeBytes(command + "\n");
+            os.flush();
+
+            // 等待命令执行完成
+            int exitCode = process.waitFor();
+            if (exitCode == 0) {
+                // 命令执行成功
+                // 可以在这里添加成功的逻辑
+                Log.i("yangxin", "execCommand: 命令执行成功");
+            } else {
+                // 命令执行失败
+                // 可以在这里添加失败的逻辑
+                Log.i("yangxin", "execCommand: 命令执行失败");
+            }
+            os.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 
