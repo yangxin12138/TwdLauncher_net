@@ -18,9 +18,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="这是一个标题"
-            android:textSize="38sp"
+            android:textSize="20sp"
             android:textColor="@color/white"
-            android:textStyle="bold"
             android:paddingStart="20dp"
             android:gravity="center_vertical"/>
     </LinearLayout>
@@ -35,7 +34,7 @@
             android:id="@+id/btn_cancel"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:text="取消"
+            android:text="@string/application_cancel"
             android:textSize="30dp"
             android:background="@drawable/selector_factory_btnbg"
             android:textColor="@color/selector_factory_textcolor"
@@ -49,7 +48,7 @@
             android:id="@+id/btn_confirm"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:text="确定"
+            android:text="@string/application_confirm"
             android:textColor="@color/selector_factory_textcolor"
             android:textSize="30dp"
             android:layout_marginStart="70dp"

@@ -2,4 +2,8 @@
     <string name="app_name">TwdLauncherN</string>
     <string name="index_add_title">添加</string>
     <string name="application_title">應用程式</string>
+    <string name="application_confirm">確定</string>
+    <string name="application_cancel">取消</string>
+    <string name="application_isuninstall">確定要卸載此應用嗎?</string>
+    <string name="application_imuninstall">無法卸載系統應用程序!</string>
 </resources>

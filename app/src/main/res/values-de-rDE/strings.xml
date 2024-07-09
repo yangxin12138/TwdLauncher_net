@@ -2,4 +2,8 @@
     <string name="app_name">TwdLauncherN</string>
     <string name="index_add_title">hinzufügen</string>
     <string name="application_title">Anwendungen</string>
+    <string name="application_confirm">bestätigen</string>
+    <string name="application_cancel">Abbrechen</string>
+    <string name="application_isuninstall">Sind Sie sicher, dass Sie diese App deinstallieren möchten?</string>
+    <string name="application_imuninstall">Systemanwendungen können nicht deinstalliert werden!</string>
 </resources>

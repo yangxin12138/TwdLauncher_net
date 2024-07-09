@@ -2,4 +2,8 @@
     <string name="app_name">TwdLauncherN</string>
     <string name="index_add_title">اضافه کردن</string>
     <string name="application_title">برنامه</string>
+    <string name="application_confirm">تصدیق کنید</string>
+    <string name="application_cancel"> کنسل‌</string>
+    <string name="application_isuninstall">مطمئنی که می‌خواهید این کاربرد را نابود کنید?</string>
+    <string name="application_imuninstall">کاربردهای سیستم نمی‌توانند استفاده کند!</string>
 </resources>

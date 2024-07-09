@@ -2,4 +2,8 @@
     <string name="app_name">TwdLauncherN</string>
     <string name="index_add_title">اضف إليه</string>
     <string name="application_title">التطبيقات</string>
+    <string name="application_confirm">أكّد</string>
+    <string name="application_cancel">ألغى</string>
+    <string name="application_isuninstall">هل أنت متأكد أنك تريد إلغاء تثبيت هذا التطبيق?</string>
+    <string name="application_imuninstall">غير قادر على إلغاء تثبيت تطبيق النظام!</string>
 </resources>

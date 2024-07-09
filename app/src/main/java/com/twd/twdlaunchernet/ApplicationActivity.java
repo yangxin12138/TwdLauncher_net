@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -20,6 +21,7 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -149,21 +151,40 @@ public class ApplicationActivity extends AppCompatActivity {
                 PackageManager manager = getPackageManager();
                 try {
                     ApplicationInfo applicationInfo = manager.getApplicationInfo(packageName,0);
-                     appName = (String) applicationInfo.loadLabel(manager);
-                     appIcon = app.activityInfo.loadIcon(manager);
+                    appName = (String) applicationInfo.loadLabel(manager);
+                    appIcon = app.activityInfo.loadIcon(manager);
+                    if ((applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0){
+                        Log.i("yangxin", "这是一个系统应用,包名："+packageName);
+                        //TODO:展示不能卸载对话框
+                        showSystemDialog();
+                    }else if(packageName.equals("com.netflix.mediaclient") || packageName.equals("com.netflix.ninja")){
+                        Log.i("yangxin", "是奈飞,包名："+packageName);
+                        //TODO:展示不能卸载对话框
+                        showSystemDialog();
+                    }else {
+                        if (appName!=null && appIcon != null){
+                            showUninstallDialog(packageName,appName,appIcon);
+                        }else {
+                            Log.i("yangxin","获取不到appName和icon");
+                        }
+                    }
                 } catch (PackageManager.NameNotFoundException e) {
                     e.printStackTrace();
-                }
-                if (appName!=null && appIcon != null){
-                    showUninstallDialog(packageName,appName,appIcon);
-                }else {
-                    Log.i("yangxin","获取不到appName和icon");
                 }
                 break;
         }
         return super.onKeyDown(keyCode, event);
     }
-
+    private void showSystemDialog(){
+        ImUnsetDialog imUnsetDialog = new ImUnsetDialog(this);
+        imUnsetDialog.show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                imUnsetDialog.dismiss();
+            }
+        },2000);
+    }
     private void showUninstallDialog(String packageName,String appName,Drawable appIcon){
         UninstallDialog uninstallDialog = new UninstallDialog(this,appName,appIcon);
         uninstallDialog.setOnDialogButtonClickListener(new OnDialogButtonClickListener() {

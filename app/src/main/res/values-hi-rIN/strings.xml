@@ -2,4 +2,8 @@
     <string name="app_name">TwdLauncherN</string>
     <string name="index_add_title">जोड़ना</string>
     <string name="application_title">अनुप्रयोग</string>
+    <string name="application_confirm">पुष्टि करें</string>
+    <string name="application_cancel">रद्द करें</string>
+    <string name="application_isuninstall">क्या आप निश्चित है कि आप इस अनुप्रयोग को हटाना चाहते हैं?</string>
+    <string name="application_imuninstall">तंत्र अनुप्रयोगों को संस्थापित नहीं कर सकता!</string>
 </resources>

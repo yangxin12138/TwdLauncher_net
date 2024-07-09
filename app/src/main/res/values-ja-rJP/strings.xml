@@ -2,4 +2,8 @@
     <string name="app_name">TwdLauncherN</string>
     <string name="index_add_title">追加</string>
     <string name="application_title">アプリ</string>
+    <string name="application_confirm">かくにん</string>
+    <string name="application_cancel">キャンセル</string>
+    <string name="application_isuninstall">本当にこのアプリケーションをアンインストールしますか？</string>
+    <string name="application_imuninstall">システムアプリケーションをアンインストールできませんでした!</string>
 </resources>

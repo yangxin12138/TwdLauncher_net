@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">TwdLauncherN</string>
-    <string name="index_add_title">Add</string>
-    <string name="application_title">Application</string>
+    <string name="index_add_title">добавлять</string>
+    <string name="application_title">Приложение</string>
+    <string name="application_confirm">Подтверждение</string>
+    <string name="application_cancel">Отменить</string>
+    <string name="application_isuninstall">Вы уверены, что хотите удалить это приложение?</string>
+    <string name="application_imuninstall">Невозможно удалить системное приложение!</string>
 </resources>

@@ -2,4 +2,8 @@
     <string name="app_name">TwdLauncherN</string>
     <string name="index_add_title">เพิ่ม</string>
     <string name="application_title">แอปพลิเคชัน</string>
+    <string name="application_confirm">ยืนยัน</string>
+    <string name="application_cancel">การยกเลิก</string>
+    <string name="application_isuninstall">แน่ใจว่าคุณต้องการถอนการติดตั้งแอปนี้?</string>
+    <string name="application_imuninstall">ไม่สามารถถอนการติดตั้งโปรแกรมระบบ!</string>
 </resources>

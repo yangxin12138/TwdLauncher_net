@@ -2,4 +2,9 @@
     <string name="app_name">TwdLauncherN</string>
     <string name="index_add_title">추가하다</string>
     <string name="application_title">응용</string>
+    <string name="application_confirm">확인</string>
+    <string name="application_cancel">취소</string>
+    <string name="application_isuninstall">이 애플리케이션을 제거하시겠습니까?</string>
+    <string name="application_imuninstall">시스템 응용 프로그램을 마운트 해제할 수 없습니다!</string>
+
 </resources>

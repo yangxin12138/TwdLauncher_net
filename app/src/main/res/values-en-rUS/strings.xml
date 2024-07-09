@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">TwdLauncherN</string>
     <string name="index_add_title">Add</string>
+    <string name="application_title">Application</string>
+    <string name="application_confirm">confirm</string>
+    <string name="application_cancel">cancel</string>
+    <string name="application_isuninstall">Are you sure you want to uninstall this app?</string>
+    <string name="application_imuninstall">System applications cannot be uninstalled!</string>
 </resources>

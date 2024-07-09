@@ -46,7 +46,7 @@ public class UninstallDialog extends Dialog implements View.OnClickListener {
         confirmTV = findViewById(R.id.btn_confirm);
         cancelTV = findViewById(R.id.btn_cancel);
 
-        titleTextView.setText("确定删除此应用: "+appName);
+        titleTextView.setText(context.getString(R.string.application_isuninstall)+appName);
         appIcon.setImageDrawable(appIconRes);
         cancelTV.requestFocus();
 
