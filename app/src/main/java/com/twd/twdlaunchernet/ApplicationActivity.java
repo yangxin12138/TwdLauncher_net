@@ -157,7 +157,7 @@ public class ApplicationActivity extends AppCompatActivity {
                         Log.i("yangxin", "这是一个系统应用,包名："+packageName);
                         //TODO:展示不能卸载对话框
                         showSystemDialog();
-                    }else if(packageName.equals("com.netflix.mediaclient") || packageName.equals("com.netflix.ninja")){
+                    }else if(packageName.equals("com.netflix.mediaclient") || packageName.equals("com.netflix.ninja") || packageName.equals("com.google.android.youtube.tv")){
                         Log.i("yangxin", "是奈飞,包名："+packageName);
                         //TODO:展示不能卸载对话框
                         showSystemDialog();
