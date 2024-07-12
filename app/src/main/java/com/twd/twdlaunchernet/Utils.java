@@ -15,10 +15,14 @@ import android.util.Log;
 
 import com.twd.twdlaunchernet.adapter.ApplicationAdapter;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -137,32 +141,27 @@ public class Utils {
         return false;
     }
 
-    public static void execCommand(String packageName) {
-        try{
-            // 构建卸载命令
-            String command = "pm uninstall " + packageName;
-            // 使用Shell执行命令
-            Process process = Runtime.getRuntime().exec("su");
-            DataOutputStream os = new DataOutputStream(process.getOutputStream());
-            os.writeBytes(command + "\n");
-            os.flush();
-
-            // 等待命令执行完成
-            int exitCode = process.waitFor();
-            if (exitCode == 0) {
-                // 命令执行成功
-                // 可以在这里添加成功的逻辑
-                Log.i("yangxin", "execCommand: 命令执行成功");
-            } else {
-                // 命令执行失败
-                // 可以在这里添加失败的逻辑
-                Log.i("yangxin", "execCommand: 命令执行失败");
+    public static String readSystemProp() {
+        String line = "";
+        try {
+            File file = new File("/system/etc/settings.ini");
+            FileInputStream fis = new FileInputStream(file);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
+            while ((line = reader.readLine()) != null) {
+                if (line.contains("UI_THEME_STYLE")) {
+                    // 这里可以进一步解析line来获取STORAGE_SIMPLE_SYSDATA的值
+                    String value = line.split("=")[1].trim(); // 获取等号后面的值
+                    reader.close();
+                    fis.close();
+                    return value;
+                }
             }
-            os.close();
-        }catch (Exception e){
+            reader.close();
+            fis.close();
+        } catch (IOException e) {
             e.printStackTrace();
         }
+        return "Standard";
     }
-
 
 }

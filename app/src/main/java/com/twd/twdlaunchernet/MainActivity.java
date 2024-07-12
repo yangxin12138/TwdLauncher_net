@@ -71,8 +71,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Utils utils;
     public static boolean isHeat = false;
     public static View lastFocus;
+    String ui_theme_code = Utils.readSystemProp();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (ui_theme_code.equals("Standard")){
+            Log.i(TAG, "onCreate: 走默认UI");
+            this.setTheme(R.style.Theme_Index_Standard);
+        }else if(ui_theme_code.equals("Yameixun")) {
+            Log.i(TAG, "onCreate: 走亚美寻UI");
+            this.setTheme(R.style.Theme_Index_Yameixun);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();

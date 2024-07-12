@@ -21,4 +21,10 @@
     <dimen name="application_text">20sp</dimen>
     <dimen name="application_grid_padding">50dp</dimen>
     <dimen name="application_grid_padding_startend">30dp</dimen>
+
+    <dimen name="index_margin_yameixun">50dp</dimen>
+    <dimen name="index_padding_yameixun">50dp</dimen>
+
+    <dimen name="index_margin_normal">20dp</dimen>
+    <dimen name="index_padding_normal">0dp</dimen>
 </resources>

@@ -8,4 +8,14 @@
     <style name="Theme.TwdLauncher_net" parent="Base.Theme.TwdLauncher_net">
         <item name="android:windowBackground">@color/black</item>
     </style>
+
+    <style name="Theme.Index_Standard" parent="Theme.TwdLauncher_net">
+        <item name="indexPadding">@dimen/index_padding_normal</item>
+        <item name="indexMargin">@dimen/index_margin_normal</item>
+    </style>
+
+    <style name="Theme.Index_Yameixun" parent="Theme.TwdLauncher_net">
+        <item name="indexPadding">@dimen/index_padding_yameixun</item>
+        <item name="indexMargin">@dimen/index_margin_yameixun</item>
+    </style>
 </resources>

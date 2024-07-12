@@ -14,6 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal"
+        android:paddingStart="?attr/indexPadding"
+        android:paddingEnd="?attr/indexPadding"
         android:layout_weight="1">
         <TextView
             android:id="@+id/tv_day"
@@ -21,7 +23,7 @@
             android:textColor="@color/white"
             android:textSize="@dimen/tvDay_textSize"
             android:gravity="center_vertical|center_horizontal"
-            android:paddingStart="20dp"
+            android:layout_marginStart="?attr/indexMargin"
             android:padding="5dp"
             android:layout_width="0dp"
             android:layout_weight="3"
@@ -70,6 +72,7 @@
             android:layout_weight="1"
             android:padding="10dp"
             android:src="@drawable/icon_usb1"
+            android:layout_marginEnd="?attr/indexMargin"
             android:layout_height="match_parent" />
     </LinearLayout>
 
