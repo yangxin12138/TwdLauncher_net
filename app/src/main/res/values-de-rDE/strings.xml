@@ -6,4 +6,5 @@
     <string name="application_cancel">Abbrechen</string>
     <string name="application_isuninstall">Sind Sie sicher, dass Sie diese App deinstallieren möchten?</string>
     <string name="application_imuninstall">Systemanwendungen können nicht deinstalliert werden!</string>
+    <string name="application_maxvalue">Bis zu sieben Anwendungen können ausgewählt werden</string>
 </resources>

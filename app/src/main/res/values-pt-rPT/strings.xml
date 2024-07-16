@@ -6,4 +6,5 @@
     <string name="application_cancel">cancelar</string>
     <string name="application_isuninstall">Você tem certeza de que deseja desinstalar este aplicativo?</string>
     <string name="application_imuninstall">As aplicações do sistema não podem ser desinstaladas!</string>
+    <string name="application_maxvalue">Até 7 aplicações podem ser selecionadas</string>
 </resources>

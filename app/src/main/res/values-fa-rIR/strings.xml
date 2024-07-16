@@ -6,4 +6,5 @@
     <string name="application_cancel"> کنسل‌</string>
     <string name="application_isuninstall">مطمئنی که می‌خواهید این کاربرد را نابود کنید?</string>
     <string name="application_imuninstall">کاربردهای سیستم نمی‌توانند استفاده کند!</string>
+    <string name="application_maxvalue">تا ۷ کاربرد می‌توانند انتخاب شوند</string>
 </resources>

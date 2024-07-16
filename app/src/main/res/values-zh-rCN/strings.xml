@@ -6,4 +6,5 @@
     <string name="application_cancel">取消</string>
     <string name="application_isuninstall">确定要卸载此应用吗?</string>
     <string name="application_imuninstall">系统应用不可卸载!</string>
+    <string name="application_maxvalue">最多可选择7个应用程序</string>
 </resources>

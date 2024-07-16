@@ -117,7 +117,7 @@ public class ApplicationActivity extends AppCompatActivity {
                             editor.putBoolean(packageName,true);
                         }else {
                             //提示用户最多只能选5个
-                            Toast.makeText(getApplicationContext(), "最多只能选择7个应用", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), getString(R.string.application_maxvalue), Toast.LENGTH_SHORT).show();
                         }
                     }
                     editor.apply();

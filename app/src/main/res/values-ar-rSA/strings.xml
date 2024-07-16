@@ -6,4 +6,5 @@
     <string name="application_cancel">ألغى</string>
     <string name="application_isuninstall">هل أنت متأكد أنك تريد إلغاء تثبيت هذا التطبيق?</string>
     <string name="application_imuninstall">غير قادر على إلغاء تثبيت تطبيق النظام!</string>
+    <string name="application_maxvalue">اختيار ما يصل إلى 7 تطبيقات</string>
 </resources>

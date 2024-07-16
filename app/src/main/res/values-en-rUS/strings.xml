@@ -6,4 +6,5 @@
     <string name="application_cancel">cancel</string>
     <string name="application_isuninstall">Are you sure you want to uninstall this app?</string>
     <string name="application_imuninstall">System applications cannot be uninstalled!</string>
+    <string name="application_maxvalue">Up to 7 applications can be selected</string>
 </resources>

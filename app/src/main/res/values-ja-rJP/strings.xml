@@ -6,4 +6,5 @@
     <string name="application_cancel">キャンセル</string>
     <string name="application_isuninstall">本当にこのアプリケーションをアンインストールしますか？</string>
     <string name="application_imuninstall">システムアプリケーションをアンインストールできませんでした!</string>
+    <string name="application_maxvalue">最大7つのアプリケーションを選択可能</string>
 </resources>
