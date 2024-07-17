@@ -273,7 +273,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             intent.setComponent(new ComponentName("com.twd.setting","com.twd.setting.MainActivity"));
         } else if (v.getId() == R.id.im_netflix) { //Netflix
             intent = new Intent();
-            intent.setComponent(new ComponentName("com.netflix.mediaclient","com.netflix.mediaclient.ui.launch.UIWebViewActivity"));
+            intent.setComponent(new ComponentName("com.netflix.ninja","com.netflix.ninja.MainActivity"));
         } else if (v.getId() == R.id.im_youtube) { // youtube
             intent = new Intent();
             intent.setComponent(new ComponentName("com.google.android.youtube.tv","com.google.android.apps.youtube.tv.activity.ShellActivity"));
