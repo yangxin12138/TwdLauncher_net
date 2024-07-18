@@ -101,6 +101,7 @@ public class IndexHeatsetAdapter extends BaseAdapter {
                     LL_center.animate().scaleX(1.1f).scaleY(1.1f).translationZ(1f).setDuration(100);
                     LL_center.setForeground(mContext.getResources().getDrawable(R.drawable.border_white));
                     name.setSelected(true);
+                    selectionPosition = position;
                 }else {
                     MainActivity.isHeat = false;
                     ((MainActivity) mContext).onFocusChange(v,hasFocus);
