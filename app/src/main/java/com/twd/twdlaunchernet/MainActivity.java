@@ -378,4 +378,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onBackPressed() {
     }
+
+    @Override
+    protected void onUserLeaveHint() {
+        Log.i(TAG, "onUserLeaveHint: 点击home键");
+    }
 }
