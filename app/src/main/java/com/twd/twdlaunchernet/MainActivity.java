@@ -19,6 +19,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
@@ -45,7 +46,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.TimeZone;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, View.OnFocusChangeListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, View.OnFocusChangeListener, View.OnKeyListener {
 
     private final static String TAG = MainActivity.class.getSimpleName();
     private TextView tv_time;
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView im_application;
     private ImageView im_settings;
     private ImageView im_files;
-    private ImageView im_hdmi;
+    public ImageView im_hdmi;
     private Handler timerHandler = new Handler();
     private boolean firstNetwork;
     SharedPreferences sharedPreferences;
@@ -200,11 +201,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         im_netflix = findViewById(R.id.im_netflix); im_netflix.setOnFocusChangeListener(this::onFocusChange); im_netflix.setOnClickListener(this::onClick);
         im_youtube = findViewById(R.id.im_youtube); im_youtube.setOnFocusChangeListener(this::onFocusChange); im_youtube.setOnClickListener(this::onClick);
-        im_googleplay = findViewById(R.id.im_googleplay); im_googleplay.setOnFocusChangeListener(this::onFocusChange); im_googleplay.setOnClickListener(this::onClick);
-        im_application = findViewById(R.id.im_application); im_application.setOnFocusChangeListener(this::onFocusChange); im_application.setOnClickListener(this::onClick);
+        im_googleplay = findViewById(R.id.im_googleplay); im_googleplay.setOnFocusChangeListener(this::onFocusChange); im_googleplay.setOnClickListener(this::onClick); im_googleplay.setOnKeyListener(this::onKey);
+        im_application = findViewById(R.id.im_application); im_application.setOnFocusChangeListener(this::onFocusChange); im_application.setOnClickListener(this::onClick); im_application.setOnKeyListener(this::onKey);
         im_settings = findViewById(R.id.im_settings); im_settings.setOnFocusChangeListener(this::onFocusChange); im_settings.setOnClickListener(this::onClick);
         im_files = findViewById(R.id.im_files); im_files.setOnFocusChangeListener(this::onFocusChange); im_files.setOnClickListener(this::onClick);
-        im_hdmi = findViewById(R.id.im_hdmi); im_hdmi.setOnFocusChangeListener(this::onFocusChange); im_hdmi.setOnClickListener(this::onClick);
+        im_hdmi = findViewById(R.id.im_hdmi); im_hdmi.setOnFocusChangeListener(this::onFocusChange); im_hdmi.setOnClickListener(this::onClick);im_hdmi.setOnKeyListener(this::onKey);
         gridView = findViewById(R.id.heat_set);
         appList = Utils.getSelectedApps(this);
         heatAdapter = new IndexHeatsetAdapter(this,appList);
@@ -382,5 +383,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onUserLeaveHint() {
         Log.i(TAG, "onUserLeaveHint: 点击home键");
+    }
+
+    @Override
+    public boolean onKey(View v, int keyCode, KeyEvent event) {
+        Log.i(TAG, "onKey: 触发key按键事件==========");
+        if (v.getId() == R.id.im_googleplay){
+            if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT && event.getAction()==KeyEvent.ACTION_DOWN){
+                Log.i(TAG, "onKey: 触发key按键事件==========im_googleplay");
+                if (v.isFocused()){
+                    im_application.requestFocus();
+                    return true;
+                }
+            }
+        } else if (v.getId() == R.id.im_application) {
+            Log.i(TAG, "onKey: 触发key按键事件==========im_application");
+            if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT && event.getAction() == KeyEvent.ACTION_DOWN){
+                if (v.isFocused()){
+                    im_googleplay.requestFocus();
+                    return true;
+                }
+            }
+        }  else if (v.getId() == R.id.im_hdmi) {
+            Log.i(TAG, "onKey: 触发key按键事件==========im_hdmi");
+            if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT && event.getAction()==KeyEvent.ACTION_DOWN){
+                if (v.isFocused()){
+                    gridView.requestFocus();
+                    gridView.setSelection(0);
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

@@ -10,13 +10,16 @@ import android.content.pm.ResolveInfo;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.twd.twdlaunchernet.ApplicationActivity;
 import com.twd.twdlaunchernet.R;
 
 import java.util.List;
@@ -85,19 +88,6 @@ public class ApplicationAdapter extends BaseAdapter {
                 boolean isSelected = selectedPreferences.getBoolean(viewHold.packageName,false);
                 viewHold.iv_red.setVisibility(isSelected ? View.VISIBLE : View.GONE);
             }
-            ViewHold finalViewHold = viewHold;
-            finalViewHold.tv_name.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                @Override
-                public void onFocusChange(View v, boolean hasFocus) {
-                    if (hasFocus){
-                        Log.i("yangxin", "onFocusChange: -------触发背景选择----------");
-                        finalViewHold.tv_name.setTextColor(Color.parseColor("#FFFFFF"));
-                    }else {
-                        finalViewHold.tv_name.setTextColor(Color.parseColor("#000000"));
-                    }
-                }
-            });
-
         }catch (PackageManager.NameNotFoundException e){e.printStackTrace();}
         return convertView;
     }

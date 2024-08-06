@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -109,6 +110,27 @@ public class IndexHeatsetAdapter extends BaseAdapter {
                     LL_center.setForeground(null);
                     name.setSelected(false);
                 }
+            }
+        });
+
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                Log.i("yangxin", "onKey: setOnKeyListener 触发==");
+                if (position == 0){
+                    if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT && event.getAction()==KeyEvent.ACTION_DOWN){
+                        Log.i("yangxin", "onKey: -------执行requestFocus");
+                        ((MainActivity) mContext).im_hdmi.requestFocus();
+                        return true;
+                    }
+                }
+                if (name.getText() == mContext.getString(R.string.index_add_title) ){
+                    if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT && event.getAction()==KeyEvent.ACTION_DOWN){
+                        Log.i("yangxin", "onKey: -------执行 -- 添加按右");
+                        return true;
+                    }
+                }
+                return false;
             }
         });
         return view;

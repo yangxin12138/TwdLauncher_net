@@ -172,6 +172,27 @@ public class ApplicationActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 break;
+            case KeyEvent.KEYCODE_DPAD_RIGHT:
+                Log.i("yangxin", "onKeyDown: 方向右键被按下 gridView.getSelectedItemPosition() = " + gridView.getSelectedItemPosition());
+                int count = gridView.getAdapter().getCount();
+                if (count % (MyPosition +1) == 0){
+                    Log.i("yangxin", "onKeyDown: 是最后一个，不予处理 ");
+                    super.onKeyDown(keyCode, event);
+                    break;
+                }
+                Log.i("yangxin", "onKeyDown: 不是最后一个，处理position ");
+                gridView.setSelection(gridView.getSelectedItemPosition() + 1);
+                break;
+            case KeyEvent.KEYCODE_DPAD_LEFT:
+                Log.i("yangxin", "onKeyDown: 方向左键被按下 gridView.getSelectedItemPosition() = " + gridView.getSelectedItemPosition());
+                if (MyPosition == 0){
+                    Log.i("yangxin", "onKeyDown: 是第一个，不予处理 ");
+                    super.onKeyDown(keyCode, event);
+                    break;
+                }
+                gridView.setSelection(gridView.getSelectedItemPosition() - 1);
+                Log.i("yangxin", "onKeyDown: 不是第一个，处理position ");
+                break;
         }
         return super.onKeyDown(keyCode, event);
     }
