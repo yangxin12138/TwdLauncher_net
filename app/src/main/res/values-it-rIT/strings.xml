@@ -7,4 +7,5 @@
     <string name="application_isuninstall">Sei sicuro di voler disinstallare questa applicazione?</string>
     <string name="application_imuninstall">Le applicazioni di sistema non possono essere disinstallate!</string>
     <string name="application_maxvalue">È possibile selezionare fino a 7 applicazioni</string>
+    <string name="index_usb_listener">Rilevato dispositivo di archiviazione esterno, si desidera aprire la gestione dei file?</string>
 </resources>

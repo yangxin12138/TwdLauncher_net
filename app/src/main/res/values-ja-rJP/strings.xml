@@ -7,4 +7,5 @@
     <string name="application_isuninstall">本当にこのアプリケーションをアンインストールしますか？</string>
     <string name="application_imuninstall">システムアプリケーションをアンインストールできませんでした!</string>
     <string name="application_maxvalue">最大7つのアプリケーションを選択可能</string>
+    <string name="index_usb_listener">外部ストレージデバイスが検出されました。ファイル管理をオンにしますか？</string>
 </resources>

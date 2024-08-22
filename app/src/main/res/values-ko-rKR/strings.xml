@@ -7,5 +7,6 @@
     <string name="application_isuninstall">이 애플리케이션을 제거하시겠습니까?</string>
     <string name="application_imuninstall">시스템 응용 프로그램을 마운트 해제할 수 없습니다!</string>
     <string name="application_maxvalue">최대 7개의 어플리케이션 선택 가능</string>
+    <string name="index_usb_listener">외부 스토리지 디바이스가 감지되었습니다. 파일 관리를 열시겠습니까?</string>
 
 </resources>

@@ -7,4 +7,5 @@
     <string name="application_isuninstall">Bu uygulamayı kaldırmak istediğinizden emin misiniz?</string>
     <string name="application_imuninstall">Sistem uygulamaları kurulamaz!</string>
     <string name="application_maxvalue">7 uygulamalara kadar seçilebilir</string>
+    <string name="index_usb_listener">Dışarı depo cihazı keşfedildi, dosya yönetimini açmak ister misiniz?</string>
 </resources>

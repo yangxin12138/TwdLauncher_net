@@ -7,4 +7,5 @@
     <string name="application_isuninstall">Êtes - vous sûr de vouloir désinstaller cette application?</string>
     <string name="application_imuninstall">Impossible de désinstaller l\'application système!</string>
     <string name="application_maxvalue">Choisissez jusqu\'à 7 Applications</string>
+    <string name="index_usb_listener">Périphérique de stockage externe détecté, voulez - vous ouvrir la gestion des fichiers?</string>
 </resources>

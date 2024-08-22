@@ -7,4 +7,5 @@
     <string name="application_isuninstall">क्या आप निश्चित है कि आप इस अनुप्रयोग को हटाना चाहते हैं?</string>
     <string name="application_imuninstall">तंत्र अनुप्रयोगों को संस्थापित नहीं कर सकता!</string>
     <string name="application_maxvalue">7 अनुप्रयोगों को चुना जा सकता है</string>
+    <string name="index_usb_listener">बाहरी संग्रह युक्ति पता लगा गया, क्या आप फ़ाइल प्रबंधन खोलेंगे?</string>
 </resources>

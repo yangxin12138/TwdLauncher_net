@@ -7,4 +7,5 @@
     <string name="application_isuninstall">هل أنت متأكد أنك تريد إلغاء تثبيت هذا التطبيق?</string>
     <string name="application_imuninstall">غير قادر على إلغاء تثبيت تطبيق النظام!</string>
     <string name="application_maxvalue">اختيار ما يصل إلى 7 تطبيقات</string>
+    <string name="index_usb_listener">تم الكشف عن جهاز التخزين الخارجي ، هل تريد فتح ملف إدارة ؟</string>
 </resources>

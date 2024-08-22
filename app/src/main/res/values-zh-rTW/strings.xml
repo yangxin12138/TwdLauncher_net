@@ -7,4 +7,5 @@
     <string name="application_isuninstall">確定要卸載此應用嗎?</string>
     <string name="application_imuninstall">無法卸載系統應用程序!</string>
     <string name="application_maxvalue">最多可選擇7個應用程序</string>
+    <string name="index_usb_listener">檢測到外部儲存設備，是否要打開文件管理？</string>
 </resources>

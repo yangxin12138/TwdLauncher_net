@@ -93,6 +93,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         currentFocusPreferences = getSharedPreferences("currentFocus",Context.MODE_PRIVATE);
         int currentFocusId = sharedPreferences.getInt("current_focus_id", R.id.im_netflix);
         mCurrentFocus = findViewById(currentFocusId);
+        //启动U盘监听服务
+        Intent serviceIntent = new Intent(this,USBDeviceService.class);
+        startService(serviceIntent);
     }
 
     private Runnable updateTimeRunnable = new Runnable() {

@@ -7,4 +7,5 @@
     <string name="application_isuninstall">Вы уверены, что хотите удалить это приложение?</string>
     <string name="application_imuninstall">Невозможно удалить системное приложение!</string>
     <string name="application_maxvalue">Можно выбрать до 7 приложений.</string>
+    <string name="index_usb_listener">Обнаружено внешнее устройство хранения данных, нужно ли открывать управление файлами?</string>
 </resources>
