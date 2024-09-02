@@ -1,1 +1,1 @@
-init master
+init RK3326
