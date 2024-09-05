@@ -294,10 +294,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (v.getId() == R.id.im_hdmi) {
             //TODO: hdmi跳转
             intent = new Intent();
-            intent.setComponent(new ComponentName("com.softwinner.awsource","com.softwinner.awsource.MainActivity"));
+            intent.setComponent(new ComponentName("com.android.rockchip.camera2","com.android.rockchip.camera2.RockchipCamera2"));
         } else if (v.getId() == R.id.im_files) {//file
             intent = new Intent();
-            intent.setComponent(new ComponentName("com.softwinner.TvdFileManager", "com.softwinner.TvdFileManager.MainUI"));
+            intent.setComponent(new ComponentName("com.rockchips.mediacenter", "com.rockchips.mediacenter.activity.MainActivity"));
         }
 
         if (intent != null){
