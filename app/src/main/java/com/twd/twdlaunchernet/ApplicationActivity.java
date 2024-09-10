@@ -34,6 +34,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class ApplicationActivity extends AppCompatActivity {
     GridView gridView ;
@@ -64,37 +65,63 @@ public class ApplicationActivity extends AppCompatActivity {
     private void initView(){
         gridView = findViewById(R.id.gridView);
         PackageManager pm = getPackageManager();
-        Intent intent = new Intent(Intent.ACTION_MAIN,null);
-        intent.addCategory(Intent.CATEGORY_LAUNCHER);
-        List<ResolveInfo> installedApps = pm.queryIntentActivities(intent,0);
+        Intent intentLauncher = new Intent(Intent.ACTION_MAIN,null);
+        intentLauncher.addCategory(Intent.CATEGORY_LAUNCHER);
+        Intent intentLeanbackLauncher = new Intent(Intent.ACTION_MAIN, null);
+        intentLeanbackLauncher.addCategory(Intent.CATEGORY_LEANBACK_LAUNCHER);
+
+
+        List<ResolveInfo> installedAppsLauncher  = pm.queryIntentActivities(intentLauncher,0);
+        List<ResolveInfo> installedAppsLeanbackLauncher = pm.queryIntentActivities(intentLeanbackLauncher, 0);
+
+        //合并两个列表
+        List<ResolveInfo> combinedList = new ArrayList<>();
+        Set<String> addedPackageNames = new HashSet<>();
+
+        for (ResolveInfo info : installedAppsLauncher) {
+            String packageName = info.activityInfo.packageName;
+            if (!addedPackageNames.contains(packageName)){
+                combinedList.add(info);
+                addedPackageNames.add(packageName);
+            }
+        }
+        for (ResolveInfo info : installedAppsLeanbackLauncher){
+            String packageName = info.activityInfo.packageName;
+            if (!addedPackageNames.contains(packageName)){
+                combinedList.add(info);
+                addedPackageNames.add(packageName);
+            }
+        }
+
         Log.i("yangxin", "initView: -------初始化已安装应用------");
         //创建一个迭代器用于遍历installedApps列表
-        Iterator<ResolveInfo> iterator = installedApps.iterator();
+        Iterator<ResolveInfo> iterator = combinedList.iterator();
 
         //遍历installedApps列表，过滤应用
         while (iterator.hasNext()){
             ResolveInfo resolveInfo = iterator.next();
             String packageName = resolveInfo.activityInfo.packageName;
-            if ("com.twd.twdlaunchernet".equals(packageName) || "com.twd.ipdemo".equals(packageName)){
+            if ("com.twd.twdlaunchernet".equals(packageName) || "com.twd.ipdemo".equals(packageName) || "com.android.tv.settings".equals(packageName)){
                 iterator.remove();//移除
             }
         }
-        adapter = new ApplicationAdapter(this,installedApps,listMode);
+        adapter = new ApplicationAdapter(this,combinedList,listMode);
         gridView.setAdapter(adapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.i("yangxin", "onItemClick: mode = " + listMode);
                 if(listMode == 1){
-                     ResolveInfo app = installedApps.get(position);
+                     ResolveInfo app = combinedList.get(position);
                         String packageName = app.activityInfo.packageName;
-                        Intent launchIntent = getPackageManager().getLaunchIntentForPackage(packageName);
-                        if (launchIntent != null){
-                            startActivity(launchIntent);
-                        }else {
-                            // 应用程序没有启动Intent
-                            Log.e("ApplicationAdapter", "Unable to launch app");
-                    }
+                        String className = app.activityInfo.name;
+                        try{
+                            Intent intent = new Intent();
+                            intent.setClassName(packageName,className);
+                            startActivity(intent);
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
                 } else if (listMode == 2) {
                     ApplicationAdapter.ViewHold viewHold = (ApplicationAdapter.ViewHold) view.getTag();
                     String packageName = viewHold.packageName;
