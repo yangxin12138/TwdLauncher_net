@@ -11,6 +11,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbManager;
@@ -18,6 +19,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -25,6 +27,7 @@ import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,7 +48,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TimeZone;
-
+import android.widget.RelativeLayout.LayoutParams;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, View.OnFocusChangeListener, View.OnKeyListener {
 
     private final static String TAG = MainActivity.class.getSimpleName();
@@ -233,6 +236,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
         });
+
+        // 根据屏幕尺寸动态调整子控件的尺寸
     }
 
     private BroadcastReceiver customReceiver = new BroadcastReceiver() {
@@ -313,6 +318,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
+        adjustLayoutBasedOnDensity();
         SharedPreferences thisSharedPreferences = getSharedPreferences("SelectedApps", Context.MODE_PRIVATE);
         Map<String, ?> allEntries = thisSharedPreferences.getAll();
         int size = allEntries.size();
@@ -425,5 +431,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
         return false;
+    }
+
+    private void adjustLayoutBasedOnDensity(){
+        //获取屏幕密度
+        DisplayMetrics displayMetrics = Resources.getSystem().getDisplayMetrics();
+        float density = displayMetrics.density;
+        if (density == 1.0){return;}
+        Log.i("adjustLayoutBasedOnDensity", "adjustLayoutBasedOnDensity: density  = " + density);
+        int margin = (int) getResources().getDimensionPixelSize(R.dimen.index_margin);
+        Log.i("adjustLayoutBasedOnDensity", "adjustLayoutBasedOnDensity: margin  = " + margin);
+        // 根据密度调整第一个行的 ImageView 的大小和边距
+        int firstRowMarginStart = 0;
+        if (density < 1.0){
+            firstRowMarginStart = (int) ((1 - density) * 25 * margin + (density <= 0.5 ? 50 : 25));
+            Log.i("adjustLayoutBasedOnDensity", ",firstRowMarginStart = " + firstRowMarginStart);
+            LayoutParams layoutParams1 = (LayoutParams) im_netflix.getLayoutParams();
+            LayoutParams layoutParams2 = (LayoutParams) im_application.getLayoutParams();
+            LayoutParams layoutParams3 = (LayoutParams) gridView.getLayoutParams();
+            layoutParams1.setMarginStart(firstRowMarginStart);
+            layoutParams2.setMarginStart(firstRowMarginStart);
+            layoutParams3.setMarginStart(firstRowMarginStart);
+            im_netflix.setLayoutParams(layoutParams1);
+            im_application.setLayoutParams(layoutParams2);
+            gridView.setLayoutParams(layoutParams3);
+        }
     }
 }
