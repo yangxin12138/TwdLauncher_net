@@ -50,7 +50,7 @@
         <ImageView
             android:id="@+id/empty"
             android:layout_width="0dp"
-            android:layout_weight="9"
+            android:layout_weight="@dimen/title_blank_weight"
             android:layout_height="match_parent"
             />
         <ImageView

@@ -318,7 +318,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
-        adjustLayoutBasedOnDensity();
         SharedPreferences thisSharedPreferences = getSharedPreferences("SelectedApps", Context.MODE_PRIVATE);
         Map<String, ?> allEntries = thisSharedPreferences.getAll();
         int size = allEntries.size();
@@ -431,30 +430,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
         return false;
-    }
-
-    private void adjustLayoutBasedOnDensity(){
-        //获取屏幕密度
-        DisplayMetrics displayMetrics = Resources.getSystem().getDisplayMetrics();
-        float density = displayMetrics.density;
-        if (density == 1.0){return;}
-        Log.i("adjustLayoutBasedOnDensity", "adjustLayoutBasedOnDensity: density  = " + density);
-        int margin = (int) getResources().getDimensionPixelSize(R.dimen.index_margin);
-        Log.i("adjustLayoutBasedOnDensity", "adjustLayoutBasedOnDensity: margin  = " + margin);
-        // 根据密度调整第一个行的 ImageView 的大小和边距
-        int firstRowMarginStart = 0;
-        if (density < 1.0){
-            firstRowMarginStart = (int) ((1 - density) * 25 * margin + (density <= 0.5 ? 50 : 25));
-            Log.i("adjustLayoutBasedOnDensity", ",firstRowMarginStart = " + firstRowMarginStart);
-            LayoutParams layoutParams1 = (LayoutParams) im_netflix.getLayoutParams();
-            LayoutParams layoutParams2 = (LayoutParams) im_application.getLayoutParams();
-            LayoutParams layoutParams3 = (LayoutParams) gridView.getLayoutParams();
-            layoutParams1.setMarginStart(firstRowMarginStart);
-            layoutParams2.setMarginStart(firstRowMarginStart);
-            layoutParams3.setMarginStart(firstRowMarginStart);
-            im_netflix.setLayoutParams(layoutParams1);
-            im_application.setLayoutParams(layoutParams2);
-            gridView.setLayoutParams(layoutParams3);
-        }
     }
 }

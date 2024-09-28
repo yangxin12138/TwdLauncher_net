@@ -27,4 +27,11 @@
 
     <dimen name="index_margin_normal">20dp</dimen>
     <dimen name="index_padding_normal">0dp</dimen>
+
+    <dimen name="title_blank_weight">9</dimen>
+    <dimen name="heat_width">100dp</dimen>
+    <dimen name="heat_height">120dp</dimen>
+    <dimen name="heat_icon_width">80dp</dimen>
+    <dimen name="heat_icon_height">80dp</dimen>
+    <dimen name="heat_label_textsize">15sp</dimen>
 </resources>
