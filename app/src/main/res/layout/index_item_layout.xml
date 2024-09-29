@@ -11,7 +11,7 @@
         android:layout_height="@dimen/application_icon_height"
         android:orientation="vertical"
         android:gravity="center_horizontal"
-        android:paddingTop="30dp">
+        android:paddingTop="@dimen/application_icon_paddingTop">
         <ImageView
             android:id="@+id/appIcon"
             android:layout_width="@dimen/application_image"
@@ -22,7 +22,7 @@
             android:id="@+id/appName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
+            android:textSize="@dimen/application_icon_textsize"
             android:textColor="@drawable/list_name_selector"
             android:layout_gravity="center_horizontal"
             android:ellipsize="marquee"

@@ -34,4 +34,8 @@
     <dimen name="heat_icon_width">80dp</dimen>
     <dimen name="heat_icon_height">80dp</dimen>
     <dimen name="heat_label_textsize">15sp</dimen>
+    <dimen name="application_icon_textsize">20sp</dimen>
+    <dimen name="application_icon_paddingTop">30dp</dimen>
+    <dimen name="application_paddingTop">30dp</dimen>
+    <dimen name="application_paddingBottom">30dp</dimen>
 </resources>
