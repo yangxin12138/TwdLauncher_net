@@ -118,6 +118,7 @@ public class ApplicationActivity extends AppCompatActivity {
                         try{
                             Intent intent = new Intent();
                             intent.setClassName(packageName,className);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
                         }catch (Exception e){
                             e.printStackTrace();
