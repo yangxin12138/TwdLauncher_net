@@ -1,5 +1,6 @@
 package com.twd.twdlaunchernet.adapter;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -71,7 +72,13 @@ public class IndexHeatsetAdapter extends BaseAdapter {
                 public void onClick(View v) {
                     Log.i("yangxin", "onClick: 点到其他app了");
                     selectionPosition = position;
-                    Intent launchIntent = mContext.getPackageManager().getLaunchIntentForPackage(appInfo.packageName);
+                    Intent launchIntent = new Intent();
+                    if (appInfo.packageName.equals("com.rockchips.mediacenter")){
+                        launchIntent.setComponent(new ComponentName("com.rockchips.mediacenter", "com.rockchips.mediacenter.activity.MainActivity"));
+
+                    }else {
+                        launchIntent = mContext.getPackageManager().getLaunchIntentForPackage(appInfo.packageName);
+                    }
                     if (launchIntent != null){
                         mContext.startActivity(launchIntent);
                     }
