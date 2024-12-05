@@ -36,6 +36,7 @@ import java.util.Map;
  * @time: Create in 17:19 2024/5/20
  */
 public class Utils {
+    private static final String CLASS_NAME = "android.os.SystemProperties";
     public boolean isBluetoothConnected(){
         BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (bluetoothAdapter == null){
@@ -141,14 +142,14 @@ public class Utils {
         return false;
     }
 
-    public static String readSystemProp() {
+    public static String readSystemProp(String search_line) {
         String line = "";
         try {
             File file = new File("/system/etc/settings.ini");
             FileInputStream fis = new FileInputStream(file);
             BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
             while ((line = reader.readLine()) != null) {
-                if (line.contains("UI_THEME_STYLE")) {
+                if (line.contains(search_line)) {
                     // 这里可以进一步解析line来获取STORAGE_SIMPLE_SYSDATA的值
                     String value = line.split("=")[1].trim(); // 获取等号后面的值
                     reader.close();
@@ -162,6 +163,29 @@ public class Utils {
             e.printStackTrace();
         }
         return "Standard";
+    }
+
+    public static String getProperty(String key, String defaultValue) {
+        String value = defaultValue;
+        try{
+            Class<?> c = Class.forName(CLASS_NAME);
+            Method get = c.getMethod("get",String.class, String.class);
+            value = (String)(get.invoke(c,key,defaultValue));
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            return value;
+        }
+    }
+
+    public static void setProperty(String key,String value){
+        try{
+            Class<?> c = Class.forName(CLASS_NAME);
+            Method set = c.getMethod("set",String.class,String.class);
+            set.invoke(c,key,value);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 }

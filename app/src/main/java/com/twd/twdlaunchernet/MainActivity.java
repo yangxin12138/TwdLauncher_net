@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Handler timerHandler = new Handler();
     private boolean firstNetwork;
     SharedPreferences sharedPreferences;
+    SharedPreferences firstBootPreferences;
     SharedPreferences selectedPreferences;
     SharedPreferences currentFocusPreferences;
     IndexHeatsetAdapter heatAdapter;
@@ -75,7 +76,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Utils utils;
     public static boolean isHeat = false;
     public static View lastFocus;
-    String ui_theme_code = Utils.readSystemProp();
+    String ui_theme_code = Utils.readSystemProp("UI_THEME_STYLE");
+    String UI_QUICKLINK_STYLE = Utils.readSystemProp("UI_QUICKLINK_STYLE");
+    String UI_QUICKLINK_APP_PACKAGE = Utils.readSystemProp("UI_QUICKLINK_APP_PACKAGE");
+    String prop_first_boot = "persist.sys.boot.first";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         if (ui_theme_code.equals("Standard")){
@@ -90,6 +94,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initView();
         //初始化时间
         sharedPreferences = getSharedPreferences("first_network", Context.MODE_PRIVATE);
+        firstBootPreferences = getSharedPreferences("firstBoot",Context.MODE_PRIVATE);
         firstNetwork = sharedPreferences.getBoolean("firstConnected",false);
         updateTimeRunnable.run();
         selectedPreferences = getSharedPreferences("SelectedApps",Context.MODE_PRIVATE);
@@ -99,6 +104,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //启动U盘监听服务
         Intent serviceIntent = new Intent(this,USBDeviceService.class);
         startService(serviceIntent);
+        //TODO:判断是不是第一次开机
+        //TODO:判断是不是需要固定图标
+        String isFirst = Utils.getProperty(prop_first_boot,"false");
+        //String isFirst = firstBootPreferences.getString("is_firstBoot","true");
+        if (isFirst.equals("true")){
+            if (UI_QUICKLINK_STYLE.equals("true")){
+                SharedPreferences.Editor editor = selectedPreferences.edit();
+                editor.putBoolean(UI_QUICKLINK_APP_PACKAGE,true);
+                editor.apply();
+            }
+/*            SharedPreferences.Editor editor = firstBootPreferences.edit();
+            editor.putString("is_firstBoot","false");
+            editor.apply();*/
+        }
     }
 
     private Runnable updateTimeRunnable = new Runnable() {
