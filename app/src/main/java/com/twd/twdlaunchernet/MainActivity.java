@@ -106,17 +106,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startService(serviceIntent);
         //TODO:判断是不是第一次开机
         //TODO:判断是不是需要固定图标
-        String isFirst = Utils.getProperty(prop_first_boot,"false");
-        //String isFirst = firstBootPreferences.getString("is_firstBoot","true");
+        //String isFirst = Utils.getProperty(prop_first_boot,"false");
+        String isFirst = firstBootPreferences.getString("is_firstBoot","true");
         if (isFirst.equals("true")){
             if (UI_QUICKLINK_STYLE.equals("true")){
                 SharedPreferences.Editor editor = selectedPreferences.edit();
                 editor.putBoolean(UI_QUICKLINK_APP_PACKAGE,true);
                 editor.apply();
             }
-/*            SharedPreferences.Editor editor = firstBootPreferences.edit();
+            SharedPreferences.Editor editor = firstBootPreferences.edit();
             editor.putString("is_firstBoot","false");
-            editor.apply();*/
+            editor.apply();
         }
     }
 
