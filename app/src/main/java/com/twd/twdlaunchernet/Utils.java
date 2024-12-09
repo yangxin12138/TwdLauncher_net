@@ -10,6 +10,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbManager;
+import android.os.Build;
 import android.text.format.DateFormat;
 import android.util.Log;
 
@@ -188,4 +189,63 @@ public class Utils {
         }
     }
 
+    public static boolean execCommand(String... command) {
+
+        Process process = null;
+
+        InputStream errIs = null;
+
+        InputStream inIs = null;
+
+        boolean result ;
+
+        try {
+            process = new ProcessBuilder().command(command).start();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            int read = -1;
+
+            errIs = process.getErrorStream();
+            while ((read = errIs.read()) != -1) {
+                baos.write(read);
+            }
+
+            inIs = process.getInputStream();
+            while ((read = inIs.read()) != -1) {
+                baos.write(read);
+            }
+            result = true;
+            inIs.close();
+            errIs.close();
+            process.destroy();
+        } catch (IOException e) {
+            e.printStackTrace();
+            result = false;
+        }
+        return result;
+    }
+
+    public static boolean checkAndInstallApk(String apkFilePath){
+        File apkFile = new File(apkFilePath);
+        boolean result;
+        if (apkFile.exists()){
+            Log.d("ApkInstaller", "APK文件存在，准备安装");
+            // 根据不同的Android系统版本选择不同的安装方式
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+                // Android 7.0及以上需要使用FileProvider等方式处理文件Uri，这里简化示例，可完善
+                // 示例中暂时使用命令行方式（命令行方式在实际中可能存在兼容性等问题，也可改为合适的Intent方式）
+                String[] command = {"pm","install","-f",apkFilePath};
+                result = execCommand(command);
+                Log.d("ApkInstaller", "7.0以上安装结束，结果是"+result);
+            }else {
+                // Android 7.0以下可直接使用如下方式（更简单的命令行示例，实际中推荐用Intent方式安装）
+                String[] command = {"pm", "install", apkFilePath};
+                result = execCommand(command);
+                Log.d("ApkInstaller", "7.0以下安装结果: " + result);
+            }
+            return result;
+        }else {
+            Log.e("ApkInstaller", "指定的APK文件不存在");
+            return false;
+        }
+    }
 }

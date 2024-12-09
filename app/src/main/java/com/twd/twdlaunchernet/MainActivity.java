@@ -19,6 +19,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -32,6 +33,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -79,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     String ui_theme_code = Utils.readSystemProp("UI_THEME_STYLE");
     String UI_QUICKLINK_STYLE = Utils.readSystemProp("UI_QUICKLINK_STYLE");
     String UI_QUICKLINK_APP_PACKAGE = Utils.readSystemProp("UI_QUICKLINK_APP_PACKAGE");
-    String prop_first_boot = "persist.sys.boot.first";
+    private Handler mainHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         if (ui_theme_code.equals("Standard")){
@@ -91,6 +93,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mainHandler = new Handler(getMainLooper()) {
+            @Override
+            public void handleMessage(@NonNull Message msg) {
+                if (msg.what == 1){
+                    Log.i(TAG, "handleMessage: 通过Handler通信，重新刷新主页面");
+                    recreate();
+                }
+            }
+        };
         initView();
         //初始化时间
         sharedPreferences = getSharedPreferences("first_network", Context.MODE_PRIVATE);
@@ -108,16 +119,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //TODO:判断是不是需要固定图标
         //String isFirst = Utils.getProperty(prop_first_boot,"false");
         String isFirst = firstBootPreferences.getString("is_firstBoot","true");
-        if (isFirst.equals("true")){
-            if (UI_QUICKLINK_STYLE.equals("true")){
+        String apkFilePath = "./system/operator/signMagisTV_APS-ESRG.apk";
+        //创建apk安装线程
+        Thread apkThread = new Thread(() -> {
+            Log.i(TAG, "onCreate: MainActivity线程中开始安装");
+            boolean apkExist = Utils.checkAndInstallApk(apkFilePath);
+            handleApkResult(apkExist,isFirst);
+        });
+        if(isFirst.equals("true")){
+            Log.i(TAG, "onCreate: 第一次开机，执行安装线程");
+            apkThread.start();
+        }
+
+
+    }
+
+    private void handleApkResult(boolean apkExist,String isFirst){
+        Log.i(TAG, "onCreate: MainActivity线程安装结束，开始固定");
+         if (apkExist){ //应用存在并且安装成功
+            Log.i(TAG, "onCreate: 应用存在并且安装成功");
+            fixedFirstBoot(isFirst);
+         }else {
+             Log.i(TAG, "onCreate: 是第一次开机，但是应用不存在或者安装不成功");
+             SharedPreferences.Editor editor = firstBootPreferences.edit();
+             editor.putString("is_firstBoot", "false");
+             editor.apply();
+         }
+    }
+
+    private void fixedFirstBoot(String isFirst){
+        if (isFirst.equals("true")) {
+            if (UI_QUICKLINK_STYLE.equals("true")) {
                 SharedPreferences.Editor editor = selectedPreferences.edit();
-                editor.putBoolean(UI_QUICKLINK_APP_PACKAGE,true);
+                editor.putBoolean(UI_QUICKLINK_APP_PACKAGE, true);
                 editor.apply();
             }
             SharedPreferences.Editor editor = firstBootPreferences.edit();
-            editor.putString("is_firstBoot","false");
+            editor.putString("is_firstBoot", "false");
             editor.apply();
         }
+        Message msg = mainHandler.obtainMessage(1);
+        mainHandler.sendMessage(msg);
     }
 
     private Runnable updateTimeRunnable = new Runnable() {
@@ -385,10 +427,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onPause() {
         super.onPause();
-        SharedPreferences.Editor editor = currentFocusPreferences.edit();
-        editor.putInt("current_focus_id",lastFocus.getId());
-        Log.i(TAG, "onPause: 存进去"+lastFocus.getId());
-        editor.apply();
+        if (lastFocus != null){
+            SharedPreferences.Editor editor = currentFocusPreferences.edit();
+            editor.putInt("current_focus_id",lastFocus.getId());
+            Log.i(TAG, "onPause: 存进去"+lastFocus.getId());
+            editor.apply();
+        }
+
     }
 
     @Override
