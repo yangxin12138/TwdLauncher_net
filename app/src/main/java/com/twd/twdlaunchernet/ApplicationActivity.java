@@ -101,7 +101,7 @@ public class ApplicationActivity extends AppCompatActivity {
         while (iterator.hasNext()){
             ResolveInfo resolveInfo = iterator.next();
             String packageName = resolveInfo.activityInfo.packageName;
-            if ("com.twd.twdlaunchernet".equals(packageName) || "com.twd.ipdemo".equals(packageName) || "com.android.tv.settings".equals(packageName)){
+            if ("com.twd.twdlaunchernet".equals(packageName)  || "com.android.tv.settings".equals(packageName)){
                 iterator.remove();//移除
             }
         }

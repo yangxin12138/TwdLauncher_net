@@ -1,7 +1,6 @@
 package com.twd.twdlaunchernet;
 
 import android.annotation.SuppressLint;
-import android.app.Application;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -11,8 +10,6 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbManager;
 import android.net.ConnectivityManager;
@@ -20,26 +17,20 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.twd.twdlaunchernet.adapter.IndexHeatsetAdapter;
+import com.twd.twdlaunchernet.application.HandlerApplication;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -75,13 +66,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     IndexHeatsetAdapter heatAdapter;
     GridView gridView;
     List<ApplicationInfo> appList = new ArrayList<>();
+    private List<String> failedApkList = new ArrayList<>();
     private Utils utils;
     public static boolean isHeat = false;
     public static View lastFocus;
     String ui_theme_code = Utils.readSystemProp("UI_THEME_STYLE");
     String UI_QUICKLINK_STYLE = Utils.readSystemProp("UI_QUICKLINK_STYLE");
     String UI_QUICKLINK_APP_PACKAGE = Utils.readSystemProp("UI_QUICKLINK_APP_PACKAGE");
-    private Handler mainHandler;
+    public Handler mainHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         if (ui_theme_code.equals("Standard")){
@@ -93,16 +85,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initView();
         mainHandler = new Handler(getMainLooper()) {
             @Override
             public void handleMessage(@NonNull Message msg) {
                 if (msg.what == 1){
                     Log.i(TAG, "handleMessage: 通过Handler通信，重新刷新主页面");
                     recreate();
+                } else if (msg.what == 2) {
+                    Log.i(TAG, "handleMessage: u盘方式安装回调");
+                    recreate();
+                } else if (msg.what == 3) {
+                    Log.i(TAG, "handleMessage: apk安装完成回调");
+                    String toastMsg = "";
+                    failedApkList = ((HandlerApplication) getApplication()).getFailedApkList();
+                    if (failedApkList.isEmpty()){
+                        toastMsg = "APK安装结束";
+                        Log.i(TAG, "handleMessage: 没有安装失败的");
+                    }else {
+                        StringBuilder sb = new StringBuilder("安装结束，");
+                        for (String failedApk : failedApkList){
+                            sb.append(failedApk).append("失败");
+                            if (failedApkList.indexOf(failedApk) < failedApkList.size() - 1) {
+                                sb.append("、");
+                            }
+                        }
+                        Log.i(TAG, "handleMessage: 失败的是： " + toastMsg);
+                        toastMsg = sb.toString();
+                    }
+                    ToastUtil.showCustomToast(getApplicationContext(), toastMsg, Toast.LENGTH_SHORT);
+                    // 可以考虑在这里清空failedApkList，以便下次安装时重新统计
+                    failedApkList.clear();
                 }
             }
         };
-        initView();
+        ((HandlerApplication) getApplication()).setMainHandler(mainHandler);
         //初始化时间
         sharedPreferences = getSharedPreferences("first_network", Context.MODE_PRIVATE);
         firstBootPreferences = getSharedPreferences("firstBoot",Context.MODE_PRIVATE);
@@ -126,10 +143,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             boolean apkExist = Utils.checkAndInstallApk(apkFilePath);
             handleApkResult(apkExist,isFirst);
         });
-        if(isFirst.equals("true")){
+/*        if(isFirst.equals("true")){
             Log.i(TAG, "onCreate: 第一次开机，执行安装线程");
             apkThread.start();
-        }
+        }*/
 
 
     }

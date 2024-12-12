@@ -11,6 +11,8 @@ import android.content.pm.PackageManager;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbManager;
 import android.os.Build;
+import android.os.storage.StorageManager;
+import android.os.storage.StorageVolume;
 import android.text.format.DateFormat;
 import android.util.Log;
 
@@ -30,6 +32,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * @Author:Yangxin
@@ -38,6 +41,8 @@ import java.util.Map;
  */
 public class Utils {
     private static final String CLASS_NAME = "android.os.SystemProperties";
+
+    public static String usbFilePath;
     public boolean isBluetoothConnected(){
         BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (bluetoothAdapter == null){
@@ -247,5 +252,57 @@ public class Utils {
             Log.e("ApkInstaller", "指定的APK文件不存在");
             return false;
         }
+    }
+
+    public static String getUsbFilePath(Context context){
+        StorageManager storageManager = (StorageManager) context.getSystemService(Context.STORAGE_SERVICE);
+        if (storageManager != null){
+            Log.i("yangxin", "storageManager不为空.");
+            StorageVolume[] storageVolumes = storageManager.getStorageVolumes().toArray(new StorageVolume[0]);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {//Android11以下的用反射
+                for (StorageVolume volume : storageVolumes){
+                    Log.i("yangxin", "Volume is removable: " + volume.isRemovable()+",name = "+ Objects.requireNonNull(volume.getDirectory()).getAbsolutePath());
+                    Log.i("yangxin", "Volume is primary: " + volume.isPrimary()+",name = "+volume.getDirectory().getAbsolutePath());
+                    if (volume.isRemovable() && !volume.isPrimary()){
+                        Log.i("yangxin", "getUsbFilePath找到可移动并且不是主存储.");
+                        Log.i("yangxin", "getUsbFilePath进入最后一关.");
+                        return volume.getDirectory().getAbsolutePath();
+                    }
+                }
+            }
+
+        }else {
+            Log.i("yangxin", "storageManager是空的.");
+        }
+        return "未挂载";//未挂载
+    }
+
+    public static String getInstallTag(){
+        String installTag = "";
+        try{
+            File file = new File(usbFilePath+"/testInfo.txt");
+            if (!file.exists()) {
+                Log.e("yangxin", "File does not exist.");
+            }
+            FileInputStream fis = new FileInputStream(file);
+            BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+
+            String line;
+            while ((line = br.readLine()) != null){
+                if (line.contains("cmd_install_path")){
+                    Log.i("yangxin", "读到有属性cmd_install_path.");
+                    String[] parts = line.split("：");
+                    if (parts.length == 2) {
+                        Log.i("yangxin", "cmd_install_path长度为2，取第二个值.");
+                        installTag = parts[1].trim();
+                    }
+                }
+            }
+            br.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        Log.d("yangxin", "getInstallTag: installTag = " + installTag );
+        return installTag;
     }
 }

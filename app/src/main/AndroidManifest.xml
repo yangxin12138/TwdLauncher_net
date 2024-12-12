@@ -27,6 +27,7 @@
         android:roundIcon="@mipmap/launchernet_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.TwdLauncher_net"
+        android:name=".application.HandlerApplication"
         tools:targetApi="31">
         <activity
             android:name=".ApplicationActivity"
@@ -41,6 +42,13 @@
             </intent-filter>
         </activity>
         <service android:name=".USBDeviceService"/>
+        <receiver android:name=".UsbApkReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_MOUNTED"/>
+                <data android:scheme="file"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

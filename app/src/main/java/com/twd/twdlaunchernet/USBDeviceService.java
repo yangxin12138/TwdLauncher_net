@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.hardware.usb.UsbManager;
+import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -22,13 +23,14 @@ import java.util.TimerTask;
 public class USBDeviceService extends Service {
     private BroadcastReceiver usbReceiver;
     private Context mContext;
+    private final MainActivity mainActivity = new MainActivity();
 
 
     @Override
     public void onCreate() {
         super.onCreate();
         mContext = getApplicationContext();
-        usbReceiver = new UsbReceiver();
+        usbReceiver = new UsbReceiver(mainActivity.mainHandler);
         Log.d("USBDeviceService", "服务启动");
         // 在这里可以执行一些持续的操作，比如持续监听 U 盘状态变化等
         IntentFilter filter = new IntentFilter();
