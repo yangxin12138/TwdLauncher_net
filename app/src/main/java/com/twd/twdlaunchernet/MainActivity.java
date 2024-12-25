@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView im_settings;
     private ImageView im_files;
     public ImageView im_hdmi;
+    private View time_bar;
     private Handler timerHandler = new Handler();
     private boolean firstNetwork;
     SharedPreferences sharedPreferences;
@@ -204,6 +205,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     im_wifi.setImageResource(R.drawable.icon_wifi);
                     tv_time.setText("");
                     tv_day.setText("");
+                    time_bar.setVisibility(View.GONE);
                     // 每隔一秒检查网络连接状态
                     timerHandler.postDelayed(this, 1000);
                     return;
@@ -251,6 +253,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //在TextView上更新日期和时间
         tv_day.setText(formatterDate);
         tv_time.setText(formatterTime);
+        time_bar.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -267,6 +270,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         im_wifi = findViewById(R.id.im_wifi);
         im_ble = findViewById(R.id.im_ble);
         im_usb = findViewById(R.id.im_usb);
+        time_bar = findViewById(R.id.time_bar);
 
         utils = new Utils();
         //判断蓝牙是否已连接
