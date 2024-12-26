@@ -40,7 +40,7 @@ public class UsbReceiver extends BroadcastReceiver {
         if (UsbManager.ACTION_USB_DEVICE_ATTACHED.equals(action)){
             Log.i("yangxin", "onReceive:usb u盘插入 ");
            //TODO:弹出确定弹窗
-/*            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
+            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
             dialogBuilder.setMessage(mContext.getString(R.string.index_usb_listener));
             dialogBuilder.setPositiveButton(mContext.getString(R.string.application_confirm), new DialogInterface.OnClickListener() {
                 @Override
@@ -64,7 +64,7 @@ public class UsbReceiver extends BroadcastReceiver {
             });
             alertDialog = dialogBuilder.create();
             alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-            alertDialog.show();*/
+            alertDialog.show();
 
 /*            //TODO:检测U盘中的配置文件以及配置项
             usbPath = Utils.getUsbFilePath(mContext);
