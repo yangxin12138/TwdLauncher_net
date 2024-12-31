@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/application_title"
-        android:textSize="50sp"
+        android:textSize="@dimen/application_title_textsize"
         android:textColor="@color/white"
         android:paddingStart="100dp"
         android:paddingTop="10dp"

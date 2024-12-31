@@ -17,6 +17,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -148,7 +149,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Log.i(TAG, "onCreate: 第一次开机，执行安装线程");
             apkThread.start();
         }*/
-
+        DisplayMetrics metric = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metric);
+        int width = metric.widthPixels;//屏幕宽度（单位：px）
+        int height = metric.heightPixels;//屏幕高度（单位：px）
+        float density = metric.density;//屏幕密度（常见的有：1.5、2.0、3.0）
+        int densityDpi = metric.densityDpi;//屏幕DPI（常见的有：240、320、480）
+        Log.d(TAG, "width=" + width + ",height=" + height + ",density=" + density + ",densityDpi=" + densityDpi);
 
     }
 
