@@ -9,15 +9,15 @@
     <dimen name="index_margin">50dp</dimen>
     <dimen name="index_padding">50dp</dimen>
     <dimen name="index_margin_top">50dp</dimen>
-    <dimen name="index_first_icon_width">370dp</dimen>
+    <dimen name="index_first_icon_width">364dp</dimen>
     <dimen name="index_first_icon_height">200dp</dimen>
     <dimen name="index_second_icon_width">273dp</dimen>
     <dimen name="index_second_icon_height">180dp</dimen>
     <dimen name="index_heat_paddingTop">10dp</dimen>
     <dimen name="index_icon_padding">20dp</dimen>
 
-    <dimen name="application_icon_width">110dp</dimen>
-    <dimen name="application_icon_height">160dp</dimen>
+    <dimen name="application_icon_width">150dp</dimen>
+    <dimen name="application_icon_height">190dp</dimen>
     <dimen name="application_image">100dp</dimen>
     <dimen name="application_text">15sp</dimen>
     <dimen name="application_grid_padding">30dp</dimen>
@@ -39,4 +39,10 @@
     <dimen name="application_icon_paddingTop">30dp</dimen>
     <dimen name="application_paddingTop">30dp</dimen>
     <dimen name="application_paddingBottom">30dp</dimen>
+
+    <dimen name="index_heat_item_width">120dp</dimen>
+    <dimen name="index_heat_item_height">140dp</dimen>
+    <dimen name="index_heat_item_marginTop">20dp</dimen>
+    <dimen name="index_heat_item_icon_padding">10dp</dimen>
+    <dimen name="application_title_textsize">50sp</dimen>
 </resources>
