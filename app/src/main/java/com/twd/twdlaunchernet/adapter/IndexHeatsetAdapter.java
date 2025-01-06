@@ -87,6 +87,7 @@ public class IndexHeatsetAdapter extends BaseAdapter {
                     Log.i("yangxin", "onClick: 点到加号了");
                     selectionPosition = position;
                     Intent intent = new Intent(mContext.getApplicationContext(), ApplicationActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     intent.putExtra("list_mode",2);
                     mContext.startActivity(intent);
                 }

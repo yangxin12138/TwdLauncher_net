@@ -366,6 +366,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (v.getId() == R.id.im_application){ //所有应用
             intent = new Intent(this,ApplicationActivity.class);
             intent.putExtra("list_mode",1);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         } else if (v.getId() == R.id.im_settings) { //Settings
             intent = new Intent();
             intent.setComponent(new ComponentName("com.twd.setting","com.twd.setting.MainActivity"));
