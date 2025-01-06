@@ -145,10 +145,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             boolean apkExist = Utils.checkAndInstallApk(apkFilePath);
             handleApkResult(apkExist,isFirst);
         });
-/*        if(isFirst.equals("true")){
+        if(isFirst.equals("true")){
             Log.i(TAG, "onCreate: 第一次开机，执行安装线程");
             apkThread.start();
-        }*/
+        }
         DisplayMetrics metric = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metric);
         int width = metric.widthPixels;//屏幕宽度（单位：px）
