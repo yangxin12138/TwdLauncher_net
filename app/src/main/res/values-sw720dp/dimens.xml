@@ -45,4 +45,7 @@
     <dimen name="index_heat_item_marginTop">20dp</dimen>
     <dimen name="index_heat_item_icon_padding">10dp</dimen>
     <dimen name="application_title_textsize">50sp</dimen>
+    <dimen name="application_list_title_paddingStart">100dp</dimen>
+    <dimen name="application_item_radius">30dp</dimen>
+    <dimen name="applicaiton_item_spacing">10dp</dimen>
 </resources>

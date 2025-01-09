@@ -44,4 +44,7 @@
     <dimen name="application_icon_paddingTop">30dp</dimen>
     <dimen name="application_paddingTop">30dp</dimen>
     <dimen name="application_paddingBottom">30dp</dimen>
+    <dimen name="application_list_title_paddingStart">100dp</dimen>
+    <dimen name="application_item_radius">30dp</dimen>
+    <dimen name="applicaiton_item_spacing">10dp</dimen>
 </resources>

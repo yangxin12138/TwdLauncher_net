@@ -14,7 +14,7 @@
         android:text="@string/application_title"
         android:textSize="@dimen/application_title_textsize"
         android:textColor="@color/white"
-        android:paddingStart="100dp"
+        android:paddingStart="@dimen/application_list_title_paddingStart"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"/>
     <GridView
@@ -26,8 +26,8 @@
         android:paddingTop="@dimen/application_paddingTop"
         android:paddingBottom="@dimen/application_paddingBottom"
         android:numColumns="6"
-        android:verticalSpacing="10dp"
-        android:horizontalSpacing="10dp"
+        android:verticalSpacing="@dimen/applicaiton_item_spacing"
+        android:horizontalSpacing="@dimen/applicaiton_item_spacing"
         android:stretchMode="columnWidth"
         android:gravity="center"/>
 </LinearLayout>
