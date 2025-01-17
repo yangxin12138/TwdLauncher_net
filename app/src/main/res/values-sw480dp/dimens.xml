@@ -47,4 +47,20 @@
     <dimen name="application_list_title_paddingStart">70dp</dimen>
     <dimen name="application_item_radius">20dp</dimen>
     <dimen name="applicaiton_item_spacing">5dp</dimen>
+    <dimen name="index_time_bar_padding">20dp</dimen>
+    <dimen name="border_white_width">3dp</dimen>
+    <dimen name="application_title_padding">10dp</dimen>
+    <dimen name="imunset_text_size">20sp</dimen>
+    <dimen name="imunset_padding">80dp</dimen>
+    <dimen name="unset_image_size">80dp</dimen>
+    <dimen name="unset_text_size">15dp</dimen>
+    <dimen name="unset_button_width">200dp</dimen>
+    <dimen name="unset_button_text_size">25sp</dimen>
+    <dimen name="unset_cancel_marginStart">180dp</dimen>
+    <dimen name="unset_confirm_marginStart">60dp</dimen>
+    <dimen name="unset_confirm_marginEnd">130dp</dimen>
+    <dimen name="unset_button_margintTop">25dp</dimen>
+    <dimen name="imunset_height">130dp</dimen>
+    <dimen name="unset_height">220dp</dimen>
+    <dimen name="imunset_width">800dp</dimen>
 </resources>

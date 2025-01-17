@@ -15,8 +15,8 @@
         android:textSize="@dimen/application_title_textsize"
         android:textColor="@color/white"
         android:paddingStart="@dimen/application_list_title_paddingStart"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"/>
+        android:paddingTop="@dimen/application_title_padding"
+        android:paddingBottom="@dimen/application_title_padding"/>
     <GridView
         android:id="@+id/gridView"
         android:layout_width="match_parent"

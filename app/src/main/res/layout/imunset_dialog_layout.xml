@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="960dp"
-    android:layout_height="150dp"
+    android:layout_width="@dimen/imunset_width"
+    android:layout_height="@dimen/imunset_height"
     android:orientation="vertical"
     android:gravity="center_vertical"
     android:background="@drawable/gradient"> <!-- 设置背景颜色为蓝色 -->
@@ -11,10 +11,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            android:textSize="25sp"
+            android:textSize="@dimen/imunset_text_size"
             android:gravity="center"
             android:text="系统应用不可卸载！"
-            android:paddingStart="100dp"
-            android:paddingEnd="100dp"
+            android:paddingStart="@dimen/imunset_padding"
+            android:paddingEnd="@dimen/imunset_padding"
             android:textColor="@color/white" />
 </LinearLayout>
