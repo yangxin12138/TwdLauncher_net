@@ -62,4 +62,6 @@
     <dimen name="imunset_height">130dp</dimen>
     <dimen name="unset_height">220dp</dimen>
     <dimen name="imunset_width">700dp</dimen>
+    <dimen name="application_iv_red_width">25dp</dimen>
+    <dimen name="application_iv_red_margin">18dp</dimen>
 </resources>

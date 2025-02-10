@@ -31,10 +31,10 @@
     </LinearLayout>
     <ImageView
         android:id="@+id/iv_red"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_width="@dimen/application_iv_red_width"
+        android:layout_height="@dimen/application_iv_red_width"
+        android:layout_marginTop="@dimen/application_iv_red_margin"
+        android:layout_marginEnd="@dimen/application_iv_red_margin"
         android:layout_gravity="top|end"
         android:src="@drawable/red_selected"
         android:visibility="visible"/>
