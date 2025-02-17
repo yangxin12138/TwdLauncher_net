@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/unset_height"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:padding="@dimen/uninstall_padding"
     android:background="@drawable/gradient">
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
             android:text="这是一个标题"
             android:textSize="@dimen/unset_text_size"
             android:textColor="@color/white"
-            android:paddingStart="20dp"
+            android:paddingStart="@dimen/uninstall_title_padding_start"
             android:gravity="center_vertical"/>
     </LinearLayout>
 

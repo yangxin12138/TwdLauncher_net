@@ -65,4 +65,8 @@
     <dimen name="imunset_width">600dp</dimen>
     <dimen name="application_iv_red_width">17dp</dimen>
     <dimen name="application_iv_red_margin">15dp</dimen>
+    <dimen name="tv_day_padding">5dp</dimen>
+    <dimen name="time_bar_width">3dp</dimen>
+    <dimen name="uninstall_padding">16dp</dimen>
+    <dimen name="uninstall_title_padding_start">20dp</dimen>
 </resources>
