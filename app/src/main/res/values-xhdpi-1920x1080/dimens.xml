@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="tvTime_textSize">50sp</dimen>
+    <dimen name="tvTime_height">60dp</dimen>
+    <dimen name="tvDay_textSize">15sp</dimen>
+    <dimen name="tvDay_height">50dp</dimen>
+
+    <dimen name="index_margin">50dp</dimen>
+    <dimen name="index_padding">50dp</dimen>
+    <dimen name="index_margin_top">20dp</dimen>
+    <dimen name="index_first_icon_width">280dp</dimen>
+    <dimen name="index_first_icon_height">160dp</dimen>
+    <dimen name="index_second_icon_width">210dp</dimen>
+    <dimen name="index_second_icon_height">130dp</dimen>
+    <dimen name="index_heat_paddingTop">20dp</dimen>
+    <dimen name="index_icon_padding">20dp</dimen>
+    <dimen name="index_heat_item_width">95dp</dimen>
+    <dimen name="index_heat_item_height">120dp</dimen>
+    <dimen name="index_heat_item_marginTop">15dp</dimen>
+    <dimen name="index_heat_item_icon_padding">11dp</dimen>
+
+    <dimen name="application_icon_width">130dp</dimen>
+    <dimen name="application_icon_height">140dp</dimen>
+    <dimen name="application_image">100dp</dimen>
+    <dimen name="application_text">20sp</dimen>
+    <dimen name="application_grid_padding">50dp</dimen>
+    <dimen name="application_grid_padding_startend">50dp</dimen>
+    <dimen name="application_title_textsize">50sp</dimen>
+
+    <dimen name="index_margin_yameixun">50dp</dimen>
+    <dimen name="index_padding_yameixun">50dp</dimen>
+
+    <dimen name="index_margin_normal">20dp</dimen>
+    <dimen name="index_padding_normal">0dp</dimen>
+
+    <dimen name="title_blank_weight">9</dimen>
+    <dimen name="heat_width">85dp</dimen>
+    <dimen name="heat_height">110dp</dimen>
+    <dimen name="heat_icon_width">65dp</dimen>
+    <dimen name="heat_icon_height">65dp</dimen>
+    <dimen name="heat_label_textsize">15sp</dimen>
+    <dimen name="application_icon_textsize">15sp</dimen>
+    <dimen name="application_icon_paddingTop">20dp</dimen>
+    <dimen name="application_paddingTop">30dp</dimen>
+    <dimen name="application_paddingBottom">30dp</dimen>
+    <dimen name="application_list_title_paddingStart">100dp</dimen>
+    <dimen name="application_item_radius">30dp</dimen>
+    <dimen name="applicaiton_item_spacing">12dp</dimen>
+    <dimen name="index_time_bar_padding">20dp</dimen>
+    <dimen name="border_white_width">5dp</dimen>
+    <dimen name="application_title_padding">15dp</dimen>
+    <dimen name="imunset_text_size">25sp</dimen>
+    <dimen name="imunset_padding">100dp</dimen>
+    <dimen name="unset_image_size">100dp</dimen>
+    <dimen name="unset_text_size">20dp</dimen>
+    <dimen name="unset_button_width">250dp</dimen>
+    <dimen name="unset_button_margintTop">30dp</dimen>
+    <dimen name="unset_button_text_size">30sp</dimen>
+    <dimen name="unset_cancel_marginStart">200dp</dimen>
+    <dimen name="unset_confirm_marginStart">70dp</dimen>
+    <dimen name="unset_confirm_marginEnd">150dp</dimen>
+    <dimen name="imunset_height">150dp</dimen>
+    <dimen name="imunset_width">800dp</dimen>
+    <dimen name="unset_height">250dp</dimen>
+    <dimen name="application_iv_red_width">35dp</dimen>
+    <dimen name="application_iv_red_margin">20dp</dimen>
+    <dimen name="tv_day_padding">5dp</dimen>
+    <dimen name="time_bar_width">3dp</dimen>
+    <dimen name="uninstall_padding">16dp</dimen>
+    <dimen name="uninstall_title_padding_start">20dp</dimen>
+</resources>
