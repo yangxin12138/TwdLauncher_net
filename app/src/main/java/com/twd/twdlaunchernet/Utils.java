@@ -7,6 +7,7 @@ import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbManager;
@@ -304,5 +305,17 @@ public class Utils {
         }
         Log.d("yangxin", "getInstallTag: installTag = " + installTag );
         return installTag;
+    }
+
+    //获取apk的包名
+    public static String getApkPackageName(PackageManager packageManager,String apkFilePath){
+        PackageInfo packageInfo = packageManager.getPackageArchiveInfo(apkFilePath,PackageManager.GET_ACTIVITIES);
+        if (packageInfo != null){
+            ApplicationInfo appInfo = packageInfo.applicationInfo;
+            appInfo.sourceDir = apkFilePath;
+            appInfo.publicSourceDir = apkFilePath;
+            return appInfo.packageName;
+        }
+        return null;
     }
 }

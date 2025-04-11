@@ -33,6 +33,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.twd.twdlaunchernet.adapter.IndexHeatsetAdapter;
 import com.twd.twdlaunchernet.application.HandlerApplication;
 
+import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -138,24 +139,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //TODO:判断是不是需要固定图标
         //String isFirst = Utils.getProperty(prop_first_boot,"false");
         String isFirst = firstBootPreferences.getString("is_firstBoot","true");
-        String apkFilePath = "./system/operator/signMagisTV_APS-ESRG.apk";
+        String apkDirectoryPath  = "./system/operator/preinstall";
+
+        // 创建一个列表来存储 APK 文件路径
+        List<String> apkFilePaths = getApkFilesInDirectory(apkDirectoryPath );
+
         //创建apk安装线程
         Thread apkThread = new Thread(() -> {
             Log.i(TAG, "onCreate: MainActivity线程中开始安装");
-            boolean apkExist = Utils.checkAndInstallApk(apkFilePath);
-            handleApkResult(apkExist,isFirst);
+            PackageManager packageManager = getPackageManager();
+            for (String apkFilePath: apkFilePaths){
+                String apkPackageName = Utils.getApkPackageName(packageManager,apkFilePath);
+                Log.i(TAG, "onCreate: 开始安装 APK: " + apkPackageName);
+                boolean apkExist = Utils.checkAndInstallApk(apkFilePath);
+                if (apkExist) {
+                    Log.i(TAG, "onCreate: 安装成功: " + apkPackageName);
+                } else {
+                    Log.i(TAG, "onCreate: 安装失败: " + apkPackageName);
+                }
+            }
+            Log.i(TAG, "onCreate: 所有 APK 文件安装完成");
+            Message msg = mainHandler.obtainMessage(1);
+            mainHandler.sendMessage(msg);
+            SharedPreferences.Editor editor = firstBootPreferences.edit();
+            editor.putString("is_firstBoot", "false");
+            editor.apply();
         });
         if(isFirst.equals("true")){
             Log.i(TAG, "onCreate: 第一次开机，执行安装线程");
             apkThread.start();
+        }else {
+            Log.i(TAG, "onCreate: 不是第一次开机，不执行安装线程");
         }
-        DisplayMetrics metric = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metric);
-        int width = metric.widthPixels;//屏幕宽度（单位：px）
-        int height = metric.heightPixels;//屏幕高度（单位：px）
-        float density = metric.density;//屏幕密度（常见的有：1.5、2.0、3.0）
-        int densityDpi = metric.densityDpi;//屏幕DPI（常见的有：240、320、480）
-        Log.d(TAG, "width=" + width + ",height=" + height + ",density=" + density + ",densityDpi=" + densityDpi);
 
     }
 
@@ -187,6 +202,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mainHandler.sendMessage(msg);
     }
 
+    //获取指定目录下的所有 APK 文件的文件路径
+    private List<String> getApkFilesInDirectory(String directoryPath){
+        List<String> apkFilePaths = new ArrayList<>();
+        File directory = new File(directoryPath);
+        if (directory.exists() && directory.isDirectory()){
+            File[] files = directory.listFiles();
+            if (files != null){
+                for (File file : files){
+                    if(file.isFile() && file.getName().endsWith(".apk")){
+                        apkFilePaths.add(file.getAbsolutePath());
+                    }
+                }
+            }
+        }
+        return apkFilePaths;
+    }
     private Runnable updateTimeRunnable = new Runnable() {
         @Override
         public void run() {
