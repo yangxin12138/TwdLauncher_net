@@ -14,6 +14,7 @@ import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -416,14 +417,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             intent.setComponent(new ComponentName("com.google.android.youtube.tv","com.google.android.apps.youtube.tv.activity.ShellActivity"));
         } else if (v.getId() == R.id.im_googleplay) { //google paly
             intent = new Intent();
-            intent.setComponent(new ComponentName("com.android.vending","com.google.android.finsky.tvmainactivity.TvMainActivity"));
+            if(Build.HARDWARE.equals("mt6735")){
+                intent.setComponent(new ComponentName("com.google.android.gms","com.google.android.gms.auth.uiflows.addaccount.PreAddAccountActivity"));
+            }else {
+                intent.setComponent(new ComponentName("com.android.vending","com.google.android.finsky.tvmainactivity.TvMainActivity"));
+            }
         } else if (v.getId() == R.id.im_hdmi) {
             //TODO: hdmi跳转
             intent = new Intent();
-            intent.setComponent(new ComponentName("com.softwinner.awsource","com.softwinner.awsource.MainActivity"));
+            if(Build.HARDWARE.equals("mt6735")){
+                intent.setComponent(new ComponentName("com.twd.twdcamera","com.twd.twdcamera.MainActivity"));
+            }else {
+                intent.setComponent(new ComponentName("com.softwinner.awsource","com.softwinner.awsource.MainActivity"));
+            }
         } else if (v.getId() == R.id.im_files) {//file
             intent = new Intent();
-            intent.setComponent(new ComponentName("com.softwinner.TvdFileManager", "com.softwinner.TvdFileManager.MainUI"));
+            if(Build.HARDWARE.equals("mt6735")){
+                intent.setComponent(new ComponentName("com.vsoontech.mos.filemanager", "com.vsoontech.filemanager.business.index.IndexAty"));
+            }else {
+                intent.setComponent(new ComponentName("com.softwinner.TvdFileManager", "com.softwinner.TvdFileManager.MainUI"));
+            }
         }
 
         if (intent != null){
