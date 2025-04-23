@@ -80,7 +80,7 @@
             android:src="@drawable/icon_wifi"
             app:layout_constraintStart_toEndOf="@+id/empty"
             app:layout_constraintEnd_toStartOf="@+id/im_ble"
-            app:layout_constraintWidth_percent="0.08"
+            app:layout_constraintWidth_percent="0.06"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
         <ImageView
@@ -92,7 +92,7 @@
             app:layout_constraintEnd_toStartOf="@+id/im_usb"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintWidth_percent="0.08"/>
+            app:layout_constraintWidth_percent="0.06"/>
         <ImageView
             android:id="@+id/im_usb"
             android:layout_width="0dp"
@@ -104,7 +104,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintWidth_percent="0.08"/>
+            app:layout_constraintWidth_percent="0.06"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout

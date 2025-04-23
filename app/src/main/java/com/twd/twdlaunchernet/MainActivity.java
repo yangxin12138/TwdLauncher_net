@@ -418,7 +418,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (v.getId() == R.id.im_googleplay) { //google paly
             intent = new Intent();
             if(Build.HARDWARE.equals("mt6735")){
-                intent.setComponent(new ComponentName("com.google.android.gms","com.google.android.gms.auth.uiflows.addaccount.PreAddAccountActivity"));
+                intent.setComponent(new ComponentName("com.android.vending","com.android.vending.AssetBrowserActivity"));
             }else {
                 intent.setComponent(new ComponentName("com.android.vending","com.google.android.finsky.tvmainactivity.TvMainActivity"));
             }
