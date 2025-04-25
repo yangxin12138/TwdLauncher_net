@@ -1,21 +1,34 @@
 package com.twd.twdlaunchernet;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Application;
+import android.app.Dialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbManager;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.storage.StorageManager;
 import android.os.storage.StorageVolume;
 import android.text.format.DateFormat;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
 
 import com.twd.twdlaunchernet.adapter.ApplicationAdapter;
 
@@ -44,6 +57,12 @@ public class Utils {
     private static final String CLASS_NAME = "android.os.SystemProperties";
 
     public static String usbFilePath;
+    private Context context;
+
+    public Utils(Context context) {
+        this.context = context;
+    }
+
     public boolean isBluetoothConnected(){
         BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (bluetoothAdapter == null){
@@ -317,5 +336,50 @@ public class Utils {
             return appInfo.packageName;
         }
         return null;
+    }
+
+
+    protected void isMacVerify(){
+        WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+        String macAddress = wifiInfo.getMacAddress();
+        if(macAddress!=null){
+            macAddress =macAddress.toUpperCase();
+            Log.i("yangxin", "isMacVerify: MAC ="+macAddress);
+            String[] parts = macAddress.split(":");
+            if (parts.length >= 3 && parts[0].equals("76") && parts[1].equals("AF") && parts[2].equals("F7")){
+                Log.i("yangxin", "isMacVerify: MAC合法");
+            }else {
+                String verify = readSystemProp("MAC_VALID_CHECK");
+                Log.i("yangxin", "isMacVerify: verify = "+ verify);
+                if (verify.equals("true")){
+                    Log.i("yangxin", "isMacVerify: 显示错误窗口");
+                    showMacErrorDialog("MAC ERROR");
+                }
+            }
+        }
+    }
+
+    private  void  showMacErrorDialog(String message){
+        Dialog dialog = new Dialog(context, android.R.style.Theme_Material_Light_Dialog_Alert);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        // 加载自定义布局
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_layout, null);
+        dialog.setContentView(view);
+
+        TextView tvMessage = view.findViewById(R.id.error_message);
+        tvMessage.setText(message);
+
+        Window window = dialog.getWindow();
+        if (window != null) {
+            WindowManager.LayoutParams layoutParams = window.getAttributes();
+            layoutParams.width = WindowManager.LayoutParams.WRAP_CONTENT;  // 宽度包裹内容
+            layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT; // 高度包裹内容
+            layoutParams.gravity = Gravity.CENTER;  // 居中显示
+            window.setAttributes(layoutParams);
+        }
+
+        // 显示对话框
+        dialog.show();
     }
 }

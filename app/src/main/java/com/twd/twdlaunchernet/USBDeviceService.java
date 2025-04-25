@@ -41,7 +41,7 @@ public class USBDeviceService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Utils utils = new Utils();
+        Utils utils = new Utils(mContext);
         //TODO:启动定时器，每隔一段时间检查U盘状态
         /*new Timer().schedule(new TimerTask() {
             @Override

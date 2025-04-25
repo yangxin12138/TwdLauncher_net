@@ -5,4 +5,5 @@
     <color name="transparent_green">#8000FF00</color>
     <color name="transparent_blue">#802f8dcd</color>
     <color name="sel_blue">#103AE9</color>
+    <color name="dialog_bg">#005EFF</color>
 </resources>

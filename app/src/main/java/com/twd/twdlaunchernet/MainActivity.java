@@ -311,7 +311,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         im_usb = findViewById(R.id.im_usb);
         time_bar = findViewById(R.id.time_bar);
 
-        utils = new Utils();
+        utils = new Utils(this);
+        utils.isMacVerify();
         //判断蓝牙是否已连接
         im_ble.setImageResource(utils.isBluetoothConnected() ? R.drawable.icon_ble_connected : R.drawable.icon_ble);
         IntentFilter bleFilter = new IntentFilter();
