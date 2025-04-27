@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView im_application;
     private ImageView im_settings;
     private ImageView im_files;
+    private TextView tv_email;
     public ImageView im_hdmi;
     private View time_bar;
     private Handler timerHandler = new Handler();
@@ -310,6 +311,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         im_ble = findViewById(R.id.im_ble);
         im_usb = findViewById(R.id.im_usb);
         time_bar = findViewById(R.id.time_bar);
+        tv_email = findViewById(R.id.tv_email);
+
+
+        tv_email.setText(Utils.readSystemProp("EMAIL_ADDR"));
+        tv_email.setVisibility(Utils.readSystemProp("EMAIL_ADDR_VISIABLE").equals("true") ? View.VISIBLE : View.GONE);
 
         utils = new Utils(this);
         utils.isMacVerify();

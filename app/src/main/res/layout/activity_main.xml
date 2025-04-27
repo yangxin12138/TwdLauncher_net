@@ -57,54 +57,71 @@
             android:textSize="@dimen/tvTime_textSize"
             android:gravity="center_vertical"
             app:layout_constraintStart_toEndOf="@+id/time_bar"
-            app:layout_constraintEnd_toStartOf="@+id/empty"
+            app:layout_constraintEnd_toStartOf="@+id/rt_linearlayout"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintWidth_percent="0.2"
             android:autoSizeTextType="uniform"/>
-        <ImageView
-            android:id="@+id/empty"
+        <LinearLayout
+            android:id="@+id/rt_linearlayout"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             app:layout_constraintStart_toEndOf="@+id/tv_time"
-            app:layout_constraintEnd_toStartOf="@+id/im_wifi"
+            app:layout_constraintWidth_percent="0.59"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintWidth_percent="0.36"
-            />
-        <ImageView
-            android:id="@+id/im_wifi"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:padding="@dimen/index_icon_padding"
-            android:src="@drawable/icon_wifi"
-            app:layout_constraintStart_toEndOf="@+id/empty"
-            app:layout_constraintEnd_toStartOf="@+id/im_ble"
-            app:layout_constraintWidth_percent="0.06"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-        <ImageView
-            android:id="@+id/im_ble"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:padding="@dimen/index_icon_padding"
-            app:layout_constraintStart_toEndOf="@+id/im_wifi"
-            app:layout_constraintEnd_toStartOf="@+id/im_usb"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintWidth_percent="0.06"/>
-        <ImageView
-            android:id="@+id/im_usb"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:padding="@dimen/index_icon_padding"
-            android:src="@drawable/icon_usb1"
-            android:layout_marginEnd="?attr/indexMargin"
-            app:layout_constraintStart_toEndOf="@+id/im_ble"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintWidth_percent="0.06"/>
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/inside_linearlayout"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+                <View
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
+                    android:layout_height="match_parent"/>
+                <ImageView
+                    android:id="@+id/im_wifi"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingTop="@dimen/index_icon_padding"
+                    android:paddingStart="@dimen/index_icon_padding"
+                    android:paddingEnd="@dimen/index_icon_padding"
+                    android:src="@drawable/icon_wifi" />
+                <ImageView
+                    android:id="@+id/im_ble"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingTop="@dimen/index_icon_padding"
+                    android:paddingStart="@dimen/index_icon_padding"
+                    android:paddingEnd="@dimen/index_icon_padding"
+                    android:src="@drawable/icon_ble"/>
+                <ImageView
+                    android:id="@+id/im_usb"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingTop="@dimen/index_icon_padding"
+                    android:paddingStart="@dimen/index_icon_padding"
+                    android:paddingEnd="@dimen/index_icon_padding"
+                    android:src="@drawable/icon_usb1"
+                    android:layout_marginEnd="?attr/indexMargin" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="981118@happilaff.com"
+                android:textSize="20sp"
+                android:gravity="end"
+                android:textColor="@color/white"
+                android:paddingEnd="40dp"/>
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
