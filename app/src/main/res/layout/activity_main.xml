@@ -27,7 +27,6 @@
             android:textColor="@color/white"
             android:textSize="@dimen/tvDay_textSize"
             android:gravity="center_vertical|center_horizontal"
-            android:layout_marginStart="?attr/indexMargin"
             android:padding="@dimen/tv_day_padding"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -108,8 +107,7 @@
                     android:paddingTop="@dimen/index_icon_padding"
                     android:paddingStart="@dimen/index_icon_padding"
                     android:paddingEnd="@dimen/index_icon_padding"
-                    android:src="@drawable/icon_usb1"
-                    android:layout_marginEnd="?attr/indexMargin" />
+                    android:src="@drawable/icon_usb1" />
             </LinearLayout>
             <TextView
                 android:id="@+id/tv_email"
@@ -118,8 +116,7 @@
                 android:text="981118@happilaff.com"
                 android:textSize="20sp"
                 android:gravity="end"
-                android:textColor="@color/white"
-                android:paddingEnd="40dp"/>
+                android:textColor="@color/white" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
