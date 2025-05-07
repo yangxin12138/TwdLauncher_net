@@ -33,10 +33,10 @@ public class USBDeviceService extends Service {
         usbReceiver = new UsbReceiver(mainActivity.mainHandler);
         Log.d("USBDeviceService", "服务启动");
         // 在这里可以执行一些持续的操作，比如持续监听 U 盘状态变化等
-        IntentFilter filter = new IntentFilter();
+/*        IntentFilter filter = new IntentFilter();
         filter.addAction(UsbManager.ACTION_USB_DEVICE_ATTACHED);
         filter.addAction(UsbManager.ACTION_USB_DEVICE_DETACHED);
-        registerReceiver(usbReceiver,filter);
+        registerReceiver(usbReceiver,filter);*/
     }
 
     @Override

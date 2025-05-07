@@ -135,8 +135,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int currentFocusId = sharedPreferences.getInt("current_focus_id", R.id.im_netflix);
         mCurrentFocus = findViewById(currentFocusId);
         //启动U盘监听服务
-        Intent serviceIntent = new Intent(this,USBDeviceService.class);
-        startService(serviceIntent);
+        /*Intent serviceIntent = new Intent(this,USBDeviceService.class);
+        startService(serviceIntent);*/
         //TODO:判断是不是第一次开机
         //TODO:判断是不是需要固定图标
         //String isFirst = Utils.getProperty(prop_first_boot,"false");
