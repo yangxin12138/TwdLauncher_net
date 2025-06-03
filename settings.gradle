@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "TwdLauncher_net"
+rootProject.name = "TwdLauncher_game"
 include ':app'
