@@ -189,7 +189,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onDestroy();
         timerHandler.removeCallbacks(updateTimeRunnable);
         unregisterReceiver(customReceiver);
-        unregisterReceiver(usbReceiver);
+        //unregisterReceiver(usbReceiver);
+        unregisterReceiver(tfCardReceiver);
     }
 
     private void initView(){
@@ -209,17 +210,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         utils.isMacVerify();
         //判断蓝牙是否已连接
         im_ble.setImageResource(utils.isBluetoothConnected() ? R.drawable.icon_ble_connected : R.drawable.icon_ble);
-        IntentFilter bleFilter = new IntentFilter();
+        /*IntentFilter bleFilter = new IntentFilter();
         bleFilter.addAction(BluetoothDevice.ACTION_ACL_CONNECTED);
         bleFilter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED);
-        registerReceiver(customReceiver,bleFilter);
+        registerReceiver(customReceiver,bleFilter);*/
 
         //判断USB是否已经连接
-        im_usb.setImageResource(utils.isUsbPlugged(this) ? R.drawable.icon_usb_connected : R.drawable.icon_usb1);
+        im_usb.setImageResource(utils.isTfCardPlugged(this) ? R.drawable.icon_tf_connected : R.drawable.icon_tf);
         IntentFilter usbFilter = new IntentFilter();
         usbFilter.addAction(UsbManager.ACTION_USB_DEVICE_ATTACHED);
         usbFilter.addAction(UsbManager.ACTION_USB_DEVICE_DETACHED);
         registerReceiver(usbReceiver,usbFilter);
+
+        // 注册TF卡状态变化的广播接收器
+        IntentFilter tfFilter = new IntentFilter();
+        tfFilter.addAction(Intent.ACTION_MEDIA_MOUNTED);
+        tfFilter.addAction(Intent.ACTION_MEDIA_UNMOUNTED);
+        tfFilter.addAction(Intent.ACTION_MEDIA_REMOVED);
+        tfFilter.addDataScheme("file"); // 必须添加此项才能接收外部存储事件
+        registerReceiver(tfCardReceiver, tfFilter);
         im_application = findViewById(R.id.im_application); im_application.setOnFocusChangeListener(this::onFocusChange); im_application.setOnClickListener(this::onClick); im_application.setOnKeyListener(this::onKey);
         im_settings = findViewById(R.id.im_settings); im_settings.setOnFocusChangeListener(this::onFocusChange); im_settings.setOnClickListener(this::onClick);
         im_files = findViewById(R.id.im_files); im_files.setOnFocusChangeListener(this::onFocusChange); im_files.setOnClickListener(this::onClick);
@@ -257,6 +266,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // USB设备拔出
                 Log.d("USB", "USB device detached: " + device.getDeviceName());
                 im_usb.setImageResource(R.drawable.icon_usb1);
+            }
+        }
+    };
+
+    private BroadcastReceiver tfCardReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            String path =  intent.getData().getPath();
+            Log.d("TwdUtils", "TF 收到广播 " + path);
+            //检查是否是我们关注的TF卡路径
+            if ("/storage/sdcard1".equals(path) || "/storage/sdcard2".equals(path)){
+                Log.d("TwdUtils", "TF 是我们关注的路径 ");
+                if (action.equals(Intent.ACTION_MEDIA_MOUNTED)){
+                    // TF卡已挂载（插入且可用）
+                    Log.d("TwdUtils", "TF card mounted: " + path);
+                    im_usb.setImageResource(R.drawable.icon_tf_connected);
+                } else if (action.equals(Intent.ACTION_MEDIA_UNMOUNTED) ||
+                        action.equals(Intent.ACTION_MEDIA_REMOVED)) {
+                    // TF卡已卸载或移除
+                    Log.d("TwdUtils", "TF card unmounted/removed: " + path);
+                    im_usb.setImageResource(R.drawable.icon_tf);
+                }
             }
         }
     };

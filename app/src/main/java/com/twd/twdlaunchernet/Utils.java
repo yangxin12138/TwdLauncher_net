@@ -17,6 +17,7 @@ import android.hardware.usb.UsbManager;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
+import android.os.Environment;
 import android.os.storage.StorageManager;
 import android.os.storage.StorageVolume;
 import android.text.format.DateFormat;
@@ -166,6 +167,22 @@ public class Utils {
             return usbManager.hasPermission(device);
         }
         return false;
+    }
+
+    public boolean isTfCardPlugged(Context context) {
+        // 定义两个TF卡可能的挂载路径
+        String[] tfCardPaths = {"/mnt/sdcard1", "/mnt/sdcard2"};
+
+        // 遍历检查所有路径
+        for (String path : tfCardPaths) {
+            File tfCardDir = new File(path);
+            if (tfCardDir.exists() && tfCardDir.canRead()) {
+
+                return true; // 只要有一个卡槽已插入且可访问，就返回true
+            }
+        }
+
+        return false; // 两个卡槽都未插入或不可访问
     }
 
     public static String readSystemProp(String search_line) {

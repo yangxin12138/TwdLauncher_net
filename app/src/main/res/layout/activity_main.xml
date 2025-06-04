@@ -98,6 +98,7 @@
                     android:paddingTop="@dimen/index_icon_padding"
                     android:paddingStart="@dimen/index_icon_padding"
                     android:paddingEnd="@dimen/index_icon_padding"
+                    android:visibility="gone"
                     android:src="@drawable/icon_ble"/>
                 <ImageView
                     android:id="@+id/im_usb"
@@ -107,7 +108,7 @@
                     android:paddingTop="@dimen/index_icon_padding"
                     android:paddingStart="@dimen/index_icon_padding"
                     android:paddingEnd="@dimen/index_icon_padding"
-                    android:src="@drawable/icon_usb1" />
+                    android:src="@drawable/icon_tf" />
             </LinearLayout>
             <TextView
                 android:id="@+id/tv_email"
