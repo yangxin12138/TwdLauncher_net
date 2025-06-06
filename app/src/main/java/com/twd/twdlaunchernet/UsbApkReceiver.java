@@ -39,6 +39,7 @@ public class UsbApkReceiver extends BroadcastReceiver {
         if (action!= null && action.equals(Intent.ACTION_MEDIA_MOUNTED)) {
             Log.i("UsbApkReceiver", "onReceive: 进入到U盘挂载");
             usbPath = Utils.getUsbFilePath(mContext);
+            if (usbPath.equals("未挂载")){return;}
             Utils.usbFilePath = usbPath;
             String installTag = Utils.getInstallTag();
             checkAndInstallApkFromUSB(installTag,mainHandler);

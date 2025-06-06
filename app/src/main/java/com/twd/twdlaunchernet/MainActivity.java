@@ -75,9 +75,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Utils utils;
     public static boolean isHeat = false;
     public static View lastFocus;
-    String ui_theme_code = Utils.readSystemProp("UI_THEME_STYLE");
-    String UI_QUICKLINK_STYLE = Utils.readSystemProp("UI_QUICKLINK_STYLE");
-    String UI_QUICKLINK_APP_PACKAGE = Utils.readSystemProp("UI_QUICKLINK_APP_PACKAGE");
+    String ui_theme_code = "Standard";
+    String UI_QUICKLINK_STYLE = "true";
+    //String UI_QUICKLINK_APP_PACKAGE = Utils.readSystemProp("UI_QUICKLINK_APP_PACKAGE");
     public Handler mainHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -193,7 +193,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (isFirst.equals("true")) {
             if (UI_QUICKLINK_STYLE.equals("true")) {
                 SharedPreferences.Editor editor = selectedPreferences.edit();
-                editor.putBoolean(UI_QUICKLINK_APP_PACKAGE, true);
+                editor.putBoolean("UI_QUICKLINK_APP_PACKAGE", true);
                 editor.apply();
             }
             SharedPreferences.Editor editor = firstBootPreferences.edit();
