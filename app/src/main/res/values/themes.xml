@@ -4,8 +4,15 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
-
-    <style name="Theme.TwdLauncher_net" parent="Base.Theme.TwdLauncher_net">
+    <style name="AppTheme.Fullscreen" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- 隐藏状态栏 -->
+        <item name="android:windowFullscreen">true</item>
+        <!-- 延伸布局到导航栏区域 -->
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+    <style name="Theme.TwdLauncher_net" parent="AppTheme.Fullscreen">
         <item name="android:windowBackground">@color/black</item>
     </style>
 
