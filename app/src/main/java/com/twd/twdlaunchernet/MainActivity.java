@@ -318,7 +318,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_email.setVisibility(Utils.readSystemProp("EMAIL_ADDR_VISIABLE").equals("true") ? View.VISIBLE : View.GONE);
 
         utils = new Utils(this);
-        utils.isMacVerify();
+       // utils.isMacVerify();
         //判断蓝牙是否已连接
         im_ble.setImageResource(utils.isBluetoothConnected() ? R.drawable.icon_ble_connected : R.drawable.icon_ble);
         IntentFilter bleFilter = new IntentFilter();
