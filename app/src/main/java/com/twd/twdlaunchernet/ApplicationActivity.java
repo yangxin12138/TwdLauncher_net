@@ -43,15 +43,18 @@ public class ApplicationActivity extends AppCompatActivity {
     int listMode = 0;
     int MyPosition ;
     Context context;
+    Utils utils;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_application);
         context = this;
+        utils = new Utils(context);
         Intent intent = getIntent();
         if (intent != null){
             listMode = intent.getIntExtra("list_mode",0);
         }
+        utils.hideSystemUI(this);
         sharedPreferences = getSharedPreferences("SelectedApps", Context.MODE_PRIVATE);
         initView();
     }
@@ -59,6 +62,7 @@ public class ApplicationActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        utils.hideSystemUI(this);
         initView();
     }
 

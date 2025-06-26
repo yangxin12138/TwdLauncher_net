@@ -55,6 +55,7 @@
             android:textColor="@color/white"
             android:textSize="@dimen/tvTime_textSize"
             android:gravity="center_vertical"
+            android:layout_marginStart="10dp"
             app:layout_constraintStart_toEndOf="@+id/time_bar"
             app:layout_constraintEnd_toStartOf="@+id/rt_linearlayout"
             app:layout_constraintTop_toTopOf="parent"
