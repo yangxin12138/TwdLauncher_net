@@ -154,11 +154,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String apkPackageName = Utils.getApkPackageName(packageManager,apkFilePath);
                 Log.i(TAG, "onCreate: 开始安装 APK: " + apkPackageName);
                 boolean apkExist = Utils.checkAndInstallApk(apkFilePath);
-                if (apkExist) {
-                    Log.i(TAG, "onCreate: 安装成功: " + apkPackageName);
-                } else {
-                    Log.i(TAG, "onCreate: 安装失败: " + apkPackageName);
-                }
+                handleApkResult(apkExist,isFirst);
             }
             Log.i(TAG, "onCreate: 所有 APK 文件安装完成");
             Message msg = mainHandler.obtainMessage(1);

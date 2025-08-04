@@ -44,7 +44,7 @@
     <dimen name="index_heat_item_icon_padding">10dp</dimen>
     <dimen name="index_time_bar_padding">20dp</dimen>
     <dimen name="border_white_width">5dp</dimen>
-    <dimen name="application_title_textsize">50sp</dimen>
+    <dimen name="application_title_textsize">30sp</dimen>
     <dimen name="application_list_title_paddingStart">100dp</dimen>
     <dimen name="application_title_padding">10dp</dimen>
     <dimen name="applicaiton_item_spacing">10dp</dimen>
