@@ -50,12 +50,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView im_settings;
     private ImageView im_files;
     private ImageView im_game;
-    private ImageView im_game_1;
-    private ImageView im_game_2;
-    private ImageView im_game_3;
-    private ImageView im_game_more;
+    private ImageView im_yangshipin;
+    private ImageView im_bilibili;
+    private ImageView im_aiqiyi;
+    private ImageView im_youku;
     private TextView tv_email;
-    public ImageView im_hdmi;
     private View time_bar;
     private Handler timerHandler = new Handler();
     private boolean firstNetwork;
@@ -233,10 +232,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         im_settings = findViewById(R.id.im_settings); im_settings.setOnFocusChangeListener(this::onFocusChange); im_settings.setOnClickListener(this::onClick);
         im_files = findViewById(R.id.im_files); im_files.setOnFocusChangeListener(this::onFocusChange); im_files.setOnClickListener(this::onClick);
         im_game = findViewById(R.id.im_game); im_game.setOnFocusChangeListener(this::onFocusChange);im_game.setOnClickListener(this::onClick);
-        im_game_1 = findViewById(R.id.im_game_1);im_game_1.setOnFocusChangeListener(this::onFocusChange);im_game_1.setOnClickListener(this::onClick);
-        im_game_2 = findViewById(R.id.im_game_2);im_game_2.setOnFocusChangeListener(this::onFocusChange);im_game_2.setOnClickListener(this::onClick);
-        im_game_3 = findViewById(R.id.im_game_3);im_game_3.setOnFocusChangeListener(this::onFocusChange);im_game_3.setOnClickListener(this::onClick);
-        im_game_more = findViewById(R.id.im_game_more);im_game_more.setOnFocusChangeListener(this::onFocusChange);im_game_more.setOnClickListener(this::onClick);
+        im_yangshipin = findViewById(R.id.im_yangshipin); im_yangshipin.setOnFocusChangeListener(this::onFocusChange);im_yangshipin.setOnClickListener(this::onClick);
+        im_bilibili = findViewById(R.id.im_bilibili); im_bilibili.setOnFocusChangeListener(this::onFocusChange);im_bilibili.setOnClickListener(this::onClick);
+        im_aiqiyi = findViewById(R.id.im_aiqiyi); im_aiqiyi.setOnFocusChangeListener(this::onFocusChange);im_aiqiyi.setOnClickListener(this::onClick);
+        im_youku = findViewById(R.id.im_youku); im_youku.setOnFocusChangeListener(this::onFocusChange);im_youku.setOnClickListener(this::onClick);
     }
 
     private BroadcastReceiver customReceiver = new BroadcastReceiver() {
@@ -373,19 +372,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public boolean onKey(View v, int keyCode, KeyEvent event) {
         Log.i(TAG, "onKey: 触发key按键事件==========");
-        if (v.getId() == R.id.im_files){
+        if (v.getId() == R.id.im_aiqiyi){
             if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT && event.getAction()==KeyEvent.ACTION_DOWN){
                 Log.i(TAG, "onKey: 触发key按键事件==========im_googleplay");
                 if (v.isFocused()){
-                    im_game_1.requestFocus();
+                    im_youku.requestFocus();
                     return true;
                 }
             }
-        } else if (v.getId() == R.id.im_game_1) {
+        } else if (v.getId() == R.id.im_youku) {
             Log.i(TAG, "onKey: 触发key按键事件==========im_application");
             if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT && event.getAction() == KeyEvent.ACTION_DOWN){
                 if (v.isFocused()){
-                    im_files.requestFocus();
+                    im_aiqiyi.requestFocus();
                     return true;
                 }
             }
