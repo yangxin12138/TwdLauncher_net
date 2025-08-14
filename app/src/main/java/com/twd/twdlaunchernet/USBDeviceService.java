@@ -4,16 +4,12 @@ import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.hardware.usb.UsbManager;
-import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-import java.util.Timer;
-import java.util.TimerTask;
+import com.twd.twdlaunchernet.receiver.UsbReceiver;
 
 /**
  * @Author:Yangxin

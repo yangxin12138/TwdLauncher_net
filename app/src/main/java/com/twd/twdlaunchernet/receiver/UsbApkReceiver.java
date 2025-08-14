@@ -1,4 +1,4 @@
-package com.twd.twdlaunchernet;
+package com.twd.twdlaunchernet.receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
+import com.twd.twdlaunchernet.Utils;
 import com.twd.twdlaunchernet.application.HandlerApplication;
 
 import java.io.File;

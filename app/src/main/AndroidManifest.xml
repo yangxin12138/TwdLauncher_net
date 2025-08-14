@@ -17,6 +17,7 @@
         tools:ignore="ProtectedPermissions"/>
     <uses-permission android:name="android.permission.INSTALL_PACKAGES"
         tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -43,11 +44,19 @@
             </intent-filter>
         </activity>
         <service android:name=".USBDeviceService"/>
-        <receiver android:name=".UsbApkReceiver"
+        <receiver android:name=".receiver.UsbApkReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_MOUNTED"/>
                 <data android:scheme="file"/>
+            </intent-filter>
+        </receiver>
+        <!--开机广播-->
+        <receiver android:name=".receiver.BootReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
         </receiver>
     </application>

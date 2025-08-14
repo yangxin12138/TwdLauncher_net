@@ -1,4 +1,4 @@
-package com.twd.twdlaunchernet;
+package com.twd.twdlaunchernet.receiver;
 
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
@@ -7,12 +7,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.hardware.usb.UsbManager;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.WindowManager;
+
+import com.twd.twdlaunchernet.R;
+import com.twd.twdlaunchernet.Utils;
 
 import java.io.File;
 
