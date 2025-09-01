@@ -27,10 +27,7 @@ public class UsbReceiver extends BroadcastReceiver {
     private Context mContext;
     AlertDialog alertDialog = null;
     SharedPreferences selectedPreferences;
-    String UI_QUICKLINK_APP_PACKAGE = Utils.readSystemProp("UI_QUICKLINK_APP_PACKAGE");
-    String UI_QUICKLINK_STYLE = Utils.readSystemProp("UI_QUICKLINK_STYLE");
     private Handler mHandler;
-    String usbPath ;
     public UsbReceiver(Handler mainHandler) {
         mHandler = mainHandler;
     }
@@ -67,13 +64,6 @@ public class UsbReceiver extends BroadcastReceiver {
             alertDialog = dialogBuilder.create();
             alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
             alertDialog.show();
-
-/*            //TODO:检测U盘中的配置文件以及配置项
-            usbPath = Utils.getUsbFilePath(mContext);
-            Log.i("yangxin", "onReceive:usbPath =  " + usbPath);
-            Utils.usbFilePath = usbPath;
-            String installTag = Utils.getInstallTag();
-            checkAndInstallApkFromUSB(installTag);*/
         }else if (UsbManager.ACTION_USB_DEVICE_DETACHED.equals(action)){
             Log.i("yangxin", "onReceive:usb u盘拔出 ");
             if (alertDialog!=null && alertDialog.isShowing()){
@@ -82,40 +72,5 @@ public class UsbReceiver extends BroadcastReceiver {
         }
     }
 
-    //TODO：先判断是否已经安装了指定包名的软件，如果没有安装就从u盘根目录寻找知道软件进行安装，并且通知主线程更新UI
-    private void checkAndInstallApkFromUSB(String installTag){
-        if (installTag.equals("APK_INSTALL_TWD")){
-            Log.i("yangxin", "checkAndInstallApkFromUSB:installTag等于APK_INSTALL_TWD ");
-            //配置了安装才安装,遍历这个目录下的apk文件进行安装
-            String apkDir = usbPath + "/APK_INSTALL_TWD";
-            File dir = new File(apkDir);
-            //判断目录是否存在并且是一个目录
-            if (dir.exists() && dir.isDirectory()){
-                File[] files = dir.listFiles();
-                if (files!=null){
-                    for (File file : files){
-                        if (file.isFile() && file.getName().toLowerCase().endsWith(".apk")){
-                            String apkPath = apkDir + "/" + file.getName();
-                            System.out.println(apkPath);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    private void handleApkResult(boolean apkExist){
-        if (apkExist){ //应用存在并且安装成功
-            Log.i("yangxin", "UsbReceiver: 应用存在并且安装成功");
-            if (UI_QUICKLINK_STYLE.equals("true")) {
-                selectedPreferences = mContext.getSharedPreferences("SelectedApps",Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = selectedPreferences.edit();
-                editor.putBoolean(UI_QUICKLINK_APP_PACKAGE, true);
-                editor.apply();
-            }
-            Message msg = mHandler.obtainMessage(2);
-            mHandler.sendMessage(msg);
-        }
-    }
 
 }

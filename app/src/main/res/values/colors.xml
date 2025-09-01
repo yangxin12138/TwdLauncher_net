@@ -3,7 +3,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="transparent_green">#8000FF00</color>
-    <color name="transparent_blue">#802f8dcd</color>
     <color name="sel_blue">#103AE9</color>
     <color name="dialog_bg">#005EFF</color>
+
+    <color name="application_back">#2445b7</color>
+    <color name="transparent_blue">#802445b7</color>
 </resources>

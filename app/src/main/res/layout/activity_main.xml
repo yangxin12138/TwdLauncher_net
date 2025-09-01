@@ -5,78 +5,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient"
+    android:background="@drawable/back"
     tools:context=".MainActivity">
-
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/topLayout"
+        android:id="@+id/statusLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.15"
-        android:orientation="horizontal"
-        android:paddingStart="?attr/indexPadding"
-        android:paddingEnd="?attr/indexPadding">
-        <TextView
-            android:id="@+id/tv_day"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:id="@+id/view_left"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:text="周六\n2023-12-11"
-            android:textColor="@color/white"
-            android:textSize="@dimen/tvDay_textSize"
-            android:gravity="center_vertical|center_horizontal"
-            android:padding="@dimen/tv_day_padding"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintWidth_percent="0.41"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/time_bar"
-            app:layout_constraintWidth_percent="0.18"
-            android:autoSizeTextType="uniform"
-            android:layout_marginEnd="10dp"/>
-        <View
-            android:id="@+id/time_bar"
-            android:layout_width="@dimen/time_bar_width"
-            android:layout_height="0dp"
-            android:layout_marginTop="@dimen/index_time_bar_padding"
-            android:layout_marginBottom="@dimen/index_time_bar_padding"
-            android:background="@color/white"
-            app:layout_constraintStart_toEndOf="@+id/tv_day"
-            app:layout_constraintEnd_toStartOf="@+id/tv_time"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginEnd="10dp"/>
-        <TextView
-            android:id="@+id/tv_time"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:text="13:16 上午"
-            android:textColor="@color/white"
-            android:textSize="@dimen/tvTime_textSize"
-            android:gravity="center_vertical"
-            app:layout_constraintStart_toEndOf="@+id/time_bar"
-            app:layout_constraintEnd_toStartOf="@+id/rt_linearlayout"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintWidth_percent="0.2"
-            android:autoSizeTextType="uniform"/>
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
         <LinearLayout
             android:id="@+id/rt_linearlayout"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            app:layout_constraintStart_toEndOf="@+id/tv_time"
+            app:layout_constraintStart_toEndOf="@+id/view_left"
             app:layout_constraintWidth_percent="0.59"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:orientation="vertical">
-
             <LinearLayout
                 android:id="@+id/inside_linearlayout"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingEnd="40dp">
                 <View
                     android:layout_width="0dp"
                     android:layout_weight="5"
@@ -109,15 +74,50 @@
                     android:paddingEnd="@dimen/index_icon_padding"
                     android:src="@drawable/icon_usb1" />
             </LinearLayout>
-            <TextView
-                android:id="@+id/tv_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="981118@happilaff.com"
-                android:textSize="20sp"
-                android:gravity="end"
-                android:textColor="@color/white" />
         </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/topLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/statusLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.12"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="13:16"
+            android:textColor="@color/black"
+            android:textSize="@dimen/tvDay_textSize"
+            android:gravity="center_vertical|center_horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_day"
+            app:layout_constraintWidth_percent="0.18"
+            android:autoSizeTextType="uniform"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="40dp"
+            android:fontFamily="@font/yupearl_extralight"/>
+
+        <TextView
+            android:id="@+id/tv_day"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center_vertical"
+            android:text="周六\n2023/12/11"
+            android:textColor="@color/black"
+            android:textSize="@dimen/tvTime_textSize"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_time"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintWidth_percent="0.2"
+            android:fontFamily="@font/qingniao"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -131,15 +131,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:orientation="horizontal"
         android:paddingStart="@dimen/index_padding"
-        android:paddingTop="0dp"
         android:paddingEnd="@dimen/index_padding">
 
         <ImageView
             android:id="@+id/im_netflix"
-            android:layout_width="@dimen/index_first_icon_width"
-            android:layout_height="@dimen/index_first_icon_height"
-            android:layout_marginStart="@dimen/index_margin"
-            android:layout_marginTop="@dimen/index_margin_top"
+            android:layout_width="@dimen/index_bigicon_width"
+            android:layout_height="@dimen/index_bigicon_height"
+            android:layout_marginTop="@dimen/index_bigicon_marginTop"
+            android:layout_marginStart="@dimen/index_netflix_marginStart"
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
@@ -150,9 +149,10 @@
 
         <ImageView
             android:id="@+id/im_youtube"
-            android:layout_width="@dimen/index_first_icon_width"
-            android:layout_height="@dimen/index_first_icon_height"
-            android:layout_marginTop="@dimen/index_margin_top"
+            android:layout_width="@dimen/index_bigicon_width"
+            android:layout_height="@dimen/index_bigicon_height"
+            android:layout_marginTop="@dimen/index_bigicon_marginTop"
+            android:layout_marginStart="@dimen/index_bigicon_marginStart"
             app:layout_constraintStart_toEndOf="@+id/im_netflix"
             app:layout_constraintTop_toTopOf="parent"
             android:clickable="true"
@@ -161,69 +161,75 @@
             android:scaleType="fitXY"
             android:src="@drawable/icon_youtube"/>
         <ImageView
-            android:id="@+id/im_googleplay"
-            android:layout_width="@dimen/index_first_icon_width"
-            android:layout_height="@dimen/index_first_icon_height"
-            android:layout_marginTop="@dimen/index_margin_top"
-            android:layout_marginEnd="@dimen/index_margin"
+            android:id="@+id/im_prime"
+            android:layout_width="@dimen/index_bigicon_width"
+            android:layout_height="@dimen/index_bigicon_height"
+            android:layout_marginTop="@dimen/index_bigicon_marginTop"
+            android:layout_marginStart="@dimen/index_bigicon_marginStart"
             app:layout_constraintStart_toEndOf="@+id/im_youtube"
             app:layout_constraintTop_toTopOf="parent"
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:scaleType="fitXY"
-            android:src="@drawable/icon_googleplay"/>
+            android:src="@drawable/icon_prime"/>
         <ImageView
-            android:id="@+id/im_application"
-            android:layout_width="@dimen/index_second_icon_width"
-            android:layout_height="@dimen/index_second_icon_height"
-            android:layout_below="@+id/im_netflix"
-            android:layout_marginStart="@dimen/index_margin"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/im_netflix"
+            android:id="@+id/im_castting"
+            android:layout_width="@dimen/index_small_width"
+            android:layout_height="@dimen/index_small_height"
+            android:layout_marginTop="@dimen/index_small_tv_marginTop"
+            android:layout_marginStart="@dimen/index_bigicon_marginStart"
+            app:layout_constraintStart_toEndOf="@+id/im_prime"
+            app:layout_constraintTop_toTopOf="parent"
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/icon_applicaiton"/>
+            android:src="@drawable/icon_casting"/>
+        <ImageView
+            android:id="@+id/im_appstore"
+            android:layout_width="@dimen/index_small_width"
+            android:layout_height="@dimen/index_small_height"
+            android:layout_marginTop="@dimen/index_small_tv_marginTop"
+            android:layout_marginStart="@dimen/index_bigicon_marginStart"
+            app:layout_constraintStart_toEndOf="@+id/im_castting"
+            app:layout_constraintTop_toTopOf="parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_appstore"/>
         <ImageView
             android:id="@+id/im_settings"
-            android:layout_width="@dimen/index_second_icon_width"
-            android:layout_height="@dimen/index_second_icon_height"
-            app:layout_constraintStart_toEndOf="@+id/im_application"
-            app:layout_constraintTop_toBottomOf="@+id/im_netflix"
+            android:layout_width="@dimen/index_small_width"
+            android:layout_height="@dimen/index_small_height"
+            android:layout_marginTop="@dimen/index_small_marginTop"
+            android:layout_marginStart="@dimen/index_bigicon_marginStart"
+            app:layout_constraintStart_toEndOf="@+id/im_prime"
+            app:layout_constraintTop_toBottomOf="@+id/im_castting"
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:scaleType="centerCrop"
             android:src="@drawable/icon_settings"/>
         <ImageView
-            android:id="@+id/im_files"
-            android:layout_width="@dimen/index_second_icon_width"
-            android:layout_height="@dimen/index_second_icon_height"
+            android:id="@+id/im_applications"
+            android:layout_width="@dimen/index_small_width"
+            android:layout_height="@dimen/index_small_height"
+            android:layout_marginTop="@dimen/index_small_marginTop"
+            android:layout_marginStart="@dimen/index_bigicon_marginStart"
             app:layout_constraintStart_toEndOf="@+id/im_settings"
-            app:layout_constraintTop_toBottomOf="@+id/im_netflix"
+            app:layout_constraintTop_toBottomOf="@+id/im_appstore"
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/icon_files"/>
-        <ImageView
-            android:id="@+id/im_hdmi"
-            android:layout_width="@dimen/index_second_icon_width"
-            android:layout_height="@dimen/index_second_icon_height"
-            app:layout_constraintStart_toEndOf="@+id/im_files"
-            app:layout_constraintTop_toBottomOf="@+id/im_netflix"
-            android:clickable="true"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/icon_hdmi1"/>
+            android:src="@drawable/icon_applications"/>
         <GridView
             android:id="@+id/heat_set"
             android:layout_width="wrap_content"
-            android:layout_height="180dp"
-            app:layout_constraintTop_toBottomOf="@+id/im_application"
+            android:layout_height="@dimen/index_hit_height"
+            app:layout_constraintTop_toBottomOf="@+id/im_netflix"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:descendantFocusability="afterDescendants"

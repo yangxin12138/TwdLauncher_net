@@ -121,7 +121,7 @@ public class IndexHeatsetAdapter extends BaseAdapter {
                 if (position == 0){
                     if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT && event.getAction()==KeyEvent.ACTION_DOWN){
                         Log.i("yangxin", "onKey: -------执行requestFocus");
-                        ((MainActivity) mContext).im_hdmi.requestFocus();
+                        ((MainActivity) mContext).im_application.requestFocus();
                         return true;
                     }
                 }
