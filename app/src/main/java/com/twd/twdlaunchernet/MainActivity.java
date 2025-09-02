@@ -1,6 +1,7 @@
 package com.twd.twdlaunchernet;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -10,6 +11,8 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbManager;
 import android.net.ConnectivityManager;
@@ -21,7 +24,10 @@ import android.os.Message;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -287,10 +293,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             intent.setComponent(new ComponentName("com.google.android.youtube.tv","com.google.android.apps.youtube.tv.activity.ShellActivity"));
         } else if (v.getId() == R.id.im_prime) { //google paly
            //TODO:prime
+            intent = new Intent();
+            intent.setComponent(new ComponentName("com.amazon.avod.thirdpartyclient","com.amazon.avod.thirdpartyclient.LauncherActivity"));
         } else if (v.getId() == R.id.im_appstore) {
             //TODO: appstore
+            intent = new Intent();
+            intent.setComponent(new ComponentName("cm.aptoidetv.pt","cm.aptoidetv.pt.activity.MainActivity"));
         } else if (v.getId() == R.id.im_castting) {
+            Log.d(TAG, "onClick: 点到casting");
             //TODO:casting
+            showDialog();
         }
 
         if (intent != null){
@@ -412,5 +424,72 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
         return false;
+    }
+
+    private void showDialog(){
+        Dialog castDialog = new Dialog(this,R.style.DialogStyle);
+        Log.d(TAG, "showDialog: 进入showDialog");
+        //加载自定义布局文件
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View dialogView = inflater.inflate(R.layout.dialog_casting,null);
+        Window window = castDialog.getWindow();
+        if (window != null) {
+            window.setDimAmount(0f);
+            window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+
+        castDialog.setCancelable(true);
+        castDialog.setContentView(dialogView);
+        dialogView.setPadding(100,50,100,50);
+
+        ImageView miracastView = dialogView.findViewById(R.id.dialog_miracast);
+        ImageView dlnaView = dialogView.findViewById(R.id.dialog_dlna);
+        miracastView.setClickable(true);  dlnaView.setClickable(true);
+
+        View.OnClickListener appClickListener = view -> {
+            String appTag = (String) view.getTag();
+            if ("miracast".equals(appTag)){
+                openTagApp("com.softwinner.miracastReceiver");
+            } else if ("dlna".equals(appTag)) {
+                openTagApp("com.allwinnertech.platinum.media");
+            }
+
+            castDialog.dismiss();
+        };
+        View.OnFocusChangeListener appFocusListener = (view, hasFocus) -> {
+            if (hasFocus){
+                view.animate().scaleX(1.1f).scaleY(1.1f).translationZ(1f).setDuration(100);
+            }else {
+                view.animate().scaleX(1.0f).scaleY(1.0f).translationZ(0f).setDuration(100);
+            }
+        };
+        castDialog.setOnKeyListener((dialog, keyCode, event) -> {
+            if (keyCode == KeyEvent.KEYCODE_HOME
+                    && event.getAction() == KeyEvent.ACTION_UP) {
+                dialog.dismiss();           // 关掉 dialog
+                return true;                // 表示已消费
+            }
+            return false;                   // 其它按键继续分发
+        });
+        miracastView.setOnFocusChangeListener(appFocusListener); dlnaView.setOnFocusChangeListener(appFocusListener);
+        miracastView.setOnClickListener(appClickListener);  dlnaView.setOnClickListener(appClickListener);
+        miracastView.requestFocus();
+        if (!isFinishing() && !castDialog.isShowing()) {
+            castDialog.show();
+        }
+    }
+
+    private void openTagApp(String targetAppPackage){
+        try{
+            Intent intent = getPackageManager().getLaunchIntentForPackage(targetAppPackage);
+            if (intent != null){
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }else {
+                Toast.makeText(this, "目标应用未安装", Toast.LENGTH_SHORT).show();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

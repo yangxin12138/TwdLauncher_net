@@ -5,5 +5,5 @@
     <stroke android:width="@dimen/border_white_width" android:color="@color/white"/>
     <!-- 设置框内的填充色  -->
     <solid android:color="@android:color/transparent"/>
-
+    <corners android:radius="@dimen/iv_round_radius"/>
 </shape>
