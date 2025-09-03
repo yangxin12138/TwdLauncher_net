@@ -277,7 +277,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         } else if (v.getId() == R.id.im_settings) { //Settings
             intent = new Intent();
-            intent.setComponent(new ComponentName("com.twd.settingsccx","com.twd.settingsccx.MainActivity"));
+            intent.setComponent(new ComponentName("com.twd.settings","com.twd.settings.MainActivity"));
         } else if (v.getId() == R.id.im_netflix) { //Netflix
             intent = new Intent();
             Intent tvIntent = new Intent();
