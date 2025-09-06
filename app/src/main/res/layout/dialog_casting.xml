@@ -5,33 +5,66 @@
     android:layout_height="wrap_content"
     android:background="#CCFFFFFF"
     android:gravity="center"
-    android:padding="40dp">
+    android:padding="30dp">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="horizontal">
-        
-        <ImageView
-            android:id="@+id/dialog_miracast"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+
+        <LinearLayout
+            android:id="@+id/LL_miracast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
             android:layout_margin="20dp"
-            android:src="@drawable/dialog_miracast"
-            android:contentDescription="miracast"
             android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:tag="miracast"/>
-        <ImageView
-            android:id="@+id/dialog_dlna"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:tag="miracast"
+            android:focusableInTouchMode="true">
+            <ImageView
+                android:duplicateParentState="true"
+                android:id="@+id/dialog_miracast"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/dialog_miracast"
+                android:contentDescription="miracast" />
+            <TextView
+                android:duplicateParentState="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Miracast"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/LL_airplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
             android:layout_margin="20dp"
-            android:src="@drawable/dialog_dlna"
-            android:contentDescription="dlna"
             android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:tag="dlna"/>
+            android:tag="airplay"
+            android:focusableInTouchMode="true">
+            <ImageView
+                android:duplicateParentState="true"
+                android:id="@+id/dialog_airplay"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/dialog_airplay"
+                android:contentDescription="airplay" />
+
+            <TextView
+                android:duplicateParentState="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Air"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

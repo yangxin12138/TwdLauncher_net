@@ -31,6 +31,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -277,7 +278,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         } else if (v.getId() == R.id.im_settings) { //Settings
             intent = new Intent();
-            intent.setComponent(new ComponentName("com.twd.settings","com.twd.settings.MainActivity"));
+            intent.setComponent(new ComponentName("com.twd.setting","com.twd.setting.MainActivity"));
         } else if (v.getId() == R.id.im_netflix) { //Netflix
             intent = new Intent();
             Intent tvIntent = new Intent();
@@ -442,16 +443,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         castDialog.setContentView(dialogView);
         dialogView.setPadding(100,50,100,50);
 
+
+        LinearLayout LL_miracast = dialogView.findViewById(R.id.LL_miracast);
+        LinearLayout LL_airplay = dialogView.findViewById(R.id.LL_airplay);
+        LL_miracast.setClickable(true); LL_airplay.setClickable(true);
         ImageView miracastView = dialogView.findViewById(R.id.dialog_miracast);
-        ImageView dlnaView = dialogView.findViewById(R.id.dialog_dlna);
-        miracastView.setClickable(true);  dlnaView.setClickable(true);
+        ImageView airplayView = dialogView.findViewById(R.id.dialog_airplay);
+        miracastView.setClickable(true);  airplayView.setClickable(true);
 
         View.OnClickListener appClickListener = view -> {
             String appTag = (String) view.getTag();
             if ("miracast".equals(appTag)){
                 openTagApp("com.softwinner.miracastReceiver");
-            } else if ("dlna".equals(appTag)) {
-                openTagApp("com.allwinnertech.platinum.media");
+            } else if ("airplay".equals(appTag)) {
+                openTagApp("com.waxrain.airplaydmr");
             }
 
             castDialog.dismiss();
@@ -471,9 +476,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             return false;                   // 其它按键继续分发
         });
-        miracastView.setOnFocusChangeListener(appFocusListener); dlnaView.setOnFocusChangeListener(appFocusListener);
-        miracastView.setOnClickListener(appClickListener);  dlnaView.setOnClickListener(appClickListener);
-        miracastView.requestFocus();
+        LL_miracast.setOnFocusChangeListener(appFocusListener); LL_airplay.setOnFocusChangeListener(appFocusListener);
+        LL_miracast.setOnClickListener(appClickListener); LL_airplay.setOnClickListener(appClickListener);
+        LL_miracast.requestFocus();
+/*        miracastView.setOnFocusChangeListener(appFocusListener); airplayView.setOnFocusChangeListener(appFocusListener);
+        miracastView.setOnClickListener(appClickListener);  airplayView.setOnClickListener(appClickListener);
+        miracastView.requestFocus();*/
         if (!isFinishing() && !castDialog.isShowing()) {
             castDialog.show();
         }
