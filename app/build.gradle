@@ -27,7 +27,7 @@ android {
             applicationVariants.all { variant ->
                 variant.outputs.all {
                     def buildTypeName = variant.buildType.name
-                    outputFileName = "${rootProject.name}_${buildTypeName}_v${variant.versionName}.apk"
+                    outputFileName = "${rootProject.name}_qualcomm_${buildTypeName}_v${variant.versionName}.apk"
                 }
             }
         }
