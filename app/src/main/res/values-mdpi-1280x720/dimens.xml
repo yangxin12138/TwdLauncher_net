@@ -81,4 +81,5 @@
     <dimen name="index_netflix_marginStart">30dp</dimen>
     <dimen name="index_bigicon_marginStart">20dp</dimen>
     <dimen name="index_hit_height">180dp</dimen>
+    <dimen name="iv_round_radius">17dp</dimen>
 </resources>

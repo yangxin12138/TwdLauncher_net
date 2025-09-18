@@ -7,7 +7,7 @@
 
 
     <dimen name="index_margin">40dp</dimen>
-    <dimen name="index_padding">25dp</dimen>
+    <dimen name="index_padding">20dp</dimen>
     <dimen name="index_margin_top">20dp</dimen>
     <dimen name="index_first_icon_width">240dp</dimen>
     <dimen name="index_first_icon_height">135dp</dimen>
@@ -69,4 +69,16 @@
     <dimen name="time_bar_width">3dp</dimen>
     <dimen name="uninstall_padding">16dp</dimen>
     <dimen name="uninstall_title_padding_start">20dp</dimen>
+
+    <dimen name="index_bigicon_width">140dp</dimen>
+    <dimen name="index_small_width">140dp</dimen>
+    <dimen name="index_bigicon_height">191dp</dimen>
+    <dimen name="index_small_height">89dp</dimen>
+    <dimen name="index_bigicon_marginTop">30dp</dimen>
+    <dimen name="index_small_tv_marginTop">30dp</dimen>
+    <dimen name="index_small_marginTop">13dp</dimen>
+    <dimen name="index_netflix_marginStart">13dp</dimen>
+    <dimen name="index_bigicon_marginStart">13dp</dimen>
+    <dimen name="index_hit_height">180dp</dimen>
+    <dimen name="iv_round_radius">11dp</dimen>
 </resources>
