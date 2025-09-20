@@ -33,7 +33,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/time_bar"
             app:layout_constraintWidth_percent="0.18"
-            android:autoSizeTextType="uniform"
             android:layout_marginEnd="10dp"/>
         <View
             android:id="@+id/time_bar"
