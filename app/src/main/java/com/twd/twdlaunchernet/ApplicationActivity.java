@@ -105,7 +105,13 @@ public class ApplicationActivity extends AppCompatActivity {
         while (iterator.hasNext()){
             ResolveInfo resolveInfo = iterator.next();
             String packageName = resolveInfo.activityInfo.packageName;
-            if ("com.twd.twdlaunchernet".equals(packageName)  || "com.android.tv.settings".equals(packageName)){
+            if ("com.twd.twdlaunchernet".equals(packageName)  || "com.android.tv.settings".equals(packageName) ||
+            "com.android.calendar".equals(packageName) || "com.android.deskclock".equals(packageName) ||
+            "com.android.email".equals(packageName) || "com.android.music".equals(packageName) ||
+            "com.android.soundrecorder".equals(packageName) || "org.codeaurora.gallery".equals(packageName)||
+            "org.codeaurora.snapcam".equals(packageName) || "com.android.calculator2".equals(packageName) ||
+            "com.android.documentsui".equals(packageName) || "com.android.quicksearchbox".equals(packageName) ||
+            "com.example.android.notepad".equals(packageName)){
                 iterator.remove();//移除
             }
         }
