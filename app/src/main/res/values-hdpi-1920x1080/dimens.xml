@@ -8,7 +8,7 @@
 
     <dimen name="index_margin">40dp</dimen>
     <dimen name="index_padding">25dp</dimen>
-    <dimen name="index_margin_top">20dp</dimen>
+    <dimen name="index_margin_top">35dp</dimen>
     <dimen name="index_first_icon_width">240dp</dimen>
     <dimen name="index_first_icon_height">135dp</dimen>
     <dimen name="index_second_icon_width">180dp</dimen>
@@ -71,13 +71,13 @@
     <dimen name="uninstall_title_padding_start">20dp</dimen>
 
     <!--潮影-->
-    <dimen name="chaoying_logo_width">142dp</dimen>
-    <dimen name="chaoying_logo_height">35dp</dimen>
+    <dimen name="chaoying_logo_width">213dp</dimen>
+    <dimen name="chaoying_logo_height">63dp</dimen>
     <dimen name="chaoying_logo_marginTop">100dp</dimen>
-    <dimen name="chaoying_logo_marginStart">70dp</dimen>
-    <dimen name="chaoying_icon_width">170dp</dimen>
-    <dimen name="chaoying_icon_height">89dp</dimen>
-    <dimen name="chaoying_icon_marginStart">80dp</dimen>
-    <dimen name="chaoying_icon_horizontal_spacing">10dp</dimen>
-    <dimen name="chaoying_icon_vertical_spacing">15dp</dimen>
+    <dimen name="chaoying_logo_marginStart">100dp</dimen>
+    <dimen name="chaoying_icon_width">262dp</dimen>
+    <dimen name="chaoying_icon_height">133dp</dimen>
+    <dimen name="chaoying_icon_marginStart">110dp</dimen>
+    <dimen name="chaoying_icon_horizontal_spacing">15dp</dimen>
+    <dimen name="chaoying_icon_vertical_spacing">20dp</dimen>
 </resources>

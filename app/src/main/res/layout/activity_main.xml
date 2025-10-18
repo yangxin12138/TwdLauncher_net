@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient"
+    android:background="@drawable/mainbackicon"
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,109 +15,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.15"
-        android:orientation="horizontal"
-        android:paddingStart="?attr/indexPadding"
-        android:paddingEnd="?attr/indexPadding">
-        <TextView
+        app:layout_constraintHeight_percent="0.35"
+        android:orientation="horizontal">
+        <ImageView
             android:id="@+id/tv_day"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:text="周六\n2023-12-11"
-            android:textColor="@color/white"
-            android:textSize="@dimen/tvDay_textSize"
-            android:gravity="center_vertical|center_horizontal"
-            android:padding="@dimen/tv_day_padding"
+            android:layout_width="@dimen/chaoying_logo_width"
+            android:layout_height="@dimen/chaoying_logo_height"
+            android:layout_marginTop="@dimen/chaoying_logo_marginTop"
+            android:layout_marginStart="@dimen/chaoying_logo_marginStart"
+            android:src="@drawable/chaoying_index_logo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/time_bar"
-            app:layout_constraintWidth_percent="0.18"
-            android:autoSizeTextType="uniform"
-            android:layout_marginEnd="10dp"/>
-        <View
-            android:id="@+id/time_bar"
-            android:layout_width="@dimen/time_bar_width"
-            android:layout_height="0dp"
-            android:layout_marginTop="@dimen/index_time_bar_padding"
-            android:layout_marginBottom="@dimen/index_time_bar_padding"
-            android:background="@color/white"
-            app:layout_constraintStart_toEndOf="@+id/tv_day"
-            app:layout_constraintEnd_toStartOf="@+id/tv_time"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginEnd="10dp"/>
-        <TextView
-            android:id="@+id/tv_time"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:text="13:16 上午"
-            android:textColor="@color/white"
-            android:textSize="@dimen/tvTime_textSize"
-            android:gravity="center_vertical"
-            app:layout_constraintStart_toEndOf="@+id/time_bar"
-            app:layout_constraintEnd_toStartOf="@+id/rt_linearlayout"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintWidth_percent="0.2"
-            android:autoSizeTextType="uniform"/>
-        <LinearLayout
-            android:id="@+id/rt_linearlayout"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            app:layout_constraintStart_toEndOf="@+id/tv_time"
-            app:layout_constraintWidth_percent="0.59"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:id="@+id/inside_linearlayout"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-                <View
-                    android:layout_width="0dp"
-                    android:layout_weight="5"
-                    android:layout_height="match_parent"/>
-                <ImageView
-                    android:id="@+id/im_wifi"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="@dimen/index_icon_padding"
-                    android:paddingStart="@dimen/index_icon_padding"
-                    android:paddingEnd="@dimen/index_icon_padding"
-                    android:src="@drawable/icon_wifi" />
-                <ImageView
-                    android:id="@+id/im_ble"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="@dimen/index_icon_padding"
-                    android:paddingStart="@dimen/index_icon_padding"
-                    android:paddingEnd="@dimen/index_icon_padding"
-                    android:src="@drawable/icon_ble"/>
-                <ImageView
-                    android:id="@+id/im_usb"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="@dimen/index_icon_padding"
-                    android:paddingStart="@dimen/index_icon_padding"
-                    android:paddingEnd="@dimen/index_icon_padding"
-                    android:src="@drawable/icon_usb1" />
-            </LinearLayout>
-            <TextView
-                android:id="@+id/tv_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="981118@happilaff.com"
-                android:textSize="20sp"
-                android:gravity="end"
-                android:textColor="@color/white" />
-        </LinearLayout>
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -129,111 +38,114 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:orientation="horizontal"
-        android:paddingStart="@dimen/index_padding"
-        android:paddingTop="0dp"
-        android:paddingEnd="@dimen/index_padding">
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/im_netflix"
-            android:layout_width="@dimen/index_first_icon_width"
-            android:layout_height="@dimen/index_first_icon_height"
-            android:layout_marginStart="@dimen/index_margin"
+            android:layout_width="@dimen/chaoying_icon_width"
+            android:layout_height="@dimen/chaoying_icon_height"
+            android:layout_marginStart="@dimen/chaoying_icon_marginStart"
             android:layout_marginTop="@dimen/index_margin_top"
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:scaleType="fitXY"
-            android:src="@drawable/icon_netflix"
+            android:src="@drawable/netflix_selector"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <ImageView
             android:id="@+id/im_youtube"
-            android:layout_width="@dimen/index_first_icon_width"
-            android:layout_height="@dimen/index_first_icon_height"
+            android:layout_width="@dimen/chaoying_icon_width"
+            android:layout_height="@dimen/chaoying_icon_height"
             android:layout_marginTop="@dimen/index_margin_top"
+            android:layout_marginStart="@dimen/chaoying_icon_horizontal_spacing"
             app:layout_constraintStart_toEndOf="@+id/im_netflix"
             app:layout_constraintTop_toTopOf="parent"
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:scaleType="fitXY"
-            android:src="@drawable/icon_youtube"/>
+            android:src="@drawable/youtube_selector"/>
         <ImageView
             android:id="@+id/im_googleplay"
-            android:layout_width="@dimen/index_first_icon_width"
-            android:layout_height="@dimen/index_first_icon_height"
+            android:layout_width="@dimen/chaoying_icon_width"
+            android:layout_height="@dimen/chaoying_icon_height"
             android:layout_marginTop="@dimen/index_margin_top"
-            android:layout_marginEnd="@dimen/index_margin"
+            android:layout_marginStart="@dimen/chaoying_icon_horizontal_spacing"
             app:layout_constraintStart_toEndOf="@+id/im_youtube"
             app:layout_constraintTop_toTopOf="parent"
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:scaleType="fitXY"
-            android:src="@drawable/icon_googleplay"/>
+            android:src="@drawable/googleplay_selector"/>
+        <ImageView
+            android:id="@+id/im_screenmirror"
+            android:layout_width="@dimen/chaoying_icon_width"
+            android:layout_height="@dimen/chaoying_icon_height"
+            android:layout_marginTop="@dimen/index_margin_top"
+            android:layout_marginStart="@dimen/chaoying_icon_horizontal_spacing"
+            app:layout_constraintStart_toEndOf="@+id/im_googleplay"
+            app:layout_constraintTop_toTopOf="parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/screenmirror_selector"/>
         <ImageView
             android:id="@+id/im_application"
-            android:layout_width="@dimen/index_second_icon_width"
-            android:layout_height="@dimen/index_second_icon_height"
+            android:layout_width="@dimen/chaoying_icon_width"
+            android:layout_height="@dimen/chaoying_icon_height"
             android:layout_below="@+id/im_netflix"
-            android:layout_marginStart="@dimen/index_margin"
+            android:layout_marginStart="@dimen/chaoying_icon_marginStart"
+            android:layout_marginTop="@dimen/chaoying_icon_vertical_spacing"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/im_netflix"
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/icon_applicaiton"/>
+            android:src="@drawable/application_selector"/>
         <ImageView
             android:id="@+id/im_settings"
-            android:layout_width="@dimen/index_second_icon_width"
-            android:layout_height="@dimen/index_second_icon_height"
+            android:layout_width="@dimen/chaoying_icon_width"
+            android:layout_height="@dimen/chaoying_icon_height"
+            android:layout_marginTop="@dimen/chaoying_icon_vertical_spacing"
+            android:layout_marginStart="@dimen/chaoying_icon_horizontal_spacing"
             app:layout_constraintStart_toEndOf="@+id/im_application"
             app:layout_constraintTop_toBottomOf="@+id/im_netflix"
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/icon_settings"/>
+            android:src="@drawable/files_selector"/>
         <ImageView
             android:id="@+id/im_files"
-            android:layout_width="@dimen/index_second_icon_width"
-            android:layout_height="@dimen/index_second_icon_height"
+            android:layout_width="@dimen/chaoying_icon_width"
+            android:layout_height="@dimen/chaoying_icon_height"
+            android:layout_marginTop="@dimen/chaoying_icon_vertical_spacing"
+            android:layout_marginStart="@dimen/chaoying_icon_horizontal_spacing"
             app:layout_constraintStart_toEndOf="@+id/im_settings"
             app:layout_constraintTop_toBottomOf="@+id/im_netflix"
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/icon_files"/>
+            android:src="@drawable/settings_selector"/>
         <ImageView
             android:id="@+id/im_hdmi"
-            android:layout_width="@dimen/index_second_icon_width"
-            android:layout_height="@dimen/index_second_icon_height"
+            android:layout_width="@dimen/chaoying_icon_width"
+            android:layout_height="@dimen/chaoying_icon_height"
+            android:layout_marginTop="@dimen/chaoying_icon_vertical_spacing"
+            android:layout_marginStart="@dimen/chaoying_icon_horizontal_spacing"
             app:layout_constraintStart_toEndOf="@+id/im_files"
             app:layout_constraintTop_toBottomOf="@+id/im_netflix"
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/icon_hdmi1"/>
-        <GridView
-            android:id="@+id/heat_set"
-            android:layout_width="wrap_content"
-            android:layout_height="180dp"
-            app:layout_constraintTop_toBottomOf="@+id/im_application"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:descendantFocusability="afterDescendants"
-            android:gravity="center"
-            android:horizontalSpacing="0dp"
-            android:numColumns="8"
-            android:paddingTop="@dimen/index_heat_paddingTop"
-            android:stretchMode="columnWidth"
-            android:layout_marginStart="@dimen/index_margin"
-            android:layout_marginEnd="@dimen/index_margin"/>
+            android:src="@drawable/hdmi_selector"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

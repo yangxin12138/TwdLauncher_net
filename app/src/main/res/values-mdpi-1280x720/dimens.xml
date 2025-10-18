@@ -70,4 +70,15 @@
     <dimen name="time_bar_width">3dp</dimen>
     <dimen name="uninstall_padding">16dp</dimen>
     <dimen name="uninstall_title_padding_start">20dp</dimen>
+
+    <!--潮影-->
+    <dimen name="chaoying_logo_width">213dp</dimen>
+    <dimen name="chaoying_logo_height">53dp</dimen>
+    <dimen name="chaoying_logo_marginTop">100dp</dimen>
+    <dimen name="chaoying_logo_marginStart">100dp</dimen>
+    <dimen name="chaoying_icon_width">262dp</dimen>
+    <dimen name="chaoying_icon_height">133dp</dimen>
+    <dimen name="chaoying_icon_marginStart">110dp</dimen>
+    <dimen name="chaoying_icon_horizontal_spacing">10dp</dimen>
+    <dimen name="chaoying_icon_vertical_spacing">15dp</dimen>
 </resources>
