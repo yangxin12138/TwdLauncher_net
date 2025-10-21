@@ -119,7 +119,7 @@
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/files_selector"/>
+            android:src="@drawable/settings_selector"/>
         <ImageView
             android:id="@+id/im_files"
             android:layout_width="@dimen/chaoying_icon_width"
@@ -132,7 +132,7 @@
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/settings_selector"/>
+            android:src="@drawable/files_selector"/>
         <ImageView
             android:id="@+id/im_hdmi"
             android:layout_width="@dimen/chaoying_icon_width"
