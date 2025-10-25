@@ -80,4 +80,5 @@
     <dimen name="chaoying_icon_marginStart">110dp</dimen>
     <dimen name="chaoying_icon_horizontal_spacing">10dp</dimen>
     <dimen name="chaoying_icon_vertical_spacing">15dp</dimen>
+    <dimen name="chaoying_heatset_paddingStart">50dp</dimen>
 </resources>

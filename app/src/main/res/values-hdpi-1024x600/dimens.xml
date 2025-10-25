@@ -23,7 +23,7 @@
 
     <dimen name="index_margin_yameixun">40dp</dimen>
     <dimen name="index_padding_yameixun">40dp</dimen>
-    <dimen name="index_margin_top">20dp</dimen>
+    <dimen name="index_margin_top">50dp</dimen>
 
     <dimen name="index_margin_normal">10dp</dimen>
     <dimen name="index_padding_normal">0dp</dimen>
@@ -79,4 +79,5 @@
     <dimen name="chaoying_icon_marginStart">60dp</dimen>
     <dimen name="chaoying_icon_horizontal_spacing">7dp</dimen>
     <dimen name="chaoying_icon_vertical_spacing">13dp</dimen>
+    <dimen name="chaoying_heatset_paddingStart">50dp</dimen>
 </resources>

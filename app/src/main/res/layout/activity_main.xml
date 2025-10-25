@@ -15,18 +15,101 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.35"
-        android:orientation="horizontal">
-        <ImageView
+        app:layout_constraintHeight_percent="0.15"
+        android:orientation="horizontal"
+        android:paddingStart="?attr/indexPadding"
+        android:paddingEnd="?attr/indexPadding">
+        <TextView
             android:id="@+id/tv_day"
-            android:layout_width="@dimen/chaoying_logo_width"
-            android:layout_height="@dimen/chaoying_logo_height"
-            android:layout_marginTop="@dimen/chaoying_logo_marginTop"
-            android:layout_marginStart="@dimen/chaoying_logo_marginStart"
-            android:src="@drawable/chaoying_index_logo"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="周六\n2023-12-11"
+            android:textColor="@color/white"
+            android:textSize="@dimen/tvDay_textSize"
+            android:gravity="center_vertical|center_horizontal"
+            android:padding="@dimen/tv_day_padding"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/time_bar"
+            app:layout_constraintWidth_percent="0.18"
+            android:autoSizeTextType="uniform"
+            android:layout_marginEnd="10dp"/>
+        <View
+            android:id="@+id/time_bar"
+            android:layout_width="@dimen/time_bar_width"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/index_time_bar_padding"
+            android:layout_marginBottom="@dimen/index_time_bar_padding"
+            android:background="@color/white"
+            app:layout_constraintStart_toEndOf="@+id/tv_day"
+            app:layout_constraintEnd_toStartOf="@+id/tv_time"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="10dp"/>
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="13:16 上午"
+            android:textColor="@color/white"
+            android:textSize="@dimen/tvTime_textSize"
+            android:gravity="center_vertical"
+            app:layout_constraintStart_toEndOf="@+id/time_bar"
+            app:layout_constraintEnd_toStartOf="@+id/rt_linearlayout"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintWidth_percent="0.2"
+            android:autoSizeTextType="uniform"/>
+        <LinearLayout
+            android:id="@+id/rt_linearlayout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_time"
+            app:layout_constraintWidth_percent="0.59"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/inside_linearlayout"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+                <View
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
+                    android:layout_height="match_parent"/>
+                <ImageView
+                    android:id="@+id/im_wifi"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingTop="@dimen/index_icon_padding"
+                    android:paddingStart="@dimen/index_icon_padding"
+                    android:paddingEnd="@dimen/index_icon_padding"
+                    android:src="@drawable/icon_wifi" />
+                <ImageView
+                    android:id="@+id/im_ble"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingTop="@dimen/index_icon_padding"
+                    android:paddingStart="@dimen/index_icon_padding"
+                    android:paddingEnd="@dimen/index_icon_padding"
+                    android:src="@drawable/icon_ble"/>
+                <ImageView
+                    android:id="@+id/im_usb"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingTop="@dimen/index_icon_padding"
+                    android:paddingStart="@dimen/index_icon_padding"
+                    android:paddingEnd="@dimen/index_icon_padding"
+                    android:src="@drawable/icon_usb1" />
+            </LinearLayout>
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -105,7 +188,7 @@
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
             android:src="@drawable/application_selector"/>
         <ImageView
             android:id="@+id/im_settings"
@@ -118,7 +201,7 @@
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
             android:src="@drawable/settings_selector"/>
         <ImageView
             android:id="@+id/im_files"
@@ -131,7 +214,7 @@
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
             android:src="@drawable/files_selector"/>
         <ImageView
             android:id="@+id/im_hdmi"
@@ -144,8 +227,23 @@
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
             android:src="@drawable/hdmi_selector"/>
+        <GridView
+            android:id="@+id/heat_set"
+            android:layout_width="wrap_content"
+            android:layout_height="180dp"
+            app:layout_constraintTop_toBottomOf="@+id/im_application"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:descendantFocusability="afterDescendants"
+            android:paddingStart="@dimen/chaoying_heatset_paddingStart"
+            android:gravity="center"
+            android:horizontalSpacing="0dp"
+            android:numColumns="8"
+            android:paddingTop="@dimen/index_heat_paddingTop"
+            android:stretchMode="columnWidth"
+            android:layout_marginStart="@dimen/index_margin"
+            android:layout_marginEnd="@dimen/index_margin"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

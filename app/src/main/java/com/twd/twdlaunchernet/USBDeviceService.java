@@ -26,7 +26,7 @@ public class USBDeviceService extends Service {
     public void onCreate() {
         super.onCreate();
         mContext = getApplicationContext();
-        usbReceiver = new UsbReceiver(mainActivity.mainHandler);
+        //usbReceiver = new UsbReceiver(mainActivity.mainHandler);
         Log.d("USBDeviceService", "服务启动");
         // 在这里可以执行一些持续的操作，比如持续监听 U 盘状态变化等
 /*        IntentFilter filter = new IntentFilter();

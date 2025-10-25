@@ -8,7 +8,7 @@
 
     <dimen name="index_margin">50dp</dimen>
     <dimen name="index_padding">50dp</dimen>
-    <dimen name="index_margin_top">40dp</dimen>
+    <dimen name="index_margin_top">150dp</dimen>
     <dimen name="index_first_icon_width">364dp</dimen>
     <dimen name="index_first_icon_height">200dp</dimen>
     <dimen name="index_second_icon_width">273dp</dimen>
@@ -81,4 +81,5 @@
     <dimen name="chaoying_icon_marginStart">150dp</dimen>
     <dimen name="chaoying_icon_horizontal_spacing">15dp</dimen>
     <dimen name="chaoying_icon_vertical_spacing">20dp</dimen>
+    <dimen name="chaoying_heatset_paddingStart">90dp</dimen>
 </resources>
