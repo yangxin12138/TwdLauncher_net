@@ -425,26 +425,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             intent.setComponent(new ComponentName("com.google.android.youtube.tv","com.google.android.apps.youtube.tv.activity.ShellActivity"));
         } else if (v.getId() == R.id.im_googleplay) { //google paly
             intent = new Intent();
-            if(Build.HARDWARE.equals("mt6735")){
-                intent.setComponent(new ComponentName("com.android.vending","com.android.vending.AssetBrowserActivity"));
-            }else {
-                intent.setComponent(new ComponentName("com.android.vending","com.google.android.finsky.tvmainactivity.TvMainActivity"));
-            }
+            intent.setComponent(new ComponentName("com.google.android.gms","com.google.android.gms.auth.uiflows.addaccount.AccountIntroActivity"));
         } else if (v.getId() == R.id.im_hdmi) {
             //TODO: hdmi跳转
             intent = new Intent();
-            if(Build.HARDWARE.equals("mt6735")){
-                intent.setComponent(new ComponentName("com.twd.twdcamera","com.twd.twdcamera.MainActivity"));
-            }else {
-                intent.setComponent(new ComponentName("com.softwinner.awsource","com.softwinner.awsource.MainActivity"));
-            }
+            intent.setComponent(new ComponentName("com.twd.twdcamera","com.twd.twdcamera.MainActivity"));
         } else if (v.getId() == R.id.im_files) {//file
             intent = new Intent();
-            if(Build.HARDWARE.equals("mt6735")){
-                intent.setComponent(new ComponentName("com.vsoontech.mos.filemanager", "com.vsoontech.filemanager.business.index.IndexAty"));
-            }else {
-                intent.setComponent(new ComponentName("com.softwinner.TvdFileManager", "com.softwinner.TvdFileManager.MainUI"));
-            }
+            intent.setComponent(new ComponentName("com.vsoontech.mos.filemanager", "com.vsoontech.filemanager.business.index.IndexAty"));
         }
 
         if (intent != null){
