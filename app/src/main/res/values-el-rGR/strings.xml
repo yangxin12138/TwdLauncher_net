@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TwdLauncherN</string>
+    <string name="index_add_title">Προσθέτω</string>
+    <string name="application_title">Η εφαρμογή μου</string>
+    <string name="application_confirm">επιβεβαιώνω</string>
+    <string name="application_cancel">ματαίωση</string>
+    <string name="application_isuninstall">Είστε βέβαιοι ότι θέλετε να απεγκαταστήσετε αυτήν την εφαρμογή;</string>
+    <string name="application_imuninstall">Δεν είναι δυνατή η απεγκατάσταση εφαρμογών συστήματος!</string>
+    <string name="application_maxvalue">Μπορούν να επιλεγούν έως και 7 εφαρμογές</string>
+    <string name="index_usb_listener">Εντοπίστηκε εξωτερική συσκευή αποθήκευσης, θέλετε να ανοίξετε τη διαχείριση αρχείων;</string>
+</resources>

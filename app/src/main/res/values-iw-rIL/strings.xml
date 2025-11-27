@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TwdLauncherN</string>
+    <string name="index_add_title">לְהוֹסִיף</string>
+    <string name="application_title">האפליקציה שלי</string>
+    <string name="application_confirm">לְאַשֵׁר</string>
+    <string name="application_cancel">לְבַטֵל</string>
+    <string name="application_isuninstall">האם אתה בטוח שברצונך להסיר את ההתקנה של האפליקציה הזו?</string>
+    <string name="application_imuninstall">לא ניתן להסיר את ההתקנה של יישומי מערכת!</string>
+    <string name="application_maxvalue">ניתן לבחור עד 7 אפליקציות</string>
+    <string name="index_usb_listener">זוהה התקן אחסון חיצוני, האם ברצונך לפתוח את ניהול הקבצים?</string>
+</resources>

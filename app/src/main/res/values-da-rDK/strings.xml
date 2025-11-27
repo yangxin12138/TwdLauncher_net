@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TwdLauncherN</string>
+    <string name="index_add_title">Tilføje</string>
+    <string name="application_title">Min app</string>
+    <string name="application_confirm">bekræfte</string>
+    <string name="application_cancel">ophæve</string>
+    <string name="application_isuninstall">Er du sikker på, at du vil afinstallere denne app?</string>
+    <string name="application_imuninstall">Systemprogrammer kan ikke afinstalleres!</string>
+    <string name="application_maxvalue">Op til 7 applikationer kan vælges</string>
+    <string name="index_usb_listener">Der er fundet en ekstern lagerenhed. Vil du åbne filhåndteringen?</string>
+</resources>

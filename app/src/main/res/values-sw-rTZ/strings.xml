@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TwdLauncherN</string>
+    <string name="index_add_title">Ongeza</string>
+    <string name="application_title">Programu Yangu</string>
+    <string name="application_confirm">thibitisha</string>
+    <string name="application_cancel">ghairi</string>
+    <string name="application_isuninstall">Una uhakika unataka kuondoa programu hii?</string>
+    <string name="application_imuninstall">Programu za mfumo haziwezi kuondolewa!</string>
+    <string name="application_maxvalue">Hadi programu 7 zinaweza kuchaguliwa</string>
+    <string name="index_usb_listener">Kifaa cha hifadhi ya nje kimegunduliwa, unataka kufungua usimamizi wa faili?</string>
+</resources>

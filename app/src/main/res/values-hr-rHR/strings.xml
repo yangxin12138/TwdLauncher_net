@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TwdLauncherN</string>
+    <string name="index_add_title">Dodati</string>
+    <string name="application_title">Moja aplikacija</string>
+    <string name="application_confirm">potvrdi</string>
+    <string name="application_cancel">otkazati</string>
+    <string name="application_isuninstall">Jeste li sigurni da želite deinstalirati ovu aplikaciju?</string>
+    <string name="application_imuninstall">Sistemske aplikacije se ne mogu deinstalirati!</string>
+    <string name="application_maxvalue">Može se odabrati do 7 aplikacija</string>
+    <string name="index_usb_listener">Otkriven je vanjski uređaj za pohranu, želite li otvoriti upravljanje datotekama?</string>
+</resources>

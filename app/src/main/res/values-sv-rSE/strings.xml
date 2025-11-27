@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TwdLauncherN</string>
+    <string name="index_add_title">Tillägga</string>
+    <string name="application_title">Min app</string>
+    <string name="application_confirm">bekräfta</string>
+    <string name="application_cancel">avboka</string>
+    <string name="application_isuninstall">Är du säker på att du vill avinstallera den här appen?</string>
+    <string name="application_imuninstall">Systemprogram kan inte avinstalleras!</string>
+    <string name="application_maxvalue">Upp till 7 applikationer kan väljas</string>
+    <string name="index_usb_listener">Extern lagringsenhet upptäcktes, vill du öppna filhanteringen?</string>
+</resources>

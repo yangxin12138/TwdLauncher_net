@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TwdLauncherN</string>
+    <string name="index_add_title">Adăuga</string>
+    <string name="application_title">Aplicația mea</string>
+    <string name="application_confirm">confirma</string>
+    <string name="application_cancel">anula</string>
+    <string name="application_isuninstall">Sigur vrei să dezinstalezi această aplicație?</string>
+    <string name="application_imuninstall">Aplicațiile de sistem nu pot fi dezinstalate!</string>
+    <string name="application_maxvalue">Pot fi selectate până la 7 aplicații</string>
+    <string name="index_usb_listener">Dispozitiv de stocare extern detectat, doriți să deschideți gestionarea fișierelor?</string>
+</resources>

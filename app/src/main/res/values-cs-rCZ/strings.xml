@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TwdLauncherN</string>
+    <string name="index_add_title">Přidat</string>
+    <string name="application_title">Moje aplikace</string>
+    <string name="application_confirm">potvrdit</string>
+    <string name="application_cancel">zrušit</string>
+    <string name="application_isuninstall">Opravdu chcete tuto aplikaci odinstalovat?</string>
+    <string name="application_imuninstall">Systémové aplikace nelze odinstalovat!</string>
+    <string name="application_maxvalue">Lze vybrat až 7 aplikací</string>
+    <string name="index_usb_listener">Detekováno externí úložné zařízení, chcete otevřít správu souborů?</string>
+</resources>

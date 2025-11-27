@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TwdLauncherN</string>
+    <string name="index_add_title">Hozzáadás</string>
+    <string name="application_title">Saját alkalmazás</string>
+    <string name="application_confirm">megerősíteni</string>
+    <string name="application_cancel">mégsem</string>
+    <string name="application_isuninstall">Biztosan eltávolítja ezt az alkalmazást?</string>
+    <string name="application_imuninstall">A rendszeralkalmazások nem távolíthatók el!</string>
+    <string name="application_maxvalue">Legfeljebb 7 alkalmazás választható ki</string>
+    <string name="index_usb_listener">Külső tárolóeszköz észlelve, megnyitja a fájlkezelőt?</string>
+</resources>

@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TwdLauncherN</string>
+    <string name="index_add_title">Додати</string>
+    <string name="application_title">Мій додаток</string>
+    <string name="application_confirm">підтвердити</string>
+    <string name="application_cancel">скасувати</string>
+    <string name="application_isuninstall">Ви впевнені, що хочете видалити цю програму?</string>
+    <string name="application_imuninstall">Системні програми неможливо видалити!</string>
+    <string name="application_maxvalue">Можна вибрати до 7 програм</string>
+    <string name="index_usb_listener">Виявлено зовнішній пристрій зберігання даних, відкрити керування файлами?</string>
+</resources>

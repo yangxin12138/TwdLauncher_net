@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TwdLauncherN</string>
+    <string name="index_add_title">Voeg by</string>
+    <string name="application_title">My Toepassing</string>
+    <string name="application_confirm">bevestig</string>
+    <string name="application_cancel">kanselleer</string>
+    <string name="application_isuninstall">Is jy seker jy wil hierdie program deïnstalleer?</string>
+    <string name="application_imuninstall">Stelseltoepassings kan nie verwyder word nie!</string>
+    <string name="application_maxvalue">Tot 7 toepassings kan gekies word</string>
+    <string name="index_usb_listener">Eksterne bergingstoestel opgespoor, wil jy lêerbestuur oopmaak?</string>
+</resources>

@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TwdLauncherN</string>
+    <string name="index_add_title">Pridėti</string>
+    <string name="application_title">Mano programėlė</string>
+    <string name="application_confirm">patvirtinti</string>
+    <string name="application_cancel">atšaukti</string>
+    <string name="application_isuninstall">Ar tikrai norite pašalinti šią programėlę?</string>
+    <string name="application_imuninstall">Sistemos programų negalima pašalinti!</string>
+    <string name="application_maxvalue">Galima pasirinkti iki 7 programų</string>
+    <string name="index_usb_listener">Aptiktas išorinis atminties įrenginys, ar norite atidaryti failų tvarkyklę?</string>
+</resources>

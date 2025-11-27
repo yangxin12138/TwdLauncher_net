@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TwdLauncherN</string>
+    <string name="index_add_title">Pievienot</string>
+    <string name="application_title">Mana lietotne</string>
+    <string name="application_confirm">apstiprināt</string>
+    <string name="application_cancel">atcelt</string>
+    <string name="application_isuninstall">Vai tiešām vēlaties atinstalēt šo lietotni?</string>
+    <string name="application_imuninstall">Sistēmas lietojumprogrammas nevar atinstalēt!</string>
+    <string name="application_maxvalue">Var atlasīt līdz 7 pieteikumiem</string>
+    <string name="index_usb_listener">Atrasta ārējā atmiņas ierīce. Vai vēlaties atvērt failu pārvaldību?</string>
+</resources>

@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TwdLauncherN</string>
+    <string name="index_add_title">Thêm vào</string>
+    <string name="application_title">Ứng dụng của tôi</string>
+    <string name="application_confirm">xác nhận</string>
+    <string name="application_cancel">Hủy bỏ</string>
+    <string name="application_isuninstall">Bạn có chắc chắn muốn gỡ cài đặt ứng dụng này không?</string>
+    <string name="application_imuninstall">Không thể gỡ cài đặt các ứng dụng hệ thống!</string>
+    <string name="application_maxvalue">Có thể chọn tối đa 7 ứng dụng</string>
+    <string name="index_usb_listener">Đã phát hiện thiết bị lưu trữ ngoài, bạn có muốn mở quản lý tệp không?</string>
+</resources>

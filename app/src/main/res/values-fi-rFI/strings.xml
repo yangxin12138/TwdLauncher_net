@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TwdLauncherN</string>
+    <string name="index_add_title">Lisätä</string>
+    <string name="application_title">Oma sovellukseni</string>
+    <string name="application_confirm">vahvistaa</string>
+    <string name="application_cancel">peruuttaa</string>
+    <string name="application_isuninstall">Haluatko varmasti poistaa tämän sovelluksen?</string>
+    <string name="application_imuninstall">Järjestelmäsovelluksia ei voi poistaa!</string>
+    <string name="application_maxvalue">Voit valita jopa 7 sovellusta</string>
+    <string name="index_usb_listener">Ulkoinen tallennuslaite havaittu. Haluatko avata tiedostonhallinnan?</string>
+</resources>

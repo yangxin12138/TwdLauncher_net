@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TwdLauncherN</string>
+    <string name="index_add_title">Toevoegen</string>
+    <string name="application_title">Mijn app</string>
+    <string name="application_confirm">bevestigen</string>
+    <string name="application_cancel">annuleren</string>
+    <string name="application_isuninstall">Weet u zeker dat u deze app wilt verwijderen?</string>
+    <string name="application_imuninstall">Systeemtoepassingen kunnen niet worden verwijderd!</string>
+    <string name="application_maxvalue">Er kunnen maximaal 7 applicaties worden geselecteerd</string>
+    <string name="index_usb_listener">Er is een extern opslagapparaat gedetecteerd. Wilt u het bestandsbeheer openen?</string>
+</resources>

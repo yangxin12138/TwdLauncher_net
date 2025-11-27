@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TwdLauncherN</string>
+    <string name="index_add_title">Tambah</string>
+    <string name="application_title">Aplikasi Saya</string>
+    <string name="application_confirm">mengesahkan</string>
+    <string name="application_cancel">batalkan</string>
+    <string name="application_isuninstall">Adakah anda pasti mahu menyahpasang aplikasi ini?</string>
+    <string name="application_imuninstall">Aplikasi sistem tidak boleh dinyahpasang!</string>
+    <string name="application_maxvalue">Sehingga 7 aplikasi boleh dipilih</string>
+    <string name="index_usb_listener">Peranti storan luaran dikesan, adakah anda ingin membuka pengurusan fail?</string>
+</resources>

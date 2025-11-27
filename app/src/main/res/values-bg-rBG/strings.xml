@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TwdLauncherN</string>
+    <string name="index_add_title">Добавяне</string>
+    <string name="application_title">Моето приложение</string>
+    <string name="application_confirm">потвърди</string>
+    <string name="application_cancel">отмени</string>
+    <string name="application_isuninstall">Сигурни ли сте, че искате да деинсталирате това приложение?</string>
+    <string name="application_imuninstall">Системните приложения не могат да бъдат деинсталирани!</string>
+    <string name="application_maxvalue">Могат да бъдат избрани до 7 приложения</string>
+    <string name="index_usb_listener">Открито е външно устройство за съхранение, искате ли да отворите управлението на файлове?</string>
+</resources>

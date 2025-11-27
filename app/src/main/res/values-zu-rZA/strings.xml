@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TwdLauncherN</string>
+    <string name="index_add_title">Engeza</string>
+    <string name="application_title">Uhlelo Lwami Lokusebenza</string>
+    <string name="application_confirm">qinisekisa</string>
+    <string name="application_cancel">khansela</string>
+    <string name="application_isuninstall">Uqinisekile ukuthi ufuna ukususa lolu hlelo lokusebenza?</string>
+    <string name="application_imuninstall">Izinhlelo zokusebenza zesistimu azikwazi ukukhishwa!</string>
+    <string name="application_maxvalue">Kungakhethwa izinhlelo zokusebenza ezifika kweziyi-7</string>
+    <string name="index_usb_listener">Idivayisi yesitoreji sangaphandle etholakele, uyafuna ukuvula ukuphathwa kwefayela?</string>
+</resources>

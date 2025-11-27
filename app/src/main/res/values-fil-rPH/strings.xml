@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TwdLauncherN</string>
+    <string name="index_add_title">Idagdag</string>
+    <string name="application_title">Aking App</string>
+    <string name="application_confirm">kumpirmahin</string>
+    <string name="application_cancel">kanselahin</string>
+    <string name="application_isuninstall">Sigurado ka bang gusto mong i-uninstall ang app na ito?</string>
+    <string name="application_imuninstall">Hindi maaaring i-uninstall ang mga system application!</string>
+    <string name="application_maxvalue">Hanggang 7 aplikasyon ang maaaring mapili</string>
+    <string name="index_usb_listener">May nakitang external storage device, gusto mo bang buksan ang file management?</string>
+</resources>
