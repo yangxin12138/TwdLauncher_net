@@ -3,6 +3,8 @@ package com.twd.twdlaunchernet.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
+import android.graphics.drawable.Drawable;
+import android.view.animation.LinearInterpolator;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -31,6 +33,7 @@ public class IndexHeatsetAdapter extends BaseAdapter {
     private List<ApplicationInfo> mApplist;
     private LayoutInflater mInflater;
     private int selectionPosition = -1;
+    private Drawable borderDrawable;
     public IndexHeatsetAdapter(Context context, List<ApplicationInfo> appList) {
         mContext = context;
         mApplist = appList;
@@ -62,6 +65,7 @@ public class IndexHeatsetAdapter extends BaseAdapter {
         ImageView icon = view.findViewById(R.id.appIcon);
         TextView name = view.findViewById(R.id.appName);
         LinearLayout LL_center = view.findViewById(R.id.LL_center);
+        borderDrawable = mContext.getResources().getDrawable(R.drawable.border_white);
         if (position < mApplist.size()){
             final  ApplicationInfo appInfo = mApplist.get(position);
             icon.setImageDrawable(appInfo.loadIcon(mContext.getPackageManager()));
@@ -100,15 +104,33 @@ public class IndexHeatsetAdapter extends BaseAdapter {
                 if (hasFocus){
                     MainActivity.isHeat = true;
                     ((MainActivity) mContext).onFocusChange(v,hasFocus);
-                    LL_center.animate().scaleX(1.1f).scaleY(1.1f).translationZ(1f).setDuration(100);
-                    LL_center.setForeground(mContext.getResources().getDrawable(R.drawable.border_white));
+                    LL_center.setForeground(borderDrawable);
+                    LL_center.postInvalidate();
+                    LL_center.animate().cancel();
+                    LL_center.animate()
+                            .scaleX(1.1f)
+                            .scaleY(1.1f)
+                            .translationZ(1f)
+                            .setDuration(80)
+                            .setStartDelay(0) // 明确取消启动延迟
+                            .setInterpolator(new LinearInterpolator()) // 线性插值，避免动画起步慢
+                            .start();
                     name.setSelected(true);
                     selectionPosition = position;
                 }else {
                     MainActivity.isHeat = false;
                     ((MainActivity) mContext).onFocusChange(v,hasFocus);
-                    LL_center.animate().scaleX(1.0f).scaleY(1.0f).translationZ(0f).setDuration(100);
                     LL_center.setForeground(null);
+                    LL_center.postInvalidate();
+                    LL_center.animate().cancel();
+                    LL_center.animate()
+                            .scaleX(1.0f)
+                            .scaleY(1.0f)
+                            .translationZ(0f)
+                            .setDuration(80)
+                            .setStartDelay(0)
+                            .setInterpolator(new LinearInterpolator())
+                            .start();
                     name.setSelected(false);
                 }
             }

@@ -10,6 +10,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbManager;
 import android.net.ConnectivityManager;
@@ -22,6 +23,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -79,6 +81,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     String UI_QUICKLINK_STYLE = "true";
     //String UI_QUICKLINK_APP_PACKAGE = Utils.readSystemProp("UI_QUICKLINK_APP_PACKAGE");
     public Handler mainHandler;
+
+    private Drawable borderDrawable;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         if (ui_theme_code.equals("Standard")){
@@ -342,6 +346,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         im_files = findViewById(R.id.im_files); im_files.setOnFocusChangeListener(this::onFocusChange); im_files.setOnClickListener(this::onClick);
         im_hdmi = findViewById(R.id.im_hdmi); im_hdmi.setOnFocusChangeListener(this::onFocusChange); im_hdmi.setOnClickListener(this::onClick);im_hdmi.setOnKeyListener(this::onKey);
         gridView = findViewById(R.id.heat_set);
+        borderDrawable = getResources().getDrawable(R.drawable.border_white);
         appList = Utils.getSelectedApps(this);
         heatAdapter = new IndexHeatsetAdapter(this,appList);
         gridView.setAdapter(heatAdapter);
@@ -365,7 +370,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
         });
-
         // 根据屏幕尺寸动态调整子控件的尺寸
     }
 
@@ -513,14 +517,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             lastFocus =v;
             // 添加切换动画效果
             if (!isHeat){
-                v.setForeground(getResources().getDrawable(R.drawable.border_white));
-                v.animate().scaleX(1.2f).scaleY(1.2f).translationZ(1f).setDuration(100);
+                v.setForeground(borderDrawable);
+                v.postInvalidate(); // 强制视图刷新，避免延迟
+                // 动画取消延迟，直接启动
+                v.animate().cancel(); // 取消未完成的动画
+                v.animate()
+                        .scaleX(1.2f)
+                        .scaleY(1.2f)
+                        .translationZ(1f)
+                        .setDuration(80)
+                        .setStartDelay(0) // 明确取消启动延迟
+                        .setInterpolator(new LinearInterpolator()) // 线性插值，避免动画起步慢
+                        .start();
             }
         }else {
             if (!isHeat){
                 // 隐藏边框
                 v.setForeground(null);
-                v.animate().scaleX(1.0f).scaleY(1.0f).translationZ(0f).setDuration(100);
+                v.postInvalidate();
+                v.animate().cancel(); // 取消未完成的动画
+                v.animate()
+                        .scaleX(1.0f)
+                        .scaleY(1.0f)
+                        .translationZ(0f)
+                        .setDuration(80)
+                        .setStartDelay(0)
+                        .setInterpolator(new LinearInterpolator())
+                        .start();
             }
         }
     }
