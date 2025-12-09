@@ -148,8 +148,7 @@
             android:scaleType="fitXY"
             android:src="@drawable/icon_netflix"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layerType="hardware"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/im_youtube"
@@ -162,8 +161,7 @@
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:scaleType="fitXY"
-            android:src="@drawable/icon_youtube"
-            android:layerType="hardware"/>
+            android:src="@drawable/icon_youtube" />
         <ImageView
             android:id="@+id/im_googleplay"
             android:layout_width="@dimen/index_first_icon_width"
@@ -176,8 +174,7 @@
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:scaleType="fitXY"
-            android:src="@drawable/icon_googleplay"
-            android:layerType="hardware"/>
+            android:src="@drawable/icon_googleplay" />
         <ImageView
             android:id="@+id/im_application"
             android:layout_width="@dimen/index_second_icon_width"
@@ -185,49 +182,47 @@
             android:layout_below="@+id/im_netflix"
             android:layout_marginStart="@dimen/index_margin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/im_netflix"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/heat_set"
+            android:layout_marginTop="150dp"
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/icon_applicaiton"
-            android:layerType="hardware"/>
+            android:src="@drawable/icon_applicaiton" />
         <ImageView
             android:id="@+id/im_settings"
             android:layout_width="@dimen/index_second_icon_width"
             android:layout_height="@dimen/index_second_icon_height"
             app:layout_constraintStart_toEndOf="@+id/im_application"
-            app:layout_constraintTop_toBottomOf="@+id/im_netflix"
+            app:layout_constraintTop_toTopOf="@+id/im_application"
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/icon_settings"
-            android:layerType="hardware"/>
+            android:src="@drawable/icon_settings" />
         <ImageView
             android:id="@+id/im_files"
             android:layout_width="@dimen/index_second_icon_width"
             android:layout_height="@dimen/index_second_icon_height"
             app:layout_constraintStart_toEndOf="@+id/im_settings"
-            app:layout_constraintTop_toBottomOf="@+id/im_netflix"
+            app:layout_constraintTop_toTopOf="@+id/im_application"
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/icon_files"
-            android:layerType="hardware"/>
+            android:src="@drawable/icon_files" />
         <ImageView
             android:id="@+id/im_hdmi"
             android:layout_width="@dimen/index_second_icon_width"
             android:layout_height="@dimen/index_second_icon_height"
             app:layout_constraintStart_toEndOf="@+id/im_files"
-            app:layout_constraintTop_toBottomOf="@+id/im_netflix"
+            app:layout_constraintTop_toTopOf="@+id/im_application"
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/icon_hdmi1"
-            android:layerType="hardware"/>
+            android:src="@drawable/icon_hdmi1" />
         <GridView
             android:id="@+id/heat_set"
             android:layout_width="wrap_content"
@@ -242,8 +237,7 @@
             android:paddingTop="@dimen/index_heat_paddingTop"
             android:stretchMode="columnWidth"
             android:layout_marginStart="@dimen/index_margin"
-            android:layout_marginEnd="@dimen/index_margin"
-            android:layerType="hardware"/>
+            android:layout_marginEnd="@dimen/index_margin" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
