@@ -517,40 +517,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             lastFocus =v;
             // 添加切换动画效果
             if (!isHeat){
-                // 提升Z轴层级（Android 5.0+）
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    v.setTranslationZ(50f); // 设置一个较高的Z值
-                } else {
-                    v.bringToFront();
-                }
-                v.animate().cancel(); // 立即取消之前的动画
-
-                // 使用更明显的动画
-                v.animate()
-                        .scaleX(1.2f)  // 增大缩放比例
-                        .scaleY(1.2f)
-                        .setDuration(100)  // 稍微延长动画时间
-                        .setInterpolator(new LinearInterpolator())
-                        .start();
-
-                // 立即设置边框
                 v.setForeground(borderDrawable);
+                v.postInvalidate(); // 强制视图刷新，避免延迟
+                // 动画取消延迟，直接启动
+                v.animate().cancel(); // 取消未完成的动画
+                v.animate()
+                        .scaleX(1.2f)
+                        .scaleY(1.2f)
+                        .translationZ(1f)
+                        .setDuration(80)
+                        .setStartDelay(0) // 明确取消启动延迟
+                        .setInterpolator(new LinearInterpolator()) // 线性插值，避免动画起步慢
+                        .start();
             }
         }else {
-            if (!isHeat) {
-                // 恢复Z轴层级
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    v.setTranslationZ(0f);
-                }
-                v.animate().cancel();
+            if (!isHeat){
+                // 隐藏边框
+                v.setForeground(null);
+                v.postInvalidate();
+                v.animate().cancel(); // 取消未完成的动画
                 v.animate()
                         .scaleX(1.0f)
                         .scaleY(1.0f)
-                        .setDuration(100)
+                        .translationZ(0f)
+                        .setDuration(80)
+                        .setStartDelay(0)
                         .setInterpolator(new LinearInterpolator())
                         .start();
-
-                v.setForeground(null);
             }
         }
     }
