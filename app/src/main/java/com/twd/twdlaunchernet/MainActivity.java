@@ -429,7 +429,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             intent.setComponent(new ComponentName("com.google.android.youtube.tv","com.google.android.apps.youtube.tv.activity.ShellActivity"));
         } else if (v.getId() == R.id.im_googleplay) { //google paly
             intent = new Intent();
-            intent.setComponent(new ComponentName("com.google.android.gms","com.google.android.gms.auth.uiflows.addaccount.AccountIntroActivity"));
+            intent.setComponent(new ComponentName("com.android.vending","com.google.android.finsky.activities.MainActivity"));
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         } else if (v.getId() == R.id.im_hdmi) {
             //TODO: hdmi跳转
             intent = new Intent();
@@ -446,6 +447,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }catch (Exception e){
                 Toast.makeText(this, "应用不存在", Toast.LENGTH_SHORT).show();
             }
+        }else {
+            Log.i(TAG, "onClick: intent是为空");
         }
     }
 
