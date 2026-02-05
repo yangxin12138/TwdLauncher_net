@@ -437,7 +437,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             intent.setComponent(new ComponentName("com.twd.twdcamera","com.twd.twdcamera.MainActivity"));
         } else if (v.getId() == R.id.im_files) {//file
             intent = new Intent();
-            intent.setComponent(new ComponentName("com.vsoontech.mos.filemanager", "com.vsoontech.filemanager.business.index.IndexAty"));
+            intent.setComponent(new ComponentName("com.xiaobaifile.tv", "com.xiaobaifile.tv.view.MainActivity"));
         }
 
         if (intent != null){
