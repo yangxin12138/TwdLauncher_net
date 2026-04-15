@@ -116,6 +116,7 @@
                 android:text="981118@happilaff.com"
                 android:textSize="20sp"
                 android:gravity="end"
+                android:visibility="gone"
                 android:textColor="@color/white" />
         </LinearLayout>
 
@@ -135,7 +136,7 @@
         android:paddingEnd="@dimen/index_padding">
 
         <ImageView
-            android:id="@+id/im_netflix"
+            android:id="@+id/im_kinopoisk"
             android:layout_width="@dimen/index_first_icon_width"
             android:layout_height="@dimen/index_first_icon_height"
             android:layout_marginStart="@dimen/index_margin"
@@ -144,29 +145,29 @@
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:scaleType="fitXY"
-            android:src="@drawable/icon_netflix"
+            android:src="@drawable/icon_kinopoisk"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <ImageView
-            android:id="@+id/im_youtube"
+            android:id="@+id/im_rutube"
             android:layout_width="@dimen/index_first_icon_width"
             android:layout_height="@dimen/index_first_icon_height"
             android:layout_marginTop="@dimen/index_margin_top"
-            app:layout_constraintStart_toEndOf="@+id/im_netflix"
+            app:layout_constraintStart_toEndOf="@+id/im_kinopoisk"
             app:layout_constraintTop_toTopOf="parent"
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:scaleType="fitXY"
-            android:src="@drawable/icon_youtube"/>
+            android:src="@drawable/icon_rutube"/>
         <ImageView
             android:id="@+id/im_googleplay"
             android:layout_width="@dimen/index_first_icon_width"
             android:layout_height="@dimen/index_first_icon_height"
             android:layout_marginTop="@dimen/index_margin_top"
             android:layout_marginEnd="@dimen/index_margin"
-            app:layout_constraintStart_toEndOf="@+id/im_youtube"
+            app:layout_constraintStart_toEndOf="@+id/im_rutube"
             app:layout_constraintTop_toTopOf="parent"
             android:clickable="true"
             android:focusable="true"
@@ -177,10 +178,10 @@
             android:id="@+id/im_application"
             android:layout_width="@dimen/index_second_icon_width"
             android:layout_height="@dimen/index_second_icon_height"
-            android:layout_below="@+id/im_netflix"
+            android:layout_below="@+id/im_kinopoisk"
             android:layout_marginStart="@dimen/index_margin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/im_netflix"
+            app:layout_constraintTop_toBottomOf="@+id/im_kinopoisk"
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
@@ -191,7 +192,7 @@
             android:layout_width="@dimen/index_second_icon_width"
             android:layout_height="@dimen/index_second_icon_height"
             app:layout_constraintStart_toEndOf="@+id/im_application"
-            app:layout_constraintTop_toBottomOf="@+id/im_netflix"
+            app:layout_constraintTop_toBottomOf="@+id/im_kinopoisk"
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
@@ -202,7 +203,7 @@
             android:layout_width="@dimen/index_second_icon_width"
             android:layout_height="@dimen/index_second_icon_height"
             app:layout_constraintStart_toEndOf="@+id/im_settings"
-            app:layout_constraintTop_toBottomOf="@+id/im_netflix"
+            app:layout_constraintTop_toBottomOf="@+id/im_kinopoisk"
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
@@ -213,7 +214,7 @@
             android:layout_width="@dimen/index_second_icon_width"
             android:layout_height="@dimen/index_second_icon_height"
             app:layout_constraintStart_toEndOf="@+id/im_files"
-            app:layout_constraintTop_toBottomOf="@+id/im_netflix"
+            app:layout_constraintTop_toBottomOf="@+id/im_kinopoisk"
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"

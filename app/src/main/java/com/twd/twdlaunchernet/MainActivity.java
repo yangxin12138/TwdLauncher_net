@@ -53,8 +53,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView im_wifi;
     private ImageView im_ble;
     private ImageView im_usb;
-    private ImageView im_netflix;
-    private ImageView im_youtube;
+    private ImageView im_kinopoisk;
+    private ImageView im_rutube;
     private ImageView im_googleplay;
     private ImageView im_application;
     private ImageView im_settings;
@@ -71,7 +71,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     IndexHeatsetAdapter heatAdapter;
     GridView gridView;
     List<ApplicationInfo> appList = new ArrayList<>();
-    private List<String> failedApkList = new ArrayList<>();
     private Utils utils;
     public static boolean isHeat = false;
     public static View lastFocus;
@@ -96,31 +95,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void handleMessage(@NonNull Message msg) {
                 if (msg.what == 1){
                     Log.i(TAG, "handleMessage: 通过Handler通信，重新刷新主页面");
-                    recreate();
+                    refreshHotApps();
                 } else if (msg.what == 2) {
                     Log.i(TAG, "handleMessage: u盘方式安装回调");
                     recreate();
-                } else if (msg.what == 3) {
-                    Log.i(TAG, "handleMessage: apk安装完成回调");
-                    String toastMsg = "";
-                    failedApkList = ((HandlerApplication) getApplication()).getFailedApkList();
-                    if (failedApkList.isEmpty()){
-                        toastMsg = "APK安装结束";
-                        Log.i(TAG, "handleMessage: 没有安装失败的");
-                    }else {
-                        StringBuilder sb = new StringBuilder("安装结束，");
-                        for (String failedApk : failedApkList){
-                            sb.append(failedApk).append("失败");
-                            if (failedApkList.indexOf(failedApk) < failedApkList.size() - 1) {
-                                sb.append("、");
-                            }
-                        }
-                        Log.i(TAG, "handleMessage: 失败的是： " + toastMsg);
-                        toastMsg = sb.toString();
-                    }
-                    ToastUtil.showCustomToast(getApplicationContext(), toastMsg, Toast.LENGTH_SHORT);
-                    // 可以考虑在这里清空failedApkList，以便下次安装时重新统计
-                    failedApkList.clear();
                 }
             }
         };
@@ -132,89 +110,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         updateTimeRunnable.run();
         selectedPreferences = getSharedPreferences("SelectedApps",Context.MODE_PRIVATE);
         currentFocusPreferences = getSharedPreferences("currentFocus",Context.MODE_PRIVATE);
-        int currentFocusId = sharedPreferences.getInt("current_focus_id", R.id.im_netflix);
+        int currentFocusId = sharedPreferences.getInt("current_focus_id", R.id.im_kinopoisk);
         mCurrentFocus = findViewById(currentFocusId);
         //启动U盘监听服务
         /*Intent serviceIntent = new Intent(this,USBDeviceService.class);
         startService(serviceIntent);*/
         //TODO:判断是不是第一次开机
         //TODO:判断是不是需要固定图标
-        //String isFirst = Utils.getProperty(prop_first_boot,"false");
         String isFirst = firstBootPreferences.getString("is_firstBoot","true");
-        String apkDirectoryPath  = "./system/operator/preinstall";
-
-        // 创建一个列表来存储 APK 文件路径
-        List<String> apkFilePaths = getApkFilesInDirectory(apkDirectoryPath );
-
-        //创建apk安装线程
-        Thread apkThread = new Thread(() -> {
-            Log.i(TAG, "onCreate: MainActivity线程中开始安装");
-            PackageManager packageManager = getPackageManager();
-            for (String apkFilePath: apkFilePaths){
-                String apkPackageName = Utils.getApkPackageName(packageManager,apkFilePath);
-                Log.i(TAG, "onCreate: 开始安装 APK: " + apkPackageName);
-                boolean apkExist = Utils.checkAndInstallApk(apkFilePath);
-                handleApkResult(apkExist,isFirst);
-            }
-            Log.i(TAG, "onCreate: 所有 APK 文件安装完成");
-            Message msg = mainHandler.obtainMessage(1);
-            mainHandler.sendMessage(msg);
-            SharedPreferences.Editor editor = firstBootPreferences.edit();
-            editor.putString("is_firstBoot", "false");
-            editor.apply();
-        });
-        if(isFirst.equals("true")){
-            Log.i(TAG, "onCreate: 第一次开机，执行安装线程");
-            apkThread.start();
-        }else {
-            Log.i(TAG, "onCreate: 不是第一次开机，不执行安装线程");
-        }
-
+        fixedFirstBoot(isFirst);
     }
-
-    private void handleApkResult(boolean apkExist,String isFirst){
-        Log.i(TAG, "onCreate: MainActivity线程安装结束，开始固定");
-         if (apkExist){ //应用存在并且安装成功
-            Log.i(TAG, "onCreate: 应用存在并且安装成功");
-            fixedFirstBoot(isFirst);
-         }else {
-             Log.i(TAG, "onCreate: 是第一次开机，但是应用不存在或者安装不成功");
-             SharedPreferences.Editor editor = firstBootPreferences.edit();
-             editor.putString("is_firstBoot", "false");
-             editor.apply();
-         }
+    private void refreshHotApps() {
+        appList.clear();
+        appList.addAll(Utils.getSelectedApps(this));
+        heatAdapter.notifyDataSetChanged();
     }
-
     private void fixedFirstBoot(String isFirst){
         if (isFirst.equals("true")) {
             if (UI_QUICKLINK_STYLE.equals("true")) {
+                String[] packageArray = UI_QUICKLINK_APP_PACKAGE.split(",\\s*");
                 SharedPreferences.Editor editor = selectedPreferences.edit();
-                editor.putBoolean(UI_QUICKLINK_APP_PACKAGE, true);
+                for (String pkg : packageArray) {
+                    String realPkg = pkg.trim();
+                    if (!realPkg.isEmpty()) {
+                        editor.putBoolean(realPkg, true);
+                    }
+                }
                 editor.apply();
             }
             SharedPreferences.Editor editor = firstBootPreferences.edit();
             editor.putString("is_firstBoot", "false");
             editor.apply();
-        }
-        Message msg = mainHandler.obtainMessage(1);
-        mainHandler.sendMessage(msg);
-    }
 
-    //获取指定目录下的所有 APK 文件的文件路径
-    private List<String> getApkFilesInDirectory(String directoryPath){
-        List<String> apkFilePaths = new ArrayList<>();
-        File directory = new File(directoryPath);
-        if (directory.exists() && directory.isDirectory()){
-            File[] files = directory.listFiles();
-            if (files != null){
-                for (File file : files){
-                    if(file.isFile() && file.getName().endsWith(".apk")){
-                        apkFilePaths.add(file.getAbsolutePath());
-                    }
-                }
-            }
+            Message msg = mainHandler.obtainMessage(1);
+            mainHandler.sendMessage(msg);
         }
-        return apkFilePaths;
     }
     private Runnable updateTimeRunnable = new Runnable() {
         @Override
@@ -329,8 +259,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         usbFilter.addAction(UsbManager.ACTION_USB_DEVICE_DETACHED);
         registerReceiver(usbReceiver,usbFilter);
 
-        im_netflix = findViewById(R.id.im_netflix); im_netflix.setOnFocusChangeListener(this::onFocusChange); im_netflix.setOnClickListener(this::onClick);
-        im_youtube = findViewById(R.id.im_youtube); im_youtube.setOnFocusChangeListener(this::onFocusChange); im_youtube.setOnClickListener(this::onClick);
+        im_kinopoisk = findViewById(R.id.im_kinopoisk); im_kinopoisk.setOnFocusChangeListener(this::onFocusChange); im_kinopoisk.setOnClickListener(this::onClick);
+        im_rutube = findViewById(R.id.im_rutube); im_rutube.setOnFocusChangeListener(this::onFocusChange); im_rutube.setOnClickListener(this::onClick);
         im_googleplay = findViewById(R.id.im_googleplay); im_googleplay.setOnFocusChangeListener(this::onFocusChange); im_googleplay.setOnClickListener(this::onClick); im_googleplay.setOnKeyListener(this::onKey);
         im_application = findViewById(R.id.im_application); im_application.setOnFocusChangeListener(this::onFocusChange); im_application.setOnClickListener(this::onClick); im_application.setOnKeyListener(this::onKey);
         im_settings = findViewById(R.id.im_settings); im_settings.setOnFocusChangeListener(this::onFocusChange); im_settings.setOnClickListener(this::onClick);
@@ -360,8 +290,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
         });
-
-        // 根据屏幕尺寸动态调整子控件的尺寸
     }
 
     private BroadcastReceiver customReceiver = new BroadcastReceiver() {
@@ -405,19 +333,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (v.getId() == R.id.im_settings) { //Settings
             intent = new Intent();
             intent.setComponent(new ComponentName("com.twd.setting","com.twd.setting.MainActivity"));
-        } else if (v.getId() == R.id.im_netflix) { //Netflix
+        } else if (v.getId() == R.id.im_kinopoisk) { //Kinopoisk
             intent = new Intent();
-            Intent tvIntent = new Intent();
-            tvIntent.setComponent(new ComponentName("com.netflix.ninja","com.netflix.ninja.MainActivity"));
-            if (getPackageManager().resolveActivity(tvIntent, PackageManager.MATCH_DEFAULT_ONLY) == null) {
-                //如果TV版不存在则启动移动版
-                intent.setComponent(new ComponentName("com.netflix.mediaclient","com.netflix.mediaclient.ui.launch.UIWebViewActivity"));
-            }else {
-                intent = tvIntent;
-            }
-        } else if (v.getId() == R.id.im_youtube) { // youtube
+            intent.setComponent(new ComponentName("ru.kinopoisk.tv","ru.kinopoisk.tv.presentation.splash.SplashActivity"));
+        } else if (v.getId() == R.id.im_rutube) { // rutube
             intent = new Intent();
-            intent.setComponent(new ComponentName("com.google.android.youtube.tv","com.google.android.apps.youtube.tv.activity.ShellActivity"));
+            intent.setComponent(new ComponentName("ru.rutube.app","ru.rutube.app.MainActivity"));
         } else if (v.getId() == R.id.im_googleplay) { //google paly
             intent = new Intent();
             if(Build.HARDWARE.equals("mt6735")){
@@ -487,7 +408,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 });
             }
         }else {
-            int currentFocusId = currentFocusPreferences.getInt("current_focus_id", R.id.im_netflix);
+            int currentFocusId = currentFocusPreferences.getInt("current_focus_id", R.id.im_kinopoisk);
             mCurrentFocus = findViewById(currentFocusId);
             if (mCurrentFocus != null){
                 Log.i(TAG, "onResume: focus不为空  id= "+mCurrentFocus.getId());
