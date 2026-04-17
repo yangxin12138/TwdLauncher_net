@@ -490,9 +490,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }else {
             int currentFocusId = currentFocusPreferences.getInt("current_focus_id", R.id.im_netflix);
             mCurrentFocus = findViewById(currentFocusId);
+            if (mCurrentFocus == null) {
+                mCurrentFocus = findViewById(R.id.im_netflix);
+            }
             if (mCurrentFocus != null){
-                Log.i(TAG, "onResume: focus不为空  id= "+mCurrentFocus.getId());
-                mCurrentFocus.requestFocus();
+                final View focusView = mCurrentFocus;
+                focusView.post(() -> {
+                    boolean success = focusView.requestFocus();
+                    Log.i(TAG, "onResume: requestFocus " + (success ? "success" : "failed"));
+                    // 兜底：如果第一次请求失败，再试一次
+                    if (!success) {
+                        focusView.requestFocus();
+                    }
+                });
             }
         }
 
@@ -504,10 +514,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onPause() {
         super.onPause();
-        if (lastFocus != null){
+        View currentFocus = getCurrentFocus();
+        if (currentFocus  != null){
             SharedPreferences.Editor editor = currentFocusPreferences.edit();
-            editor.putInt("current_focus_id",lastFocus.getId());
-            Log.i(TAG, "onPause: 存进去"+lastFocus.getId());
+            editor.putInt("current_focus_id", currentFocus.getId());
             editor.apply();
         }
 
@@ -590,5 +600,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
         return false;
+    }
+
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            int keyCode = event.getKeyCode();
+            // 只处理方向键
+            if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT ||
+                    keyCode == KeyEvent.KEYCODE_DPAD_RIGHT ||
+                    keyCode == KeyEvent.KEYCODE_DPAD_UP ||
+                    keyCode == KeyEvent.KEYCODE_DPAD_DOWN) {
+
+                View currentFocus = getCurrentFocus();
+                // 如果当前没有焦点，强制把焦点还给默认的im_netflix
+                if (currentFocus == null) {
+                    View defaultFocus = findViewById(R.id.im_netflix);
+                    if (defaultFocus != null) {
+                        defaultFocus.requestFocus();
+                        Log.i(TAG, "dispatchKeyEvent: focus is null, force to im_netflix");
+                        return true; // 消费事件，不交给系统处理
+                    }
+                }
+            }
+        }
+        return super.dispatchKeyEvent(event);
     }
 }
