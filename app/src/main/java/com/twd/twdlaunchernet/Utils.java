@@ -19,6 +19,7 @@ import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.storage.StorageManager;
 import android.os.storage.StorageVolume;
+import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.Gravity;
@@ -113,36 +114,39 @@ public class Utils {
     /*
     * 获取所有应用中被选中过的应用*/
     public static List<ApplicationInfo>  getSelectedApps(Context context){
-        SharedPreferences sharedPreferences = context.getSharedPreferences("SelectedApps", Context.MODE_PRIVATE);
-        List<ApplicationInfo> selectedApplist = new ArrayList<>();
-        Map<String,?> allEntries = sharedPreferences.getAll();
-        PackageManager packageManager = context.getPackageManager();
-        List<ApplicationInfo> appList = packageManager.getInstalledApplications(PackageManager.GET_META_DATA);
+        List<ApplicationInfo> selectedApps = new ArrayList<>();
+        SharedPreferences sp = context.getSharedPreferences("SelectedApps", Context.MODE_PRIVATE);
+        PackageManager pm = context.getPackageManager();
 
-
-        for (Map.Entry<String,?> entry : allEntries.entrySet()){
-            if (entry.getValue() instanceof Boolean){
-                Boolean value = (Boolean) entry.getValue();
-                if (value){
-                    String packageName  = entry.getKey();
+        // 1. 读取有序的包名字符串
+        String orderString = sp.getString("heat_set_order", "");
+        if (TextUtils.isEmpty(orderString)) {
+            // 兼容旧数据：如果没有顺序，走原来的逻辑
+            Map<String, ?> map = sp.getAll();
+            for (Map.Entry<String, ?> entry : map.entrySet()) {
+                if ((Boolean) entry.getValue()) {
                     try {
-                        ApplicationInfo appInfo = null;
-                        for (ApplicationInfo info : appList){
-                            if (packageName.equals(info.packageName)){
-                                appInfo = info;
-                                break;
-                            }
-                        }
-                        if (appInfo != null){
-                            selectedApplist.add(appInfo);
-                        }
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
+                        ApplicationInfo info = pm.getApplicationInfo(entry.getKey(), 0);
+                        selectedApps.add(info);
+                    } catch (Exception e) {}
                 }
             }
+            return selectedApps;
         }
-        return selectedApplist;
+
+        // 2. 按顺序拆分包名，逐个加载（保证界面顺序和日志一致）
+        String[] packageNames = orderString.split(",");
+        for (String pkg : packageNames) {
+            try {
+                ApplicationInfo info = pm.getApplicationInfo(pkg, 0);
+                selectedApps.add(info);
+            } catch (PackageManager.NameNotFoundException e) {
+                // 应用卸载了，跳过
+                sp.edit().remove(pkg).apply();
+            }
+        }
+
+        return selectedApps;
     }
 
     public static String getTimeFormat(Context context){

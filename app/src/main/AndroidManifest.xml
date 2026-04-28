@@ -17,7 +17,7 @@
         tools:ignore="ProtectedPermissions"/>
     <uses-permission android:name="android.permission.INSTALL_PACKAGES"
         tools:ignore="ProtectedPermissions" />
-
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -48,6 +48,15 @@
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_MOUNTED"/>
                 <data android:scheme="file"/>
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".ApkInstallReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.example.SYSTEM_BROADCAST_INSTALL_APK" />
+                <action android:name="com.twd.twdlaunchernet.INSTALL_RESULT" />
             </intent-filter>
         </receiver>
     </application>

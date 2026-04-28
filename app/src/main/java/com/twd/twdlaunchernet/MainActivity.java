@@ -229,13 +229,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         @Override
         public void run() {
             if (!firstNetwork){
-                Log.i(TAG, "run: 判断是否联网");
+               // Log.i(TAG, "run: 判断是否联网");
                 //检查网络连接状态
                 ConnectivityManager connectivityManager =(ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                 NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
 
                 if (networkInfo != null && networkInfo.isConnected()){
-                    Log.i(TAG, "run: ---------已联网");
+                   // Log.i(TAG, "run: ---------已联网");
                     //如果设备已连接到网络,从网络获取时间和日期数据
                     sharedPreferences.edit().putBoolean("firstConnected",true).apply();
                     firstNetwork = true;
@@ -245,7 +245,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     timerHandler.postDelayed(this, 1000);
                     return;
                 }else {
-                    Log.i(TAG, "run: ---------未联网");
+                   // Log.i(TAG, "run: ---------未联网");
                     // 如果设备未连接到网络，设置时间为--:--，日期不显示
                     im_wifi.setImageResource(R.drawable.icon_wifi);
                     tv_time.setText("");

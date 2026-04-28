@@ -1,6 +1,7 @@
 package com.twd.twdlaunchernet.application;
 
 import android.app.Application;
+import android.content.Context;
 import android.os.Handler;
 
 import java.util.ArrayList;
@@ -12,8 +13,10 @@ import java.util.List;
  * @time: Create in 上午11:19 11/12/2024
  */
 public class HandlerApplication extends Application {
+    private static Context mContext;
     private Handler mainHandler;
     private List<String> failedApkList = new ArrayList<>();
+    private static HandlerApplication instance;
 
     public Handler getMainHandler(){
         return mainHandler;
@@ -33,5 +36,11 @@ public class HandlerApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        mContext = getApplicationContext();
+        instance = this;
+    }
+
+    public static Context getGlobalContext() {
+        return mContext;
     }
 }
