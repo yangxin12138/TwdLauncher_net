@@ -57,7 +57,7 @@
     <dimen name="unset_text_size">20dp</dimen>
     <dimen name="unset_button_width">250dp</dimen>
     <dimen name="unset_button_text_size">30sp</dimen>
-    <dimen name="unset_cancel_marginStart">200dp</dimen>
+    <dimen name="unset_cancel_marginStart">100dp</dimen>
     <dimen name="unset_confirm_marginStart">70dp</dimen>
     <dimen name="unset_confirm_marginEnd">150dp</dimen>
     <dimen name="unset_button_margintTop">30dp</dimen>
