@@ -145,7 +145,7 @@
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:scaleType="fitXY"
-            android:src="@drawable/icon_kinopoisk"
+            android:src="@drawable/kinopoisk"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
@@ -160,7 +160,7 @@
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:scaleType="fitXY"
-            android:src="@drawable/icon_rutube"/>
+            android:src="@drawable/rutube"/>
         <ImageView
             android:id="@+id/im_googleplay"
             android:layout_width="@dimen/index_first_icon_width"
