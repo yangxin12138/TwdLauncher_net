@@ -407,37 +407,43 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         Intent intent = null;
+        String packageName = "";
+        String className = "";
         if (v.getId() == R.id.im_application){ //所有应用
             intent = new Intent(this,ApplicationActivity.class);
             intent.putExtra("list_mode",1);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         } else if (v.getId() == R.id.im_settings) { //Settings
+            packageName = Utils.readSystemProp("LAUNCHER_SETTING_PACKAGE");
+            className = Utils.readSystemProp("LAUNCHER_SETTING_CLASS");
             intent = new Intent();
-            intent.setComponent(new ComponentName("com.twd.setting","com.twd.setting.MainActivity"));
+            intent.setComponent(new ComponentName(packageName,className));
         } else if (v.getId() == R.id.im_netflix) { //Netflix
+            packageName = Utils.readSystemProp("LAUNCHER_NETFLIX_PACKAGE");
+            className = Utils.readSystemProp("LAUNCHER_NETFLIX_CLASS");
             intent = new Intent();
-            Intent tvIntent = new Intent();
-            tvIntent.setComponent(new ComponentName("com.netflix.ninja","com.netflix.ninja.MainActivity"));
-            if (getPackageManager().resolveActivity(tvIntent, PackageManager.MATCH_DEFAULT_ONLY) == null) {
-                //如果TV版不存在则启动移动版
-                intent.setComponent(new ComponentName("com.netflix.mediaclient","com.netflix.mediaclient.ui.launch.UIWebViewActivity"));
-            }else {
-                intent = tvIntent;
-            }
+            intent.setComponent(new ComponentName(packageName,className));
         } else if (v.getId() == R.id.im_youtube) { // youtube
+            packageName = Utils.readSystemProp("LAUNCHER_YOUTUBE_PACKAGE");
+            className = Utils.readSystemProp("LAUNCHER_YOUTUBE_CLASS");
             intent = new Intent();
-            intent.setComponent(new ComponentName("com.google.android.youtube.tv","com.google.android.apps.youtube.tv.activity.ShellActivity"));
+            intent.setComponent(new ComponentName(packageName,className));
         } else if (v.getId() == R.id.im_googleplay) { //google paly
+            packageName = Utils.readSystemProp("LAUNCHER_GOOGLE_PACKAGE");
+            className = Utils.readSystemProp("LAUNCHER_GOOGLE_CLASS");
             intent = new Intent();
-            intent.setComponent(new ComponentName("com.android.vending","com.google.android.finsky.activities.MainActivity"));
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setComponent(new ComponentName(packageName,className));
         } else if (v.getId() == R.id.im_hdmi) {
             //TODO: hdmi跳转
+            packageName = Utils.readSystemProp("LAUNCHER_HDMI_PACKAGE");
+            className = Utils.readSystemProp("LAUNCHER_HDMI_CLASS");
             intent = new Intent();
-            intent.setComponent(new ComponentName("com.twd.twdcamera","com.twd.twdcamera.MainActivity"));
+            intent.setComponent(new ComponentName(packageName,className));
         } else if (v.getId() == R.id.im_files) {//file
+            packageName = Utils.readSystemProp("LAUNCHER_FILE_PACKAGE");
+            className = Utils.readSystemProp("LAUNCHER_FILE_CLASS");
             intent = new Intent();
-            intent.setComponent(new ComponentName("com.xiaobaifile.tv", "com.xiaobaifile.tv.view.MainActivity"));
+            intent.setComponent(new ComponentName(packageName, className));
         }
 
         if (intent != null){
