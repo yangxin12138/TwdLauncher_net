@@ -43,7 +43,7 @@
     <dimen name="application_icon_textsize">12sp</dimen>
     <dimen name="application_icon_paddingTop">15dp</dimen>
     <dimen name="application_paddingTop">15dp</dimen>
-    <dimen name="application_paddingBottom">20dp</dimen>
+    <dimen name="application_paddingBottom">100dp</dimen>
     <dimen name="application_list_title_paddingStart">70dp</dimen>
     <dimen name="application_item_radius">20dp</dimen>
     <dimen name="applicaiton_item_spacing">5dp</dimen>

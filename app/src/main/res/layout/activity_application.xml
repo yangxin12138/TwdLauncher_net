@@ -121,12 +121,18 @@
         android:paddingStart="@dimen/application_grid_padding_startend"
         android:paddingEnd="@dimen/application_grid_padding_startend"
         android:paddingTop="@dimen/application_paddingTop"
-        android:paddingBottom="@dimen/application_paddingBottom"
-        android:layout_margin="@dimen/application_paddingBottom"
+        android:paddingBottom="@dimen/application_paddingTop"
+        android:layout_marginStart="@dimen/application_paddingBottom"
+        android:layout_marginEnd="@dimen/application_paddingBottom"
+        android:layout_marginBottom="@dimen/application_paddingBottom"
         android:numColumns="6"
         android:verticalSpacing="@dimen/applicaiton_item_spacing"
         android:horizontalSpacing="@dimen/applicaiton_item_spacing"
         android:stretchMode="columnWidth"
         android:gravity="center"
-        android:background="@drawable/gradient_dark"/>
+        android:background="@drawable/gradient_dark"
+        android:scrollbars="vertical"
+        android:fadeScrollbars="false"
+        android:scrollbarStyle="insideOverlay"
+        android:scrollbarSize="4dp"/>
 </LinearLayout>

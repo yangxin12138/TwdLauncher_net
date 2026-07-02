@@ -14,6 +14,10 @@
     </style>
     <style name="Theme.TwdLauncher_net" parent="AppTheme.Fullscreen">
         <item name="android:windowBackground">@color/black</item>
+        <!-- 垂直滚动条滑块颜色 -->
+        <item name="android:scrollbarThumbVertical">@drawable/scroll_thumb_white</item>
+        <!-- 水平滚动条滑块颜色（按需加） -->
+        <item name="android:scrollbarThumbHorizontal">@drawable/scroll_thumb_white</item>
     </style>
 
     <style name="Theme.Index_Standard" parent="Theme.TwdLauncher_net">

@@ -14,12 +14,12 @@
     <dimen name="index_second_icon_height">135dp</dimen>
     <dimen name="index_heat_paddingTop">20dp</dimen>
 
-    <dimen name="application_icon_width">110dp</dimen>
-    <dimen name="application_icon_height">130dp</dimen>
+    <dimen name="application_icon_width">130dp</dimen>
+    <dimen name="application_icon_height">150dp</dimen>
     <dimen name="application_image">80dp</dimen>
     <dimen name="application_text">15sp</dimen>
     <dimen name="application_grid_padding">30dp</dimen>
-    <dimen name="application_grid_padding_startend">100dp</dimen>
+    <dimen name="application_grid_padding_startend">35dp</dimen>
 
     <dimen name="index_margin_yameixun">40dp</dimen>
     <dimen name="index_padding_yameixun">40dp</dimen>
@@ -37,7 +37,7 @@
     <dimen name="application_icon_textsize">15sp</dimen>
     <dimen name="application_icon_paddingTop">25dp</dimen>
     <dimen name="application_paddingTop">25dp</dimen>
-    <dimen name="application_paddingBottom">50dp</dimen>
+    <dimen name="application_paddingBottom">40dp</dimen>
     <dimen name="index_heat_item_width">100dp</dimen>
     <dimen name="index_heat_item_height">120dp</dimen>
     <dimen name="index_heat_item_marginTop">10dp</dimen>
