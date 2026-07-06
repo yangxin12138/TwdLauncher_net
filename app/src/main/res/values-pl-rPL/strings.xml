@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">TwdLauncherN</string>
-    <string name="index_add_title">dodać do</string>
-    <string name="application_title">program aplikacji</string>
-    <string name="application_confirm">określić</string>
-    <string name="application_cancel">anuluj</string>
+    <string name="index_add_title">Dodać do</string>
+    <string name="application_title">Program aplikacji</string>
+    <string name="application_confirm">Określić</string>
+    <string name="application_cancel">Anuluj</string>
     <string name="application_isuninstall">Czy na pewno chcesz odinstalować tę aplikację?</string>
     <string name="application_imuninstall">Nie można odinstalować aplikacji systemowych!</string>
     <string name="application_maxvalue">Wybierz maksymalnie 7 aplikacji</string>

@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">TwdLauncherN</string>
-    <string name="index_add_title">eklemek</string>
-    <string name="application_title">uygulama</string>
-    <string name="application_confirm">onaylayın</string>
-    <string name="application_cancel">iptal et</string>
+    <string name="index_add_title">Eklemek</string>
+    <string name="application_title">Uygulama</string>
+    <string name="application_confirm">Onaylayın</string>
+    <string name="application_cancel">Iptal et</string>
     <string name="application_isuninstall">Bu uygulamayı kaldırmak istediğinizden emin misiniz?</string>
     <string name="application_imuninstall">Sistem uygulamaları kurulamaz!</string>
     <string name="application_maxvalue">7 uygulamalara kadar seçilebilir</string>
