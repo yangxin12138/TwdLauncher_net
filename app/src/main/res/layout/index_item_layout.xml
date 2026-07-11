@@ -27,6 +27,8 @@
             android:layout_gravity="center_horizontal"
             android:ellipsize="marquee"
             android:marqueeRepeatLimit="marquee_forever"
+            android:maxLines="1"
+            android:layout_marginTop="20dp"
             android:singleLine="true"/>
     </LinearLayout>
     <ImageView
