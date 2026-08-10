@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TwdLauncherN</string>
+    <string name="index_add_title">شامل کریں</string>
+    <string name="application_title">میری ایپلی کیشن</string>
+    <string name="application_confirm">ٹھیک ہے</string>
+    <string name="application_cancel">منسوخ کریں</string>
+    <string name="application_isuninstall">کیا آپ اس ایپلی کیشن کو انسٹال کرنا چاہتے ہیں؟</string>
+    <string name="application_imuninstall">سسٹم ایپلی کیشنز کو غیر انسٹال نہیں کیا جا سکتا!</string>
+    <string name="application_maxvalue">7 ایپلی کیشنز کا انتخاب کریں</string>
+    <string name="index_usb_listener">بیرونی اسٹوریج ڈیوائس پتہ چلا، کیا فائل مینجمنٹ کھولنا چاہتے ہیں؟</string>
+</resources>

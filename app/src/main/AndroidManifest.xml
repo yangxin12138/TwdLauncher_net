@@ -25,7 +25,7 @@
         android:icon="@mipmap/launchernet_icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/launchernet_icon"
-        android:supportsRtl="true"
+        android:supportsRtl="false"
         android:theme="@style/Theme.TwdLauncher_net"
         android:name=".application.HandlerApplication"
         tools:targetApi="31">
