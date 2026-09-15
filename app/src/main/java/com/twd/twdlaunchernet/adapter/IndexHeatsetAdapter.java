@@ -29,6 +29,8 @@ import java.util.List;
  */
 public class IndexHeatsetAdapter extends BaseAdapter {
 
+    private static final int MAX_COUNT = 3;  // 固定显示3个位置
+
     private Context mContext;
     private List<ApplicationInfo> mApplist;
     private LayoutInflater mInflater;
@@ -42,7 +44,7 @@ public class IndexHeatsetAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return mApplist.size() + 1;//添加一个固定的ImageView
+        return MAX_COUNT;
     }
 
     @Override
@@ -143,13 +145,13 @@ public class IndexHeatsetAdapter extends BaseAdapter {
                 if (position == 0){
                     if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT && event.getAction()==KeyEvent.ACTION_DOWN){
                         Log.i("yangxin", "onKey: -------执行requestFocus");
-                        ((MainActivity) mContext).im_hdmi.requestFocus();
+                        ((MainActivity) mContext).im_youtube.requestFocus();
                         return true;
                     }
                 }
-                if (name.getText() == mContext.getString(R.string.index_add_title) ){
-                    if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT && event.getAction()==KeyEvent.ACTION_DOWN){
-                        Log.i("yangxin", "onKey: -------执行 -- 添加按右");
+                if (position == MAX_COUNT - 1) {
+                    if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT && event.getAction() == KeyEvent.ACTION_DOWN) {
+                        Log.i("yangxin", "onKey: -------执行 -- 最右边按右");
                         return true;
                     }
                 }

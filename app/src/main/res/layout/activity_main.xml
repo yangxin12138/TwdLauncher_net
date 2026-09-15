@@ -99,6 +99,7 @@
                     android:paddingTop="@dimen/index_icon_padding"
                     android:paddingStart="@dimen/index_icon_padding"
                     android:paddingEnd="@dimen/index_icon_padding"
+                    android:visibility="gone"
                     android:src="@drawable/icon_ble"/>
                 <ImageView
                     android:id="@+id/im_usb"
@@ -137,7 +138,7 @@
         android:paddingEnd="@dimen/index_padding">
 
         <ImageView
-            android:id="@+id/im_netflix"
+            android:id="@+id/im_rutube"
             android:layout_width="@dimen/index_first_icon_width"
             android:layout_height="@dimen/index_first_icon_height"
             android:layout_marginStart="@dimen/index_margin"
@@ -146,43 +147,43 @@
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:scaleType="fitXY"
-            android:src="@drawable/icon_netflix"
+            android:src="@drawable/rutube"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/im_youtube"
+            android:id="@+id/im_vk"
             android:layout_width="@dimen/index_first_icon_width"
             android:layout_height="@dimen/index_first_icon_height"
             android:layout_marginTop="@dimen/index_margin_top"
-            app:layout_constraintStart_toEndOf="@+id/im_netflix"
+            app:layout_constraintStart_toEndOf="@+id/im_rutube"
             app:layout_constraintTop_toTopOf="parent"
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:scaleType="fitXY"
-            android:src="@drawable/icon_youtube" />
+            android:src="@drawable/vk" />
         <ImageView
-            android:id="@+id/im_googleplay"
+            android:id="@+id/im_rustortv"
             android:layout_width="@dimen/index_first_icon_width"
             android:layout_height="@dimen/index_first_icon_height"
             android:layout_marginTop="@dimen/index_margin_top"
             android:layout_marginEnd="@dimen/index_margin"
-            app:layout_constraintStart_toEndOf="@+id/im_youtube"
+            app:layout_constraintStart_toEndOf="@+id/im_vk"
             app:layout_constraintTop_toTopOf="parent"
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:scaleType="fitXY"
-            android:src="@drawable/icon_googleplay" />
+            android:src="@drawable/rustortv" />
         <ImageView
             android:id="@+id/im_application"
             android:layout_width="@dimen/index_second_icon_width"
             android:layout_height="@dimen/index_second_icon_height"
-            android:layout_below="@+id/im_netflix"
+            android:layout_below="@+id/im_rutube"
             android:layout_marginStart="@dimen/index_margin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/im_netflix"
+            app:layout_constraintTop_toBottomOf="@+id/im_rutube"
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
@@ -193,7 +194,7 @@
             android:layout_width="@dimen/index_second_icon_width"
             android:layout_height="@dimen/index_second_icon_height"
             app:layout_constraintStart_toEndOf="@+id/im_application"
-            app:layout_constraintTop_toBottomOf="@+id/im_netflix"
+            app:layout_constraintTop_toBottomOf="@+id/im_rutube"
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
@@ -204,7 +205,7 @@
             android:layout_width="@dimen/index_second_icon_width"
             android:layout_height="@dimen/index_second_icon_height"
             app:layout_constraintStart_toEndOf="@+id/im_settings"
-            app:layout_constraintTop_toBottomOf="@+id/im_netflix"
+            app:layout_constraintTop_toBottomOf="@+id/im_rutube"
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
@@ -215,27 +216,51 @@
             android:layout_width="@dimen/index_second_icon_width"
             android:layout_height="@dimen/index_second_icon_height"
             app:layout_constraintStart_toEndOf="@+id/im_files"
-            app:layout_constraintTop_toBottomOf="@+id/im_netflix"
+            app:layout_constraintTop_toBottomOf="@+id/im_rutube"
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:scaleType="centerCrop"
             android:src="@drawable/icon_hdmi1" />
+        <ImageView
+            android:id="@+id/im_googleplay"
+            android:layout_width="@dimen/index_second_icon_width"
+            android:layout_height="@dimen/index_third_icon_height"
+            android:layout_below="@+id/im_application"
+            android:layout_marginStart="@dimen/index_margin"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/im_application"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_googleplay" />
+        <ImageView
+            android:id="@+id/im_youtube"
+            android:layout_width="@dimen/index_second_icon_width"
+            android:layout_height="@dimen/index_third_icon_height"
+            app:layout_constraintStart_toEndOf="@+id/im_application"
+            app:layout_constraintTop_toBottomOf="@+id/im_settings"
+            android:layout_marginTop="20dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_youtube" />
+
         <GridView
             android:id="@+id/heat_set"
-            android:layout_width="wrap_content"
+            android:layout_width="500dp"
             android:layout_height="180dp"
-            app:layout_constraintTop_toBottomOf="@+id/im_application"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:descendantFocusability="afterDescendants"
             android:gravity="center"
             android:horizontalSpacing="0dp"
-            android:numColumns="8"
-            android:paddingTop="@dimen/index_heat_paddingTop"
+            android:numColumns="3"
             android:stretchMode="columnWidth"
-            android:layout_marginStart="@dimen/index_margin"
-            android:layout_marginEnd="@dimen/index_margin" />
+            android:paddingTop="@dimen/index_heat_paddingTop"
+            app:layout_constraintStart_toEndOf="@id/im_youtube"
+            app:layout_constraintTop_toBottomOf="@+id/im_application" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

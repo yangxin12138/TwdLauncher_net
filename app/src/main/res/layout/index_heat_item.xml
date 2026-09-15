@@ -23,6 +23,7 @@
             android:layout_height="@dimen/heat_icon_height"
             android:scaleType="centerCrop"
             android:padding="5dp"
+            android:layout_gravity="center_horizontal"
             />
         <TextView
             android:duplicateParentState="true"

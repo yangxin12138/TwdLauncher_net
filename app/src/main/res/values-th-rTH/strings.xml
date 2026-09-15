@@ -6,6 +6,6 @@
     <string name="application_cancel">การยกเลิก</string>
     <string name="application_isuninstall">แน่ใจว่าคุณต้องการถอนการติดตั้งแอปนี้?</string>
     <string name="application_imuninstall">ไม่สามารถถอนการติดตั้งโปรแกรมระบบ!</string>
-    <string name="application_maxvalue">สามารถเลือกใช้งานได้ถึง 7 แอพพลิเคชั่น</string>
+    <string name="application_maxvalue">สามารถเลือกใช้งานได้ถึง 3 แอพพลิเคชั่น</string>
     <string name="index_usb_listener">ตรวจพบอุปกรณ์จัดเก็บข้อมูลภายนอก คุณต้องการเปิดการจัดการแฟ้มหรือไม่?</string>
 </resources>

@@ -6,6 +6,6 @@
     <string name="application_cancel">Anuluj</string>
     <string name="application_isuninstall">Czy na pewno chcesz odinstalować tę aplikację?</string>
     <string name="application_imuninstall">Nie można odinstalować aplikacji systemowych!</string>
-    <string name="application_maxvalue">Wybierz maksymalnie 7 aplikacji</string>
+    <string name="application_maxvalue">Wybierz maksymalnie 3 aplikacji</string>
     <string name="index_usb_listener">Wykryto zewnętrzne urządzenie pamięci masowej. Czy chcesz otworzyć zarządzanie plikami?</string>
 </resources>

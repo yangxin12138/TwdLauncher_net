@@ -150,7 +150,7 @@ public class ApplicationActivity extends AppCompatActivity {
                                 selectedCount++;
                             }
                         }
-                        if (selectedCount < 7) {
+                        if (selectedCount < 3) {
                             viewHold.iv_red.setVisibility(View.VISIBLE);
                             editor.putBoolean(packageName,true);
                         }else {

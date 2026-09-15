@@ -131,6 +131,9 @@ public class Utils {
                     } catch (Exception e) {}
                 }
             }
+            if (selectedApps.size() > 3) {
+                return selectedApps.subList(0, 3);
+            }
             return selectedApps;
         }
 

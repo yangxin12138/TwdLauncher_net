@@ -13,6 +13,7 @@
     <dimen name="index_first_icon_height">200dp</dimen>
     <dimen name="index_second_icon_width">270dp</dimen>
     <dimen name="index_second_icon_height">180dp</dimen>
+    <dimen name="index_third_icon_height">120dp</dimen>
     <dimen name="index_heat_paddingTop">20dp</dimen>
     <dimen name="index_icon_padding">20dp</dimen>
     <dimen name="index_heat_item_width">120dp</dimen>
