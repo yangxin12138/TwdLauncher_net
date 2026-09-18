@@ -272,38 +272,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         Intent intent = null;
+        String packageName = "";
+        String className = "";
         if (v.getId() == R.id.im_applications){ //所有应用
             intent = new Intent(this,ApplicationActivity.class);
             intent.putExtra("list_mode",1);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         } else if (v.getId() == R.id.im_settings) { //Settings
+            packageName = Utils.readSystemProp("LAUNCHER_SETTING_PACKAGE");
+            className = Utils.readSystemProp("LAUNCHER_SETTING_CLASS");
             intent = new Intent();
-            intent.setComponent(new ComponentName("com.twd.setting","com.twd.setting.MainActivity"));
+            intent.setComponent(new ComponentName(packageName,className));
         } else if (v.getId() == R.id.im_netflix) { //Netflix
+            packageName = Utils.readSystemProp("LAUNCHER_NETFLIX_PACKAGE");
+            className = Utils.readSystemProp("LAUNCHER_NETFLIX_CLASS");
             intent = new Intent();
-            Intent tvIntent = new Intent();
-            tvIntent.setComponent(new ComponentName("com.netflix.ninja","com.netflix.ninja.MainActivity"));
-            if (getPackageManager().resolveActivity(tvIntent, PackageManager.MATCH_DEFAULT_ONLY) == null) {
-                //如果TV版不存在则启动移动版
-                intent.setComponent(new ComponentName("com.netflix.mediaclient","com.netflix.mediaclient.ui.launch.UIWebViewActivity"));
-            }else {
-                intent = tvIntent;
-            }
+            intent.setComponent(new ComponentName(packageName,className));
         } else if (v.getId() == R.id.im_youtube) { // youtube
+            packageName = Utils.readSystemProp("LAUNCHER_YOUTUBE_PACKAGE");
+            className = Utils.readSystemProp("LAUNCHER_YOUTUBE_CLASS");
             intent = new Intent();
-            intent.setComponent(new ComponentName("com.google.android.youtube.tv","com.google.android.apps.youtube.tv.activity.ShellActivity"));
-        } else if (v.getId() == R.id.im_prime) { //google paly
-           //TODO:prime
+            intent.setComponent(new ComponentName(packageName,className));
+        } else if (v.getId() == R.id.im_prime) {
+            packageName = Utils.readSystemProp("LAUNCHER_PRIME_PACKAGE");
+            className = Utils.readSystemProp("LAUNCHER_PRIME_CLASS");
             intent = new Intent();
-            intent.setComponent(new ComponentName("com.amazon.avod.thirdpartyclient","com.amazon.avod.thirdpartyclient.LauncherActivity"));
+            intent.setComponent(new ComponentName(packageName,className));
         } else if (v.getId() == R.id.im_appstore) {
-            //TODO: appstore
+            packageName = Utils.readSystemProp("LAUNCHER_APPSTORE_PACKAGE");
+            className = Utils.readSystemProp("LAUNCHER_APPSTORE_CLASS");
             intent = new Intent();
-            intent.setComponent(new ComponentName("cm.aptoidetv.pt","cm.aptoidetv.pt.activity.MainActivity"));
+            intent.setComponent(new ComponentName(packageName,className));
         } else if (v.getId() == R.id.im_castting) {
-            Log.d(TAG, "onClick: 点到casting");
-            //TODO:casting
-            showDialog();
+            packageName = Utils.readSystemProp("LAUNCHER_CASTING_PACKAGE");
+            className = Utils.readSystemProp("LAUNCHER_CASTING_CLASS");
+            intent = new Intent();
+            intent.setComponent(new ComponentName(packageName,className));
         }
 
         if (intent != null){
@@ -494,7 +498,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
             }else {
-                Toast.makeText(this, "目标应用未安装", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "App Not Installed", Toast.LENGTH_SHORT).show();
             }
         }catch (Exception e){
             e.printStackTrace();
