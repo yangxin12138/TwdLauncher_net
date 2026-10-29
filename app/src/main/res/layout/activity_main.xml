@@ -239,14 +239,18 @@
 
         <GridView
             android:id="@+id/heat_set"
-            android:layout_width="850dp"
+            android:layout_width="0dp"
             android:layout_height="180dp"
             android:descendantFocusability="afterDescendants"
             android:gravity="center"
             android:horizontalSpacing="0dp"
             android:numColumns="6"
             android:stretchMode="columnWidth"
+            android:clipToPadding="false"
             android:paddingTop="@dimen/index_heat_paddingTop"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/im_youtube"
             app:layout_constraintTop_toBottomOf="@+id/im_application" />
     </androidx.constraintlayout.widget.ConstraintLayout>

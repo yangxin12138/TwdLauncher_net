@@ -207,7 +207,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         im_rutube = findViewById(R.id.im_rutube); im_rutube.setOnFocusChangeListener(this::onFocusChange); im_rutube.setOnClickListener(this::onClick);
         im_vk = findViewById(R.id.im_vk); im_vk.setOnFocusChangeListener(this::onFocusChange); im_vk.setOnClickListener(this::onClick);
-        im_youtube = findViewById(R.id.im_youtube); im_youtube.setOnFocusChangeListener(this::onFocusChange); im_youtube.setOnClickListener(this::onClick);
+        im_youtube = findViewById(R.id.im_youtube); im_youtube.setOnFocusChangeListener(this::onFocusChange); im_youtube.setOnClickListener(this::onClick); im_youtube.setOnKeyListener(this::onKey);
         im_googleplay = findViewById(R.id.im_googleplay); im_googleplay.setOnFocusChangeListener(this::onFocusChange); im_googleplay.setOnClickListener(this::onClick); im_googleplay.setOnKeyListener(this::onKey);
         im_application = findViewById(R.id.im_application); im_application.setOnFocusChangeListener(this::onFocusChange); im_application.setOnClickListener(this::onClick); im_application.setOnKeyListener(this::onKey);
         im_settings = findViewById(R.id.im_settings); im_settings.setOnFocusChangeListener(this::onFocusChange); im_settings.setOnClickListener(this::onClick);
