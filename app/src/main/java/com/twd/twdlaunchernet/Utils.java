@@ -121,18 +121,17 @@ public class Utils {
         // 1. 读取有序的包名字符串
         String orderString = sp.getString("heat_set_order", "");
         if (TextUtils.isEmpty(orderString)) {
-            // 兼容旧数据：如果没有顺序，走原来的逻辑
+            // 兼容旧数据：没有顺序时，遍历所有 Boolean=true 的包名
             Map<String, ?> map = sp.getAll();
             for (Map.Entry<String, ?> entry : map.entrySet()) {
-                if ((Boolean) entry.getValue()) {
+                Object value = entry.getValue();
+                // 关键：只处理 Boolean 类型，跳过 heat_set_order 等 String 值
+                if (value instanceof Boolean && (Boolean) value) {
                     try {
                         ApplicationInfo info = pm.getApplicationInfo(entry.getKey(), 0);
                         selectedApps.add(info);
                     } catch (Exception e) {}
                 }
-            }
-            if (selectedApps.size() > 3) {
-                return selectedApps.subList(0, 3);
             }
             return selectedApps;
         }
@@ -148,7 +147,9 @@ public class Utils {
                 sp.edit().remove(pkg).apply();
             }
         }
-
+        if (selectedApps.size() > 5) {
+            return selectedApps.subList(0, 5);
+        }
         return selectedApps;
     }
 
@@ -399,5 +400,96 @@ public class Utils {
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);
+    }
+
+    /**
+     * 初始化时从 /system/etc/settings.ini 读取预设的 HEATSET 应用
+     * 行格式：HEATSET=com.xxx.yyy  （或 HEATSET1=...、HEATSET_xxx=...，只要以 HEATSET 开头）
+     * 解析出的包名写入 SharedPreferences("SelectedApps")，并生成 heat_set_order 顺序
+     */
+    public static void initSelectedAppsFromSettingsIni(Context context) {
+        final String INI_PATH = "/system/etc/settings.ini";
+        final String KEY_PREFIX = "HEATSET";
+        final String SP_NAME = "SelectedApps";
+        final String ORDER_KEY = "heat_set_order";
+        // 用于记录「是否已初始化过」的独立 SP，避免和 SelectedApps 混在一起
+        final String FLAG_SP = "app_init_flag";
+        final String FLAG_KEY = "heatset_inited";
+
+        // ===== 只允许执行一次 =====
+        SharedPreferences flagSp = context.getSharedPreferences(FLAG_SP, Context.MODE_PRIVATE);
+        if (flagSp.getBoolean(FLAG_KEY, false)) {
+            Log.i("yangxin", "initSelectedAppsFromSettingsIni: 已初始化过，跳过");
+            return;
+        }
+        File file = new File(INI_PATH);
+        if (!file.exists()) {
+            Log.w("yangxin", "initSelectedAppsFromSettingsIni: " + INI_PATH + " 不存在，跳过");
+            return;
+        }
+
+        // 按顺序收集包名
+        List<String> packageNames = new ArrayList<>();
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                line = line.trim();
+                if (line.isEmpty() || line.startsWith("#")) {
+                    continue; // 跳过空行和注释
+                }
+                // 必须以 HEATSET 开头
+                if (!line.startsWith(KEY_PREFIX)) {
+                    continue;
+                }
+                int eqIndex = line.indexOf('=');
+                if (eqIndex < 0 || eqIndex == line.length() - 1) {
+                    continue;
+                }
+                // key 部分（等号前）也必须以 HEATSET 开头，防止误匹配
+                String key = line.substring(0, eqIndex).trim();
+                if (!key.startsWith(KEY_PREFIX)) {
+                    continue;
+                }
+                String value = line.substring(eqIndex + 1).trim();
+                if (value.isEmpty()) {
+                    continue;
+                }
+                packageNames.add(value);
+                Log.i("yangxin", "initSelectedAppsFromSettingsIni: 读取到 " + key + " = " + value);
+            }
+        } catch (Exception e) {
+            Log.e("yangxin", "initSelectedAppsFromSettingsIni: 读取失败", e);
+            return;
+        } finally {
+            if (reader != null) {
+                try { reader.close(); } catch (IOException ignored) {}
+            }
+        }
+
+        if (packageNames.isEmpty()) {
+            Log.i("yangxin", "initSelectedAppsFromSettingsIni: 没有找到 HEATSET 配置，跳过");
+            return;
+        }
+
+        // 写入 SharedPreferences
+        SharedPreferences sp = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+
+        // 1. 写入每个包名为 true（兼容 getSelectedApps 的旧逻辑）
+        for (String pkg : packageNames) {
+            editor.putBoolean(pkg, true);
+        }
+
+        // 2. 写入顺序（getSelectedApps 优先读取该 key 保证界面顺序）
+        editor.putString(ORDER_KEY, TextUtils.join(",", packageNames));
+
+        editor.apply(); // 或 commit() 如果需要在 initView 中立即同步生效
+        editor.commit();
+
+        // ===== 标记已初始化 =====
+        flagSp.edit().putBoolean(FLAG_KEY, true).commit();
+        Log.i("yangxin", "initSelectedAppsFromSettingsIni: 共初始化 " + packageNames.size() + " 个应用");
     }
 }

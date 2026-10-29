@@ -14,7 +14,7 @@
     <dimen name="index_second_icon_width">273dp</dimen>
     <dimen name="index_second_icon_height">178dp</dimen>
     <dimen name="index_heat_paddingTop">10dp</dimen>
-    <dimen name="index_icon_padding">5dp</dimen>
+    <dimen name="index_icon_padding">12dp</dimen>
 
     <dimen name="application_icon_width">150dp</dimen>
     <dimen name="application_icon_height">190dp</dimen>

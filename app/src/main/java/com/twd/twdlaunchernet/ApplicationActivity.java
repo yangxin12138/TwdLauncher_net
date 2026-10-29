@@ -11,6 +11,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -141,18 +142,21 @@ public class ApplicationActivity extends AppCompatActivity {
                         //已经选过了，取消选中
                         viewHold.iv_red.setVisibility(View.GONE);
                         editor.putBoolean(packageName,false);
+                        removeOrder(packageName);
                     }else {
                         //未选中，判断是否超过5个
                         int selectedCount = 0;
-                        Map<String,?> allEntries = sharedPreferences.getAll();
-                        for (Map.Entry<String,?> entry :allEntries.entrySet()){
-                            if ((boolean) entry.getValue()){
+                        Map<String, ?> allEntries = sharedPreferences.getAll();
+                        for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
+                            Object value = entry.getValue();
+                            if (value instanceof Boolean && (Boolean) value) {
                                 selectedCount++;
                             }
                         }
-                        if (selectedCount < 3) {
+                        if (selectedCount < 5) {
                             viewHold.iv_red.setVisibility(View.VISIBLE);
                             editor.putBoolean(packageName,true);
+                            appendOrder(packageName);
                         }else {
                             //提示用户最多只能选5个
                             Toast.makeText(getApplicationContext(), getString(R.string.application_maxvalue), Toast.LENGTH_SHORT).show();
@@ -273,5 +277,33 @@ public class ApplicationActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_DELETE, uri);
         startActivity(intent);
         //Utils.execCommand(packageName);
+    }
+
+    private void appendOrder(String packageName) {
+        String order = sharedPreferences.getString("heat_set_order", "");
+        List<String> list = new ArrayList<>();
+        if (!order.isEmpty()) {
+            for (String s : order.split(",")) {
+                if (!s.isEmpty()) list.add(s);
+            }
+        }
+        if (!list.contains(packageName)) list.add(packageName);
+        sharedPreferences.edit().putString("heat_set_order", TextUtils.join(",", list)).apply();
+    }
+
+    private void removeOrder(String packageName) {
+        String order = sharedPreferences.getString("heat_set_order", "");
+        if (order.isEmpty()) return;
+        List<String> list = new ArrayList<>();
+        for (String s : order.split(",")) {
+            if (!s.isEmpty() && !s.equals(packageName)) list.add(s);
+        }
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        if (list.isEmpty()) {
+            editor.remove("heat_set_order");   // 0 个时移除 key
+        } else {
+            editor.putString("heat_set_order", TextUtils.join(",", list));
+        }
+        editor.apply();
     }
 }

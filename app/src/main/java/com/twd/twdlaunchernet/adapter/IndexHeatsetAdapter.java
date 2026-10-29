@@ -29,7 +29,8 @@ import java.util.List;
  */
 public class IndexHeatsetAdapter extends BaseAdapter {
 
-    private static final int MAX_COUNT = 3;  // 固定显示3个位置
+    private static final int MAX_COUNT = 5;  // 固定显示5个位置
+    private static final int TOTAL_SLOTS = MAX_COUNT + 1; // 6 格：5 应用 + 1 加号
 
     private Context mContext;
     private List<ApplicationInfo> mApplist;
@@ -44,12 +45,13 @@ public class IndexHeatsetAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return MAX_COUNT;
+        return TOTAL_SLOTS;
     }
 
     @Override
     public Object getItem(int position) {
-        return mApplist.get(position);
+        if (position < mApplist.size()) return mApplist.get(position);
+        return null;   // 加号/空位
     }
 
     @Override
@@ -149,7 +151,7 @@ public class IndexHeatsetAdapter extends BaseAdapter {
                         return true;
                     }
                 }
-                if (position == MAX_COUNT - 1) {
+                if (position == getCount() - 1) {
                     if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT && event.getAction() == KeyEvent.ACTION_DOWN) {
                         Log.i("yangxin", "onKey: -------执行 -- 最右边按右");
                         return true;

@@ -62,7 +62,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public ImageView im_hdmi;
     private ImageView im_rutube;
     private ImageView im_vk;
-    private ImageView im_rustortv;
     private View time_bar;
     private Handler timerHandler = new Handler();
     private boolean firstNetwork;
@@ -208,13 +207,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         im_rutube = findViewById(R.id.im_rutube); im_rutube.setOnFocusChangeListener(this::onFocusChange); im_rutube.setOnClickListener(this::onClick);
         im_vk = findViewById(R.id.im_vk); im_vk.setOnFocusChangeListener(this::onFocusChange); im_vk.setOnClickListener(this::onClick);
-        im_rustortv = findViewById(R.id.im_rustortv); im_rustortv.setOnFocusChangeListener(this::onFocusChange); im_rustortv.setOnClickListener(this::onClick);
         im_youtube = findViewById(R.id.im_youtube); im_youtube.setOnFocusChangeListener(this::onFocusChange); im_youtube.setOnClickListener(this::onClick);
         im_googleplay = findViewById(R.id.im_googleplay); im_googleplay.setOnFocusChangeListener(this::onFocusChange); im_googleplay.setOnClickListener(this::onClick); im_googleplay.setOnKeyListener(this::onKey);
         im_application = findViewById(R.id.im_application); im_application.setOnFocusChangeListener(this::onFocusChange); im_application.setOnClickListener(this::onClick); im_application.setOnKeyListener(this::onKey);
         im_settings = findViewById(R.id.im_settings); im_settings.setOnFocusChangeListener(this::onFocusChange); im_settings.setOnClickListener(this::onClick);
         im_files = findViewById(R.id.im_files); im_files.setOnFocusChangeListener(this::onFocusChange); im_files.setOnClickListener(this::onClick);
         im_hdmi = findViewById(R.id.im_hdmi); im_hdmi.setOnFocusChangeListener(this::onFocusChange); im_hdmi.setOnClickListener(this::onClick);im_hdmi.setOnKeyListener(this::onKey);
+        Utils.initSelectedAppsFromSettingsIni(this);
         gridView = findViewById(R.id.heat_set);
         borderDrawable = getResources().getDrawable(R.drawable.border_white);
         appList = Utils.getSelectedApps(this);
@@ -304,11 +303,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             className = Utils.readSystemProp("LAUNCHER_VK_CLASS");
             intent = new Intent();
             intent.setComponent(new ComponentName(packageName, className));
-        }else if (v.getId() == R.id.im_rustortv) {//rustortv
-            packageName = Utils.readSystemProp("LAUNCHER_RUSTORTV_PACKAGE");
-            className = Utils.readSystemProp("LAUNCHER_RUSTORTV_CLASS");
-            intent = new Intent();
-            intent.setComponent(new ComponentName(packageName, className));
         }
 
         if (intent != null){
@@ -344,20 +338,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (heatAdapter.getSelectionPosition() != -1){
                 int finalPosition = heatAdapter.getSelectionPosition();
                 // 确保位置在有效范围内
-                if (finalPosition >= 3) {
-                    finalPosition = 2;
+                int total = heatAdapter.getCount();   // 6
+                if (finalPosition < 0 || finalPosition >= total) {
+                    finalPosition = total - 1;        // 越界放到最后一格（加号）
                 }
                 final int pos = finalPosition;
-                gridView.post(new Runnable() {
-                    public void run() {
-                        Log.i(TAG, "run: position = "+ pos );
-                        View child = gridView.getChildAt(pos);
-                        if (child != null) {
-                            child.requestFocus();
-                        } else {
-                            gridView.requestFocus();
-                            gridView.setSelection(pos);
-                        }
+                gridView.post(() -> {
+                    View child = gridView.getChildAt(pos);
+                    if (child != null) {
+                        child.requestFocus();
+                    } else {
+                        gridView.requestFocus();
+                        gridView.setSelection(pos);
                     }
                 });
             }
@@ -447,7 +439,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public boolean onKey(View v, int keyCode, KeyEvent event) {
         Log.i(TAG, "onKey: 触发key按键事件==========");
-        if (v.getId() == R.id.im_rustortv){
+        if (v.getId() == R.id.im_googleplay){
             if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT && event.getAction()==KeyEvent.ACTION_DOWN){
                 Log.i(TAG, "onKey: 触发key按键事件==========im_googleplay");
                 if (v.isFocused()){
@@ -459,7 +451,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Log.i(TAG, "onKey: 触发key按键事件==========im_application");
             if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT && event.getAction() == KeyEvent.ACTION_DOWN){
                 if (v.isFocused()){
-                    im_rustortv.requestFocus();
+                    im_googleplay.requestFocus();
                     return true;
                 }
             }
@@ -467,15 +459,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Log.i(TAG, "onKey: 触发key按键事件==========im_application");
             if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT && event.getAction() == KeyEvent.ACTION_DOWN){
                 if (v.isFocused()){
-                    im_googleplay.requestFocus();
-                    return true;
-                }
-            }
-        } else if (v.getId() == R.id.im_googleplay) {
-            Log.i(TAG, "onKey: 触发key按键事件==========im_application");
-            if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT && event.getAction() == KeyEvent.ACTION_DOWN){
-                if (v.isFocused()){
-                    im_hdmi.requestFocus();
+                    im_youtube.requestFocus();
                     return true;
                 }
             }
@@ -485,6 +469,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (v.isFocused()){
                     gridView.requestFocus();
                     gridView.setSelection(0);
+                    return true;
+                }
+            } else if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT && event.getAction() == KeyEvent.ACTION_DOWN) {
+                if (v.isFocused()){
+                    im_hdmi.requestFocus();
                     return true;
                 }
             }

@@ -16,6 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.15"
+        android:layout_marginTop="@dimen/index_icon_padding"
         android:orientation="horizontal"
         android:paddingStart="?attr/indexPadding"
         android:paddingEnd="?attr/indexPadding">
@@ -164,7 +165,7 @@
             android:scaleType="fitXY"
             android:src="@drawable/vk" />
         <ImageView
-            android:id="@+id/im_rustortv"
+            android:id="@+id/im_googleplay"
             android:layout_width="@dimen/index_first_icon_width"
             android:layout_height="@dimen/index_first_icon_height"
             android:layout_marginTop="@dimen/index_margin_top"
@@ -175,7 +176,7 @@
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:scaleType="fitXY"
-            android:src="@drawable/rustortv" />
+            android:src="@drawable/icon_googleplay" />
         <ImageView
             android:id="@+id/im_application"
             android:layout_width="@dimen/index_second_icon_width"
@@ -223,24 +224,11 @@
             android:scaleType="centerCrop"
             android:src="@drawable/icon_hdmi1" />
         <ImageView
-            android:id="@+id/im_googleplay"
-            android:layout_width="@dimen/index_second_icon_width"
-            android:layout_height="@dimen/index_third_icon_height"
-            android:layout_below="@+id/im_application"
-            android:layout_marginStart="@dimen/index_margin"
-            android:layout_marginTop="20dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/im_application"
-            android:clickable="true"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/icon_googleplay" />
-        <ImageView
             android:id="@+id/im_youtube"
             android:layout_width="@dimen/index_second_icon_width"
             android:layout_height="@dimen/index_third_icon_height"
-            app:layout_constraintStart_toEndOf="@+id/im_application"
+            android:layout_marginStart="@dimen/index_margin"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/im_settings"
             android:layout_marginTop="20dp"
             android:clickable="true"
@@ -251,12 +239,12 @@
 
         <GridView
             android:id="@+id/heat_set"
-            android:layout_width="500dp"
+            android:layout_width="850dp"
             android:layout_height="180dp"
             android:descendantFocusability="afterDescendants"
             android:gravity="center"
             android:horizontalSpacing="0dp"
-            android:numColumns="3"
+            android:numColumns="6"
             android:stretchMode="columnWidth"
             android:paddingTop="@dimen/index_heat_paddingTop"
             app:layout_constraintStart_toEndOf="@id/im_youtube"
