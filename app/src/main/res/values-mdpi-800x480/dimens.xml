@@ -8,13 +8,13 @@
 
     <dimen name="index_margin">40dp</dimen>
     <dimen name="index_padding">20dp</dimen>
-    <dimen name="index_margin_top">40dp</dimen>
+    <dimen name="index_margin_top">15dp</dimen>
     <dimen name="index_first_icon_width">229dp</dimen>
-    <dimen name="index_first_icon_height">135dp</dimen>
+    <dimen name="index_first_icon_height">125dp</dimen>
     <dimen name="index_second_icon_width">172dp</dimen>
     <dimen name="index_second_icon_height">120dp</dimen>
-    <dimen name="index_heat_paddingTop">10dp</dimen>
-    <dimen name="index_icon_padding">5dp</dimen>
+    <dimen name="index_heat_paddingTop">15dp</dimen>
+    <dimen name="index_icon_padding">7dp</dimen>
 
     <dimen name="application_icon_width">110dp</dimen>
     <dimen name="application_icon_height">130dp</dimen>
@@ -27,7 +27,7 @@
     <dimen name="index_padding_yameixun">50dp</dimen>
 
     <dimen name="index_margin_normal">20dp</dimen>
-    <dimen name="index_padding_normal">0dp</dimen>
+    <dimen name="index_padding_normal">20dp</dimen>
 
     <dimen name="title_blank_weight">9</dimen>
     <dimen name="heat_width">60dp</dimen>
@@ -70,4 +70,5 @@
     <dimen name="time_bar_width">3dp</dimen>
     <dimen name="uninstall_padding">16dp</dimen>
     <dimen name="uninstall_title_padding_start">20dp</dimen>
+    <dimen name="index_third_icon_height">100dp</dimen>
 </resources>

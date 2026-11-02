@@ -22,7 +22,7 @@
         android:paddingEnd="?attr/indexPadding">
         <TextView
             android:id="@+id/tv_day"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:text="周六\n2023-12-11"
             android:textColor="@color/white"
@@ -33,7 +33,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/time_bar"
-            app:layout_constraintWidth_percent="0.18"
             android:layout_marginEnd="10dp"/>
         <View
             android:id="@+id/time_bar"
@@ -49,7 +48,7 @@
             android:layout_marginEnd="10dp"/>
         <TextView
             android:id="@+id/tv_time"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:text="13:16 上午"
             android:textColor="@color/white"
@@ -60,7 +59,6 @@
             app:layout_constraintEnd_toStartOf="@+id/rt_linearlayout"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintWidth_percent="0.3"
             android:autoSizeTextType="uniform"/>
         <LinearLayout
             android:id="@+id/rt_linearlayout"
@@ -77,7 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:paddingEnd="10dp"
+                android:paddingEnd="30dp"
                 android:orientation="horizontal">
                 <View
                     android:layout_width="0dp"
