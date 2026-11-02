@@ -70,4 +70,5 @@
     <dimen name="time_bar_width">3dp</dimen>
     <dimen name="uninstall_padding">16dp</dimen>
     <dimen name="uninstall_title_padding_start">20dp</dimen>
+    <dimen name="wifi_paddingEnd">10dp</dimen>
 </resources>
